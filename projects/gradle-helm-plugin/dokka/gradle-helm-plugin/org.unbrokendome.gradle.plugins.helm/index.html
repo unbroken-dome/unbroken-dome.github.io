@@ -1,0 +1,119 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>org.unbrokendome.gradle.plugins.helm - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="./index.html">org.unbrokendome.gradle.plugins.helm</a><br/>
+<br/>
+<h2>Package org.unbrokendome.gradle.plugins.helm</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-helm-plugin/index.html">HelmPlugin</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">HelmPlugin</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Plugin.html"><span class="identifier">Plugin</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html"><span class="identifier">Project</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-h-e-l-m_-c-h-a-r-t-s_-e-x-t-e-n-s-i-o-n_-n-a-m-e.html">HELM_CHARTS_EXTENSION_NAME</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">HELM_CHARTS_EXTENSION_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the <code>charts</code> DSL sub-extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-h-e-l-m_-d-e-p-e-n-d-e-n-c-i-e-s_-e-x-t-e-n-s-i-o-n_-n-a-m-e.html">HELM_DEPENDENCIES_EXTENSION_NAME</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">HELM_DEPENDENCIES_EXTENSION_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the <code>dependencies</code> DSL extension on a chart.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-h-e-l-m_-e-x-t-e-n-s-i-o-n_-n-a-m-e.html">HELM_EXTENSION_NAME</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">HELM_EXTENSION_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the <code>helm</code> extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-h-e-l-m_-f-i-l-t-e-r-i-n-g_-e-x-t-e-n-s-i-o-n_-n-a-m-e.html">HELM_FILTERING_EXTENSION_NAME</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">HELM_FILTERING_EXTENSION_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the <code>filtering</code> DSL extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-h-e-l-m_-g-r-o-u-p.html">HELM_GROUP</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">HELM_GROUP</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The task group for all Helm-related tasks.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-h-e-l-m_-l-i-n-t_-e-x-t-e-n-s-i-o-n_-n-a-m-e.html">HELM_LINT_EXTENSION_NAME</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">HELM_LINT_EXTENSION_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the <code>lint</code> DSL sub-extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-h-e-l-m_-m-a-i-n_-c-h-a-r-t_-n-a-m-e.html">HELM_MAIN_CHART_NAME</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">HELM_MAIN_CHART_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the special "main" chart.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-h-e-l-m_-r-e-l-e-a-s-e-s_-e-x-t-e-n-s-i-o-n_-n-a-m-e.html">HELM_RELEASES_EXTENSION_NAME</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">HELM_RELEASES_EXTENSION_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the <code>releases</code> DSL sub.extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-h-e-l-m_-r-e-p-o-s-i-t-o-r-i-e-s_-e-x-t-e-n-s-i-o-n_-n-a-m-e.html">HELM_REPOSITORIES_EXTENSION_NAME</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">HELM_REPOSITORIES_EXTENSION_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the <code>repositories</code> DSL sub-extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-h-e-l-m_-t-i-l-l-l-e-r_-e-x-t-e-n-s-i-o-n_-n-a-m-e.html">HELM_TILLLER_EXTENSION_NAME</a></p>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">HELM_TILLLER_EXTENSION_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the <code>tiller</code> DSL sub-extension.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

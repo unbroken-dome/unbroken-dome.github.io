@@ -1,0 +1,187 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>org.unbrokendome.gradle.plugins.helm.dsl - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="./index.html">org.unbrokendome.gradle.plugins.helm.dsl</a><br/>
+<br/>
+<h2>Package org.unbrokendome.gradle.plugins.helm.dsl</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-filtering/index.html">Filtering</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Filtering</span></code>
+<p>Configures filtering of chart sources.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-chart/index.html">HelmChart</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmChart</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Buildable.html"><span class="identifier">Buildable</span></a></code>
+<p>Represents a Helm chart built by this project.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-extension/index.html">HelmExtension</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmExtension</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-global-helm-options/index.html"><span class="identifier">GlobalHelmOptions</span></a></code>
+<p>The main Helm DSL extension, accessible using the <code>helm { ... }</code> block in build scripts.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-repository/index.html">HelmRepository</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmRepository</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl.credentials/-credentials-container/index.html"><span class="identifier">CredentialsContainer</span></a></code>
+<p>Represents a Helm chart repository.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-linting/index.html">Linting</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Linting</span></code>
+<p>Defines options for linting Helm charts using the <code>helm lint</code> command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-tiller/index.html">Tiller</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Tiller</span></code>
+<p>Defines options for setting up Tiller on a remote Kubernetes cluster.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extensions for External Classes</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="org.gradle.api.-project/index.html">org.gradle.api.Project</a></p>
+</td>
+<td>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="charts.html">charts</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="-helm-extension/index.html"><span class="identifier">HelmExtension</span></a><span class="symbol">.</span><span class="identifier">charts</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/NamedDomainObjectContainer.html"><span class="identifier">NamedDomainObjectContainer</span></a><span class="symbol">&lt;</span><a href="-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">&gt;</span></code>
+<p>Gets the <code>charts</code> sub-extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="dependencies.html">dependencies</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">dependencies</span><span class="symbol">: </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl.dependencies/-chart-dependency-handler/index.html"><span class="identifier">ChartDependencyHandler</span></a></code>
+<p>Gets the chart's <code>dependencies</code> extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="filtering.html">filtering</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="-helm-extension/index.html"><span class="identifier">HelmExtension</span></a><span class="symbol">.</span><span class="identifier">filtering</span><span class="symbol">: </span><a href="-filtering/index.html"><span class="identifier">Filtering</span></a></code>
+<p>Gets the <a href="-filtering/index.html">Filtering</a> sub-extension.</p>
+<code><span class="keyword">val </span><a href="-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">filtering</span><span class="symbol">: </span><a href="-filtering/index.html"><span class="identifier">Filtering</span></a></code>
+<p>Gets the chart's <a href="-filtering/index.html">Filtering</a> extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="lint.html">lint</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="-helm-extension/index.html"><span class="identifier">HelmExtension</span></a><span class="symbol">.</span><span class="identifier">lint</span><span class="symbol">: </span><a href="-linting/index.html"><span class="identifier">Linting</span></a></code>
+<p>Gets the <a href="-linting/index.html">Linting</a> sub-extension.</p>
+<code><span class="keyword">val </span><a href="-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">lint</span><span class="symbol">: </span><a href="-linting/index.html"><span class="identifier">Linting</span></a></code>
+<p>Gets the chart's <a href="-linting/index.html">Linting</a> extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="repositories.html">repositories</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="-helm-extension/index.html"><span class="identifier">HelmExtension</span></a><span class="symbol">.</span><span class="identifier">repositories</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/NamedDomainObjectContainer.html"><span class="identifier">NamedDomainObjectContainer</span></a><span class="symbol">&lt;</span><a href="-helm-repository/index.html"><span class="identifier">HelmRepository</span></a><span class="symbol">&gt;</span></code>
+<p>Gets the <code>repositories</code> sub-extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="tiller.html">tiller</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="-helm-extension/index.html"><span class="identifier">HelmExtension</span></a><span class="symbol">.</span><span class="identifier">tiller</span><span class="symbol">: </span><a href="-tiller/index.html"><span class="identifier">Tiller</span></a></code>
+<p>Gets the <a href="-tiller/index.html">Tiller</a> sub-extension.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="create-helm-extension.html">createHelmExtension</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">createHelmExtension</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl$createHelmExtension(org.gradle.api.Project)/project">project</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html"><span class="identifier">Project</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-helm-extension/index.html"><span class="identifier">HelmExtension</span></a></code>
+<p>Creates a new <a href="-helm-extension/index.html">HelmExtension</a> object using the given project's <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/model/ObjectFactory.html">ObjectFactory</a>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="dependencies.html">dependencies</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">dependencies</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl$dependencies(org.unbrokendome.gradle.plugins.helm.dsl.HelmChart, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.dsl.dependencies.ChartDependencyHandler, kotlin.Unit)))/configure">configure</span><span class="symbol">:</span>&nbsp;<a href="../org.unbrokendome.gradle.plugins.helm.dsl.dependencies/-chart-dependency-handler/index.html"><span class="identifier">ChartDependencyHandler</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Configures the chart dependencies.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="filtering.html">filtering</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">filtering</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl$filtering(org.unbrokendome.gradle.plugins.helm.dsl.HelmChart, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.dsl.Filtering, kotlin.Unit)))/configure">configure</span><span class="symbol">:</span>&nbsp;<a href="-filtering/index.html"><span class="identifier">Filtering</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Configures the chart filtering.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="lint.html">lint</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">lint</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl$lint(org.unbrokendome.gradle.plugins.helm.dsl.HelmChart, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.dsl.Linting, kotlin.Unit)))/configure">configure</span><span class="symbol">:</span>&nbsp;<a href="-linting/index.html"><span class="identifier">Linting</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Configures the chart linting.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>org.unbrokendome.gradle.plugins.helm.command - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="./index.html">org.unbrokendome.gradle.plugins.helm.command</a><br/>
+<br/>
+<h2>Package org.unbrokendome.gradle.plugins.helm.command</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-global-helm-options/index.html">GlobalHelmOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">GlobalHelmOptions</span></code>
+<p>Holds options that apply to all Helm commands.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-commands-plugin/index.html">HelmCommandsPlugin</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">HelmCommandsPlugin</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Plugin.html"><span class="identifier">Plugin</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html"><span class="identifier">Project</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-exec-provider/index.html">HelmExecProvider</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmExecProvider</span></code>
+<p>Provides a context to execute Helm CLI commands.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-exec-spec/index.html">HelmExecSpec</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmExecSpec</span></code>
+<p>Configures and executes a Helm CLI command.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="exec-helm.html">execHelm</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">.</span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code>
+<p>Executes a Helm CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="values-options.html">valuesOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="identifier">valuesOptions</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$valuesOptions(org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, org.gradle.api.provider.Provider((kotlin.collections.Map((kotlin.String, kotlin.Any)))), org.gradle.api.file.FileCollection)/values">values</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$valuesOptions(org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, org.gradle.api.provider.Provider((kotlin.collections.Map((kotlin.String, kotlin.Any)))), org.gradle.api.file.FileCollection)/valueFiles">valueFiles</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/FileCollection.html"><span class="identifier">FileCollection</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Adds common options for commands that take values (<code>install</code>, <code>upgrade</code>, <code>lint</code>).</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

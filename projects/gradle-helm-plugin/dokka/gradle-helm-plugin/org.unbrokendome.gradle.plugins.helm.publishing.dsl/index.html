@@ -1,0 +1,67 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>org.unbrokendome.gradle.plugins.helm.publishing.dsl - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="./index.html">org.unbrokendome.gradle.plugins.helm.publishing.dsl</a><br/>
+<br/>
+<h2>Package org.unbrokendome.gradle.plugins.helm.publishing.dsl</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-helm-chart-publish-convention/index.html">HelmChartPublishConvention</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmChartPublishConvention</span></code>
+<p>Convention that adds publishing-related properties to each chart.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-publishing-extension.html">HelmPublishingExtension</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmPublishingExtension</span></code>
+<p>Configures the publishing of Helm charts to remote repositories.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-publishing-repository/index.html">HelmPublishingRepository</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmPublishingRepository</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl.credentials/-credentials-container/index.html"><span class="identifier">CredentialsContainer</span></a></code>
+<p>Describes a remote repository into which Helm charts can be published.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="publishing.html">publishing</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-extension/index.html"><span class="identifier">HelmExtension</span></a><span class="symbol">.</span><span class="identifier">publishing</span><span class="symbol">: </span><a href="-helm-publishing-extension.html"><span class="identifier">HelmPublishingExtension</span></a></code>
+<p>Gets the <code>publishing</code> sub-extension.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="repositories.html">repositories</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="-helm-publishing-extension.html"><span class="identifier">HelmPublishingExtension</span></a><span class="symbol">.</span><span class="identifier">repositories</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/NamedDomainObjectContainer.html"><span class="identifier">NamedDomainObjectContainer</span></a><span class="symbol">&lt;</span><a href="-helm-publishing-repository/index.html"><span class="identifier">HelmPublishingRepository</span></a><span class="symbol">&gt;</span></code>
+<p>Gets the <code>publishing.repositories</code> sub-extension.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

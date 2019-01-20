@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>org.unbrokendome.gradle.plugins.helm.command.tasks - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="./index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a><br/>
+<br/>
+<h2>Package org.unbrokendome.gradle.plugins.helm.command.tasks</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-abstract-helm-command-task/index.html">AbstractHelmCommandTask</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/DefaultTask.html"><span class="identifier">DefaultTask</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-global-helm-options/index.html"><span class="identifier">GlobalHelmOptions</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a></code>
+<p>Base class for tasks that invoke a Helm CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-abstract-helm-server-command-task/index.html">AbstractHelmServerCommandTask</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmServerCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a></code>
+<p>Base class for tasks representing Helm CLI commands that communicate with Tiller.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-add-repository/index.html">HelmAddRepository</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmAddRepository</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a></code>
+<p>Registers a known repository with Helm. Corresponds to the <code>helm repo add</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-build-dependencies/index.html">HelmBuildDependencies</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmBuildDependencies</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a></code>
+<p>Builds the chart dependencies from the <em>requirements.lock</em> or <em>requirements.yaml</em> file. Corresponds to the
+<code>helm dependency build</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-build-or-update-dependencies/index.html">HelmBuildOrUpdateDependencies</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmBuildOrUpdateDependencies</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a></code>
+<p>Builds or updates chart dependencies. This is a combination of the <code>helm dependency update</code> and
+<code>helm dependency build</code> CLI commands, which executes either <code>update</code> or <code>build</code> according to the following
+logic:</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-delete/index.html">HelmDelete</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmDelete</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-server-command-task/index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code>
+<p>Deletes a release from the cluster. Corresponds to the <code>helm delete</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-init/index.html">HelmInit</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmInit</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a></code>
+<p>Initialize Helm on the client and/or server side. Corresponds to the <code>helm init</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-install/index.html">HelmInstall</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmInstall</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-server-command-task/index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code>
+<p>Installs a chart into the cluster. Corresponds to the <code>helm install</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-install-or-upgrade/index.html">HelmInstallOrUpgrade</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmInstallOrUpgrade</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-server-command-task/index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code>
+<p>Installs a chart into a remote Kubernetes cluster as a new release, or upgrades an existing release.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-lint/index.html">HelmLint</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmLint</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a></code>
+<p>Runs a series of tests to verify that a chart is well-formed.
+Corresponds to the <code>helm lint</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-package/index.html">HelmPackage</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmPackage</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a></code>
+<p>Packages a chart into a versioned chart archive file. Corresponds to the <code>helm package</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-test/index.html">HelmTest</a></p>
+</td>
+<td>
+<code><span class="keyword">class </span><span class="identifier">HelmTest</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-server-command-task/index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code>
+<p>Runs the tests for a release. Corresponds to the <code>helm test</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-update-dependencies/index.html">HelmUpdateDependencies</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmUpdateDependencies</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a></code>
+<p>Updates the chart dependencies from the <em>requirements.yaml</em> file, and creates a <em>requirements.lock</em> file that
+fixes the versions of chart dependencies. Corresponds to the <code>helm dependency update</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-upgrade/index.html">HelmUpgrade</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmUpgrade</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-abstract-helm-server-command-task/index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code>
+<p>Upgrades a release on the cluster. Corresponds to the <code>helm upgrade</code> CLI command.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

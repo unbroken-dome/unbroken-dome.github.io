@@ -1,0 +1,27 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmBuildOrUpdateDependencies.<init> - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a>&nbsp;/&nbsp;<a href="index.html">HelmBuildOrUpdateDependencies</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<a name="org.unbrokendome.gradle.plugins.helm.command.tasks.HelmBuildOrUpdateDependencies$&lt;init&gt;()"></a>
+<code><span class="identifier">HelmBuildOrUpdateDependencies</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Builds or updates chart dependencies. This is a combination of the <code>helm dependency update</code> and
+<code>helm dependency build</code> CLI commands, which executes either <code>update</code> or <code>build</code> according to the following
+logic:</p>
+<ul><li>if the <em>requirements.yaml</em> file does not exist, deletes the <em>requirements.lock</em> file (if present) and does not
+execute either of the CLI commands.</li>
+<li>if <em>requirements.yaml</em> exists but <em>requirements.lock</em> does not, executes <code>helm dependency update</code>.</li>
+<li>
+<p>if both <em>requirements.yaml</em> and <em>requirements.lock</em> exist:</p>
+  <ul><li>if <em>requirements.yaml</em> is newer than the lock file, executes <code>helm dependency update</code>.</li>
+  <li>if the <em>requirements.lock</em> is newer than <em>requirements.yaml</em>, executes <code>helm dependency build</code>.</li>
+</ul>
+</li>
+</ul>
+</BODY>
+</HTML>
