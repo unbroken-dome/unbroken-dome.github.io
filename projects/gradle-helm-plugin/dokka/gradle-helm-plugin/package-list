@@ -1,6 +1,5 @@
 $dokka.format:html
 $dokka.linkExtension:html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.dsl$helm#org.gradle.api.Projectorg.unbrokendome.gradle.plugins.helm.dsl/org.gradle.api.-project/helm.html
 $dokka.location:org.unbrokendome.gradle.plugins.helm.util$andThen(org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.util.andThen.T)), kotlin.Function1((org.unbrokendome.gradle.plugins.helm.util.andThen.T, kotlin.Unit)))org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-action/and-then.html
 $dokka.location:org.unbrokendome.gradle.plugins.helm.util$andThen(org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.util.andThen.T)), org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.util.andThen.T)))org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-action/and-then.html
 $dokka.location:org.unbrokendome.gradle.plugins.helm.util$booleanProviderFromProjectProperty(org.gradle.api.Project, kotlin.String, kotlin.Boolean)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-project/boolean-provider-from-project-property.html
