@@ -12,6 +12,7 @@ $dokka.location:org.unbrokendome.gradle.plugins.helm.util$mapProperty(org.gradle
 $dokka.location:org.unbrokendome.gradle.plugins.helm.util$property(org.gradle.api.model.ObjectFactory)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.model.-object-factory/property.html
 $dokka.location:org.unbrokendome.gradle.plugins.helm.util$setProperty(org.gradle.api.model.ObjectFactory)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.model.-object-factory/set-property.html
 $dokka.location:org.unbrokendome.gradle.plugins.helm.util$versionProvider#org.gradle.api.Projectorg.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-project/version-provider.html
+org.gradle.kotlin.dsl
 org.unbrokendome.gradle.plugins.helm
 org.unbrokendome.gradle.plugins.helm.command
 org.unbrokendome.gradle.plugins.helm.command.tasks
