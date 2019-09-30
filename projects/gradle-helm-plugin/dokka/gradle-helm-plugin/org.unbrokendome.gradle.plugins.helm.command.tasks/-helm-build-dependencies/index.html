@@ -73,16 +73,6 @@
 <tbody>
 <tr>
 <td>
-<p><a href="../-abstract-helm-command-task/actual-helm-home.html">actualHelmHome</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">actualHelmHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code>
-<p>A <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html">Provider</a> that returns the path to the actual Helm home directory. This will be the value of the <a href="../-abstract-helm-command-task/home.html">home</a>
-property if it is set, or the result of calling <code>helm home</code> otherwise.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="../-abstract-helm-command-task/debug.html">debug</a></p>
 </td>
 <td>
@@ -152,6 +142,15 @@ can just be <code>"helm"</code> if the Helm client is installed in a suitable lo
 <td>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="identifier">modifyHelmExecSpec</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Modifies the <a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html">HelmExecSpec</a> before a Helm command is executed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/register-helm-home-as-input-dir.html">registerHelmHomeAsInputDir</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">registerHelmHomeAsInputDir</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Register the <a href="../-abstract-helm-command-task/home.html">home</a> property as an input directory for this task.</p>
 </td>
 </tr>
 </tbody>

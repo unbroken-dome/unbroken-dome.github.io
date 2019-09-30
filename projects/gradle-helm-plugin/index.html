@@ -511,7 +511,7 @@ $(addBlockSwitches);
 <div id="header">
 <h1>Gradle Helm Plugin</h1>
 <div class="details">
-<span id="revnumber">version 0.4.1</span>
+<span id="revnumber">version 0.4.4</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -643,7 +643,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '0.4.1'
+    id 'org.unbroken-dome.helm' version '0.4.4'
 }</code></pre>
 </div>
 </div>
@@ -651,7 +651,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "0.4.1"
+    id("org.unbroken-dome.helm") version "0.4.4"
 }</code></pre>
 </div>
 </div>
@@ -701,7 +701,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-commands' version '0.4.1'
+    id 'org.unbroken-dome.helm-commands' version '0.4.4'
 }</code></pre>
 </div>
 </div>
@@ -709,7 +709,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-commands") version "0.4.1"
+    id("org.unbroken-dome.helm-commands") version "0.4.4"
 }</code></pre>
 </div>
 </div>
@@ -727,7 +727,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '0.4.1'
+    id 'org.unbroken-dome.helm' version '0.4.4'
 }</code></pre>
 </div>
 </div>
@@ -735,7 +735,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "0.4.1"
+    id("org.unbroken-dome.helm") version "0.4.4"
 }</code></pre>
 </div>
 </div>
@@ -752,7 +752,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-publish' version '0.4.1'
+    id 'org.unbroken-dome.helm-publish' version '0.4.4'
 }</code></pre>
 </div>
 </div>
@@ -760,7 +760,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-publish") version "0.4.1"
+    id("org.unbroken-dome.helm-publish") version "0.4.4"
 }</code></pre>
 </div>
 </div>
@@ -778,7 +778,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-releases' version '0.4.1'
+    id 'org.unbroken-dome.helm-releases' version '0.4.4'
 }</code></pre>
 </div>
 </div>
@@ -786,7 +786,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-releases") version "0.4.1"
+    id("org.unbroken-dome.helm-releases") version "0.4.4"
 }</code></pre>
 </div>
 </div>
@@ -923,11 +923,13 @@ full list of configuration options.</p>
 <div class="paragraph">
 <p>With the <code>helm</code> plugin you can configure your Helm chart using a declarative DSL, and the corresponding Gradle tasks will be added automatically.</p>
 </div>
+<div class="paragraph">
+<p>Groovy</p>
+</div>
 <div class="listingblock primary">
-<div class="title">build.gradle</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '0.4.1'
+    id 'org.unbroken-dome.helm' version '0.4.4'
 }
 
 helm {
@@ -941,11 +943,13 @@ helm {
 }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Kotlin</p>
+</div>
 <div class="listingblock secondary">
-<div class="title">build.gradle</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "0.4.1"
+    id("org.unbroken-dome.helm") version "0.4.4"
 }
 
 helm {
@@ -1234,14 +1238,40 @@ Gradle project&#8217;s name and version:</p>
 <div class="listingblock">
 <div class="title">Chart.yaml</div>
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">name: ${chartName}
-version: ${chartVersion}</code></pre>
+<pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
+name: ${chartName}
+version: ${chartVersion}
+appVersion: ${projectVersion}</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>chartName</code> and <code>chartVersion</code> placeholders are automatically available based on the corresponding properties of
-the chart in the DSL. You can also define additional placeholders and their values (see below).</p>
+<p>The following placeholders are automatically available based on the corresponding properties of the chart in
+the DSL. You can also define additional placeholders and their values using the <code>filtering.values</code> property (see below).</p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Placeholder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>chartName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The chart name, as set by the <code>HelmChart.chartName</code> property in the build script</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>chartVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The chart version, as set by the <code>HelmChart.chartVersion</code> property in the build script</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>projectVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>version</code> of the Gradle <code>Project</code> (at the time the filtering task is executed)</p></td>
+</tr>
+</tbody>
+</table>
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1271,8 +1301,8 @@ override properties if they are defined in both places:</p>
         values.put 'authorName', 'A. U. Thor'
     }
 
-    charts {
-        main {
+    (charts) {
+        "main" {
             filtering {
                 // add a custom value that can be resolved only inside this chart's YAML files.
                 values.put 'dockerImage', 'busybox'
@@ -1301,6 +1331,10 @@ override properties if they are defined in both places:</p>
     }
 }</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>You can also pass a <code>Provider</code> or <code>Property</code> as the value; in this case it will be resolved lazily when the filtering
+task runs.</p>
 </div>
 <div class="paragraph">
 <p>The following properties are available in the <code>filtering</code> block:</p>
@@ -1589,7 +1623,7 @@ dependency in <code>requirements.yaml</code> and modify its <code>repository</co
     }
 
     create("bar") {
-        chartVersion = '3.2.1'
+        chartVersion.set("3.2.1")
         sourceDir.set(file("src/helm/bar"))
 
         dependencies {
@@ -1731,7 +1765,7 @@ or consider creating a PR to add support for it.</p>
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-publish' version '0.4.1'
+    id 'org.unbroken-dome.helm-publish' version '0.4.4'
 }</code></pre>
 </div>
 </div>
@@ -1739,7 +1773,7 @@ or consider creating a PR to add support for it.</p>
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-publish") version "0.4.1"
+    id("org.unbroken-dome.helm-publish") version "0.4.4"
 }</code></pre>
 </div>
 </div>
@@ -2585,7 +2619,7 @@ allow for easier overriding.
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 0.4.1<br>
+Version 0.4.4<br>
 Last updated 2019-01-20 23:31:23 +0100
 </div>
 </div>
