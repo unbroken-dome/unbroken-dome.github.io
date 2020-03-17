@@ -15,6 +15,16 @@
 <tbody>
 <tr>
 <td>
+<p><a href="base-output-dir.html">baseOutputDir</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">baseOutputDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
+<p>The base output directory. When the chart is built, a subdirectory with the same name as the chart
+will be created below this. (That subdirectory can be queried using <a href="output-dir.html">outputDir</a>.)</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="chart-name.html">chartName</a></p>
 </td>
 <td>
@@ -33,6 +43,42 @@
 </tr>
 <tr>
 <td>
+<p><a href="extra-files.html">extraFiles</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">extraFiles</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/CopySpec.html"><span class="identifier">CopySpec</span></a></code>
+<p>A <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/CopySpec.html">CopySpec</a> that allows copying additional files into the chart.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="output-dir.html">outputDir</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">outputDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code>
+<p>The directory where the (exploded) chart files will be written.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="package-file-name.html">packageFileName</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">packageFileName</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>The name of the packaged chart file.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="package-output-file.html">packageOutputFile</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">packageOutputFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFile.html"><span class="identifier">RegularFile</span></a><span class="symbol">&gt;</span></code>
+<p>The location of the packaged chart file.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="source-dir.html">sourceDir</a></p>
 </td>
 <td>
@@ -42,9 +88,32 @@
 </tr>
 </tbody>
 </table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="extra-files.html">extraFiles</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">extraFiles</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl.HelmChart$extraFiles(org.gradle.api.Action((org.gradle.api.file.CopySpec)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/CopySpec.html"><span class="identifier">CopySpec</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Configures a <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/CopySpec.html">CopySpec</a> that allows copying additional files into the chart.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <h3>Extension Properties</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.rules/collect-chart-sources-task-name.html">collectChartSourcesTaskName</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">collectChartSourcesTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/Sync.html">Sync</a> task to copy the extra files into this chart.</p>
+</td>
+</tr>
 <tr>
 <td>
 <p><a href="../../org.gradle.kotlin.dsl/dependencies.html">dependencies</a></p>
@@ -114,7 +183,7 @@
 </td>
 <td>
 <code><span class="keyword">val </span><a href="./index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">packagedArtifactConfigurationName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
-<p>The name of the <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Configuration.html">Configuration</a> that contains the package artifact for this chart.</p>
+<p>The name of the <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Configuration.html">Configuration</a> that contains the packaged artifact for this chart.</p>
 </td>
 </tr>
 <tr>
@@ -141,7 +210,7 @@
 </td>
 <td>
 <code><span class="keyword">val </span><a href="./index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">updateDependenciesTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
-<p>The name of the <a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-build-or-update-dependencies/index.html">HelmBuildOrUpdateDependencies</a> task for this chart.</p>
+<p>The name of the <a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-update-dependencies/index.html">HelmUpdateDependencies</a> task for this chart.</p>
 </td>
 </tr>
 </tbody>

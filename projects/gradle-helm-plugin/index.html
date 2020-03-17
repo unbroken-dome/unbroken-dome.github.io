@@ -511,7 +511,7 @@ $(addBlockSwitches);
 <div id="header">
 <h1>Gradle Helm Plugin</h1>
 <div class="details">
-<span id="revnumber">version 0.4.4</span>
+<span id="revnumber">version 1.0.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -528,13 +528,17 @@ $(addBlockSwitches);
 </li>
 <li><a href="#_configuring_the_helm_client">Configuring the Helm Client</a>
 <ul class="sectlevel2">
-<li><a href="#_configuring_tiller">Configuring Tiller</a></li>
+<li><a href="#_global_helm_options">Global Helm Options</a></li>
+<li><a href="#_helm_directories">Helm Directories</a></li>
 </ul>
 </li>
 <li><a href="#_defining_charts">Defining Charts</a>
 <ul class="sectlevel2">
+<li><a href="#_helm_chart_tasks">Helm Chart Tasks</a></li>
+<li><a href="#_helm_chart_configurations">Helm Chart Configurations</a></li>
 <li><a href="#_using_the_main_chart">Using the <code>main</code> chart</a></li>
 <li><a href="#_using_charts_in_a_multi_project_build">Using Charts in a Multi-Project Build</a></li>
+<li><a href="#_adding_extra_files_to_a_chart">Adding Extra Files to a Chart</a></li>
 </ul>
 </li>
 <li><a href="#_defining_repositories">Defining Repositories</a>
@@ -544,7 +548,8 @@ $(addBlockSwitches);
 </li>
 <li><a href="#_filtering_chart_sources">Filtering Chart Sources</a>
 <ul class="sectlevel2">
-<li><a href="#_configure_the_filtering_step">Configure the Filtering Step</a></li>
+<li><a href="#_enable_or_disable_filtering">Enable or Disable Filtering</a></li>
+<li><a href="#_supply_additional_values">Supply Additional Values</a></li>
 </ul>
 </li>
 <li><a href="#_linting_charts">Linting Charts</a>
@@ -556,7 +561,10 @@ $(addBlockSwitches);
 <li><a href="#_managing_chart_dependencies">Managing Chart Dependencies</a>
 <ul class="sectlevel2">
 <li><a href="#_declaring_a_dependency">Declaring a Dependency</a></li>
+<li><a href="#_configuring_the_dependency_in_chart_yaml">Configuring the Dependency in Chart.yaml</a></li>
 <li><a href="#_chart_dependencies_in_multi_project_builds">Chart Dependencies in Multi-Project Builds</a></li>
+<li><a href="#_mixing_gradle_and_helm_dependency_resolution">Mixing Gradle and Helm Dependency Resolution</a></li>
+<li><a href="#_resolving_external_chart_dependencies">Resolving External Chart Dependencies</a></li>
 </ul>
 </li>
 <li><a href="#_publishing_charts">Publishing Charts</a>
@@ -570,6 +578,7 @@ $(addBlockSwitches);
 <ul class="sectlevel2">
 <li><a href="#_release_tasks">Release Tasks</a></li>
 <li><a href="#_release_dependencies">Release Dependencies</a></li>
+<li><a href="#_installupgrade_logic">Install/Upgrade logic</a></li>
 </ul>
 </li>
 <li><a href="#_using_helm_commands">Using Helm Commands</a>
@@ -580,7 +589,6 @@ $(addBlockSwitches);
 <li><a href="#_configuration_from_project_properties">Configuration from Project Properties</a>
 <ul class="sectlevel2">
 <li><a href="#_basic_helm_properties">Basic Helm Properties</a></li>
-<li><a href="#_tiller">Tiller</a></li>
 <li><a href="#_repositories">Repositories</a></li>
 <li><a href="#_filtering">Filtering</a></li>
 <li><a href="#_linting">Linting</a></li>
@@ -618,11 +626,17 @@ in Gradle 5.1, earlier versions of Gradle are unfortunately not supported.</p>
 <p>JDK 8 or higher (for running Gradle)</p>
 </li>
 <li>
-<p>Helm CLI</p>
+<p>Helm CLI (3.+)</p>
 <div class="paragraph">
 <p>This plugin delegates all <code>helm</code> commands to a locally installed Helm CLI. See
 <a href="https://docs.helm.sh/using_helm/#installing-helm">Installing Helm</a> in the Helm documentation for installation
 instructions on various systems.</p>
+</div>
+<div class="paragraph">
+<p>Starting with version 0.5.0, the plugin requires Helm 3. However, the chart API version <code>v1</code> is still
+supported by Helm 3, and also by the plugin. (The main difference between <code>v1</code> and <code>v2</code> is that <code>v1</code> declares
+chart dependencies in a file called <code>requirements.yaml</code>, whereas in <code>v2</code> the dependencies are declared
+directly in the <code>Chart.yaml</code> file.)</p>
 </div>
 <div class="paragraph">
 <p>INFO: Delegating to the Helm CLI decouples the plugin release cycle from the Helm release cycle, but it also
@@ -643,7 +657,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '0.4.4'
+    id 'org.unbroken-dome.helm' version '1.0.0'
 }</code></pre>
 </div>
 </div>
@@ -651,7 +665,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "0.4.4"
+    id("org.unbroken-dome.helm") version "1.0.0"
 }</code></pre>
 </div>
 </div>
@@ -667,7 +681,6 @@ means that some features offered by the plugin may not be available in the CLI a
                 📂 templates
                     📄 ...
                 📄 Chart.yaml
-                📄 requirements.yaml
                 📄 values.yaml</pre>
 </div>
 </div>
@@ -701,7 +714,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-commands' version '0.4.4'
+    id 'org.unbroken-dome.helm-commands' version '1.0.0'
 }</code></pre>
 </div>
 </div>
@@ -709,7 +722,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-commands") version "0.4.4"
+    id("org.unbroken-dome.helm-commands") version "1.0.0"
 }</code></pre>
 </div>
 </div>
@@ -727,7 +740,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '0.4.4'
+    id 'org.unbroken-dome.helm' version '1.0.0'
 }</code></pre>
 </div>
 </div>
@@ -735,7 +748,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "0.4.4"
+    id("org.unbroken-dome.helm") version "1.0.0"
 }</code></pre>
 </div>
 </div>
@@ -752,7 +765,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-publish' version '0.4.4'
+    id 'org.unbroken-dome.helm-publish' version '1.0.0'
 }</code></pre>
 </div>
 </div>
@@ -760,7 +773,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-publish") version "0.4.4"
+    id("org.unbroken-dome.helm-publish") version "1.0.0"
 }</code></pre>
 </div>
 </div>
@@ -768,7 +781,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="sect2">
 <h3 id="_helm_releases"><a class="anchor" href="#_helm_releases"></a><code>helm-releases</code></h3>
 <div class="paragraph">
-<p>Use this plugin to manage Helm releases (install/update/delete) on a remote Kubernetes cluster.</p>
+<p>Use this plugin to manage Helm releases (install/upgrade/uninstall) on a remote Kubernetes cluster.</p>
 </div>
 <div class="paragraph">
 <p>It enables the <code>helm.releases</code> DSL block, where you can declare your releases using Gradle DSL, referencing either
@@ -778,7 +791,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-releases' version '0.4.4'
+    id 'org.unbroken-dome.helm-releases' version '1.0.0'
 }</code></pre>
 </div>
 </div>
@@ -786,7 +799,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-releases") version "0.4.4"
+    id("org.unbroken-dome.helm-releases") version "1.0.0"
 }</code></pre>
 </div>
 </div>
@@ -801,8 +814,7 @@ means that some features offered by the plugin may not be available in the CLI a
 </div>
 <div class="paragraph">
 <p>Most of these correspond to options that are passed to every Helm CLI command as a parameter
-or an environment variable, or parameters that are passed to the initial <code>helm init</code> call that
-sets up the local Helm environment.</p>
+or an environment variable.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -820,14 +832,111 @@ See <a href="#_configuration_from_project_properties">Configuration from Project
 </tr>
 </table>
 </div>
+<div class="sect2">
+<h3 id="_global_helm_options"><a class="anchor" href="#_global_helm_options"></a>Global Helm Options</h3>
 <div class="paragraph">
-<p>The following <code>helm.home</code> sets the Helm home directory to a path inside the Gradle build directory.</p>
+<p>The following properties can be set on the <code>helm</code> extension in the Gradle build script.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Property</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm</code> CLI option</p>
+<p class="tableblock"><code>executable</code>
+Path to the <code>helm</code> executable. The <code>PATH</code> environment variable is taken into account, so this can just be <code>helm</code>
+ (which is the default) if the Helm client is installed in a suitable location.</p>
+<p class="tableblock"><code>extraArgs</code>
+Additional arguments to pass to <em>every</em> invocation of <code>helm</code>. This can be used for command-line options that have
+ no counterpart in the plugin.</p>
+<p class="tableblock"><code>kubeConfig</code>
+Path to the Kubernetes configuration file.
+Environment variable <code>KUBECONFIG</code></p>
+<p class="tableblock"><code>kubeContext</code>
+Name of the kubeconfig context to use.
+<code>--kube-context</code></p>
+<p class="tableblock"><code>namespace</code>
+Kubernetes namespace scope.
+<code>--namespace</code></p>
+<p class="tableblock"><code>remoteTimeout</code>
+Time to wait for any individual Kubernetes operation (like Jobs for hooks).
+<code>--timeout</code> (on certain commands like <code>install</code>, <code>upgrade</code> or <code>uninstall</code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_helm_directories"><a class="anchor" href="#_helm_directories"></a>Helm Directories</h3>
+<div class="paragraph">
+<p>Starting with Helm 3, Helm does not have a "helm home" directory anymore, and dropped the need for a call to
+<code>helm init</code> before working with Helm. Instead, local Helm directories are governed by 3 environment variables,
+which can be configured in the Gradle <code>helm</code> extension. By default, these directories are set to paths inside
+the Gradle project, so that any <code>helm</code> invocation from the Gradle build is independent from the Helm configuration
+present on the local machine.</p>
+</div>
+<div class="paragraph">
+<p>It is also possible to set these properties via <code>gradle.properties</code> or pass them using the <code>-P</code> flag on the
+Gradle command line (see <a href="#_configuration_from_project_properties">Configuration from Project Properties</a>).</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://helm.sh/docs/helm/helm/">the Helm docs</a> for details about how XDG base directories are used
+by the Helm CLI.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm</code> extension property</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Environment variable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default Value</p>
+<p class="tableblock"><code>xdgDataHome</code>
+Base directory for storing data. (Note: this does not currently seem to be used by any <code>helm</code> command.)
+<code>XDG_DATA_HOME</code>
+<code>build/helm/data</code> under the project dir</p>
+<p class="tableblock"><code>xdgConfigHome</code>
+Base directory for storing configuration.
+<code>XDG_CONFIG_HOME</code>
+<code>build/helm/config</code> under the project dir</p>
+<p class="tableblock"><code>xdgCacheHome</code>
+Base directory for storing cached data.
+<code>XDG_CACHE_HOME</code>
+<code>.gradle/helm/cache</code> under the <em>root</em> project dir</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The cache home, as indicated by <code>xdgCacheHome</code>, defaults to a directory under the <em>root</em> project, meaning that
+in a multi-module build, all Helm projects will share the same cache by default. This speeds up builds, but may lead
+to problems in certain situations, for example if two projects register a different chart repository under the same
+name.</p>
+</div>
+<div class="paragraph">
+<p>+
+If necessary, you can always set the cache home to a project-local directory, for example:</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
-    home = file("$buildDir/helm/home")
+    xdgCacheHome = file("${project.buildDir}/helm/cache")
 }</code></pre>
 </div>
 </div>
@@ -835,84 +944,13 @@ See <a href="#_configuration_from_project_properties">Configuration from Project
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
-    home.set(file("$buildDir/helm/home"))
+    xdgCacheHome.set(file("${project.buildDir}/helm/cache"))
 }</code></pre>
 </div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Setting the Helm home directory to a path like this is actually a good practice, as it makes your
-build less dependent on the local machine, and does not pollute the local Helm configuration.</p>
 </div>
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>The plugin splits what is usually done by <code>helm init</code> into two steps:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">Task <code>helmInitClient</code></dt>
-<dd>
-<p>This will call <code>helm init --client-only</code>, skipping a remote Tiller installation. Since this sets up the
-Helm client, most other Helm tasks will have a dependency on this.</p>
-</dd>
-<dt class="hdlist1">Task <code>helmInitServer</code></dt>
-<dd>
-<p>This will call <code>helm init</code> which also installs Tiller in the remote cluster. Only tasks that actually
-communicate with Tiller (like
-<a href="dokka/gradle-helm-plugin/org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-install/"><code>HelmInstall</code></a>
-or
-<a href="dokka/gradle-helm-plugin/org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-delete/"><code>HelmDelete</code></a>
-depend on this.</p>
-</dd>
-</dl>
-</div>
-<div class="sect2">
-<h3 id="_configuring_tiller"><a class="anchor" href="#_configuring_tiller"></a>Configuring Tiller</h3>
-<div class="paragraph">
-<p>Inside the <code>helm.tiller</code> block you can configure certain settings for the remote Tiller installation.
-Most of these correspond to parameters of the <code>helm init</code> CLI command.</p>
-</div>
-<div class="listingblock primary">
-<div class="title">Groovy</div>
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
-    tiller {
-        // Install/expect Tiller in a different namespace than kube-system
-        namespace = "custom-namespace"
-
-        // Set a service account for Tiller
-        serviceAccount = "tiller-service-account"
-    }
-}</code></pre>
-</div>
-</div>
-<div class="listingblock secondary">
-<div class="title">Kotlin</div>
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
-    tiller {
-        // Install/expect Tiller in a different namespace than kube-system
-        namespace.set("custom-namespace")
-
-        // Set a service account for Tiller
-        serviceAccount.set("tiller-service-account")
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Please refer to the
-<a href="dokka/gradle-helm-plugin/org.unbrokendome.gradle.plugins.helm.dsl/-tiller/">API Reference</a> for a
-full list of configuration options.</p>
 </div>
 </div>
 </div>
@@ -921,7 +959,8 @@ full list of configuration options.</p>
 <h2 id="_defining_charts"><a class="anchor" href="#_defining_charts"></a>Defining Charts</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With the <code>helm</code> plugin you can configure your Helm chart using a declarative DSL, and the corresponding Gradle tasks will be added automatically.</p>
+<p>With the <code>helm</code> plugin you can configure your Helm chart using a declarative DSL, and the corresponding Gradle
+tasks will be added automatically.</p>
 </div>
 <div class="paragraph">
 <p>Groovy</p>
@@ -929,7 +968,7 @@ full list of configuration options.</p>
 <div class="listingblock primary">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '0.4.4'
+    id 'org.unbroken-dome.helm' version '1.0.0'
 }
 
 helm {
@@ -949,7 +988,7 @@ helm {
 <div class="listingblock secondary">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "0.4.4"
+    id("org.unbroken-dome.helm") version "1.0.0"
 }
 
 helm {
@@ -968,31 +1007,78 @@ helm {
  them to the same value.</p>
 </div>
 <div class="paragraph">
+<p>The following properties can be configured on a chart:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Property</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default</p>
+<p class="tableblock"><code>chartName</code>
+The name of the chart, as used in various <code>helm</code> CLI commands. The plugin will make sure that the chart sources are
+ in a directory with this name when calling <code>helm</code>.
+Defaults to the name of the chart in the DSL.</p>
+<p class="tableblock"><code>chartVersion</code>
+The version of the chart, as used by <code>helm</code>.
+Defaults to the Gradle project version.</p>
+<p class="tableblock"><code>sourceDir</code>
+The directory containing the chart sources (<code>Chart.yaml</code> file, etc.).
+Defaults to <code>src/main/helm</code> for the <code>main</code> chart (see below), <em>required</em> for all other charts.</p>
+<p class="tableblock"><code>extraFiles</code>
+An optional Gradle <code>CopySpec</code> that allows injecting files from external sources into the chart.
+By default, no files are copied.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_helm_chart_tasks"><a class="anchor" href="#_helm_chart_tasks"></a>Helm Chart Tasks</h3>
+<div class="paragraph">
 <p>From the above chart definition, a number of tasks will be created automatically:</p>
 </div>
 <div class="dlist">
 <dl>
 <dt class="hdlist1">Task <code>helmFilterFooChartSources</code></dt>
 <dd>
-<p>Resolves placeholders in the chart sources, and copies everything to a directory <code>build/helm/foo</code> (<code>helm package</code>
-requires the chart directory to have the same name as the chart).</p>
+<p>Resolves placeholders in the chart sources.</p>
 </dd>
-<dt class="hdlist1">Task <code>helmBuildFooChartDependencies</code></dt>
+<dt class="hdlist1">Task <code>helmCollectFooChartDependencies</code></dt>
 <dd>
-<p>Equivalent to the <code>helm dep build</code> CLI command.</p>
+<p>Resolves chart dependencies within the project (see <a href="#_managing_chart_dependencies">Managing Chart Dependencies</a>).</p>
+</dd>
+<dt class="hdlist1">Task <code>helmCollectFooChartSources</code></dt>
+<dd>
+<p>Collects all the sources for a chart (including dependencies and extra files) into one directory.</p>
+</dd>
+<dt class="hdlist1">Task <code>helmUpdateFooChartDependencies</code></dt>
+<dd>
+<p>Equivalent to the <a href="https://helm.sh/docs/helm/helm_dependency_update/"><code>helm dependency update</code></a> CLI command.</p>
 </dd>
 <dt class="hdlist1">Task <code>helmLintFooChart</code></dt>
 <dd>
-<p>Equivalent to the <code>helm lint</code> CLI command.</p>
+<p>Equivalent to the <a href="https://helm.sh/docs/helm/helm_lint/"><code>helm lint</code></a> CLI command. See <a href="#_linting_charts">Linting Charts</a> for
+details on configuring the linting step.</p>
 </dd>
 <dt class="hdlist1">Task <code>helmPackageFooChart</code></dt>
 <dd>
-<p>Equivalent to the <code>helm package</code> CLI command.</p>
+<p>Equivalent to the <a href="https://helm.sh/docs/helm/helm_package/"><code>helm package</code></a> CLI command.</p>
 </dd>
 </dl>
 </div>
 <div class="paragraph">
-<p>Also, the following configurations and artifacts will be created:</p>
+<p>In addition, the plugin creates a task named <code>helmPackage</code> that will depend on all charts' package task, so it can be
+used to build all the project&#8217;s charts. Most of the time, you will just call <code>helmPackage</code> to build your charts.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_helm_chart_configurations"><a class="anchor" href="#_helm_chart_configurations"></a>Helm Chart Configurations</h3>
+<div class="paragraph">
+<p>The following configurations and artifacts will be created for each chart:</p>
 </div>
 <div class="dlist">
 <dl>
@@ -1008,14 +1094,16 @@ requires the chart directory to have the same name as the chart).</p>
 </dd>
 </dl>
 </div>
-<div class="paragraph">
-<p>In addition, the plugin creates a task named <code>helmPackage</code> that will depend on all charts' package task, so it can be
-used to build all the project&#8217;s charts.</p>
 </div>
 <div class="sect2">
 <h3 id="_using_the_main_chart"><a class="anchor" href="#_using_the_main_chart"></a>Using the <code>main</code> chart</h3>
 <div class="paragraph">
-<p>If you don&#8217;t define any charts in the <code>helm.charts</code> DSL block, then by convention a chart named <code>main</code> will be
+<p>For the typical case of building a single Helm chart in a project, the Helm plugin provides some useful conventions
+so that a single "main" chart can be built with a minimum of configuration.</p>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t define any charts in the <code>helm.charts</code> DSL block, and your project contains a file
+<code>src/main/helm/Chart.yaml</code>, then by convention a chart named <code>main</code> will be
 defined automatically, equivalent to the following:</p>
 </div>
 <div class="listingblock primary">
@@ -1023,8 +1111,6 @@ defined automatically, equivalent to the following:</p>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm.charts {
     main {
-        chartName = project.name
-        chartVersion = project.version.toString()
         sourceDir = file('src/main/helm')
     }
 }</code></pre>
@@ -1035,8 +1121,6 @@ defined automatically, equivalent to the following:</p>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm.charts {
     create("main") {
-        chartName.set(project.name)
-        chartVersion.set(project.version.toString())
         sourceDir.set(file("src/main/helm"))
     }
 }</code></pre>
@@ -1056,8 +1140,8 @@ valid SemVer, or set the main chart version to a different value.
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>main</code> chart will not be instantiated if you define any other charts; however you can reference the <code>main</code> chart
-to modify some of its properties:</p>
+<p>The <code>main</code> chart will not be instantiated if you define any other charts; however you can create the <code>main</code> chart
+explicitly if you would like to use it anyway:</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Groovy</div>
@@ -1068,10 +1152,28 @@ to modify some of its properties:</p>
 <div class="listingblock secondary">
 <div class="title">Kotlin</div>
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm.charts.named("main") {
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm.charts.create("main") {
     chartVersion.set("1.0.0")
 }</code></pre>
 </div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Some IDEs (e.g. IntelliJ IDEA) offer support for Helm, and will report a warning or error if the <code>name</code> declared in
+the Chart.yaml file differs from the name of the containing directory. If you want to avoid such a warning, you can
+either
+  * call your chart <code>helm</code> in the Chart.yaml file&#8201;&#8212;&#8201;it will automatically be renamed when the chart is packaged; or
+  * change the <code>sourceDir</code> of the <code>main</code> chart to a directory that matches the chart name.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -1082,7 +1184,7 @@ each subproject defines a single <code>main</code> chart. That way, you can take
 every project.</p>
 </div>
 <div class="paragraph">
-<p>However, note that the default values defined in the <code>helm</code> block are not automatically inherited by subprojects.
+<p>However, note that the values defined in the <code>helm</code> block are not automatically inherited by subprojects.
 If you want to define your Helm CLI options in one central place, you can add a <code>subprojects</code> clause in the root
 project:</p>
 </div>
@@ -1090,7 +1192,8 @@ project:</p>
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">subprojects {
-    helm.home = "${rootProject.buildDir}/helm/home"
+    // Use verbose logging on all Helm commands
+    helm.extraArgs.addAll("-v", "1")
 }</code></pre>
 </div>
 </div>
@@ -1098,9 +1201,68 @@ project:</p>
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">subprojects {
-    helm.home.set("${rootProject.buildDir}/helm/home")
+    // Use verbose logging on all Helm commands
+    helm.extraArgs.addAll("-v", "1")
 }</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_extra_files_to_a_chart"><a class="anchor" href="#_adding_extra_files_to_a_chart"></a>Adding Extra Files to a Chart</h3>
+<div class="paragraph">
+<p>Each chart defined in the DSL has an <code>extraFiles</code> property which is a Gradle <code>CopySpec</code>. It allows you to copy
+additional files into the chart when it is built.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm.charts {
+    myChart {
+        sourceDir = file 'src/helm/my-chart'
+
+        extraFiles {
+            from('src/extra/script.js') {
+                into('files/scripts')
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm.charts {
+    myChart {
+        sourceDir.set(file("src/helm/my-chart"))
+
+        extraFiles {
+            from("src/extra/script.js") {
+                into("files/scripts")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In most cases, the source files of the chart should be put into the chart source directory.
+The <code>extraFiles</code> mechanism is primarily designed for cases where some parts of the chart need to be dynamically
+generated during the Gradle build.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If the <code>extraFiles</code> copy spec refers to a <code>RegularFileProperty</code> or <code>DirectoryProperty</code> that represents the output
+of a task, or to an artifact declared by another project, a task dependency will automatically be set up so that the
+task building the file is run before the Helm chart is built.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1109,9 +1271,10 @@ project:</p>
 <h2 id="_defining_repositories"><a class="anchor" href="#_defining_repositories"></a>Defining Repositories</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Chart repositories are external storages of Helm charts. By default, a Helm client will know about the
-<code>local</code> and <code>stable</code> repositories. You can use the <code>helm.repositories</code> block to define additional
-repositories:</p>
+<p>Chart repositories are external storages of Helm charts.</p>
+</div>
+<div class="paragraph">
+<p>You can use the <code>helm.repositories</code> block to define repositories:</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Groovy</div>
@@ -1119,7 +1282,7 @@ repositories:</p>
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
     repositories {
         example {
-            url = uri('http://helm-repo.example.com/')
+            url 'http://helm-repo.example.com/'
         }
     }
 }</code></pre>
@@ -1131,7 +1294,7 @@ repositories:</p>
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
     repositories {
         create("example") {
-            url.set(uri("http://helm-repo.example.com/")
+            url("http://helm-repo.example.com/")
         }
     }
 }</code></pre>
@@ -1140,6 +1303,39 @@ repositories:</p>
 <div class="paragraph">
 <p>Defining a repository will automatically add a task <code>helmAdd&lt;X&gt;Repository</code> (for example,
 <code>helmAddExampleRepository</code>) that does the equivalent of <code>helm repo add</code>.</p>
+</div>
+<div class="paragraph">
+<p>For convenience, some shorthand methods are defined for registration of some well-known repositories:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
+    repositories {
+        // registers the Helm stable repo under the name "stable"
+        helmStable()
+        // registers the Helm incubator repo under the name "incubator"
+        helmIncubator()
+        // registers the Bitnami repo under the name "bitnami"
+        bitnami()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
+    repositories {
+        // registers the Helm stable repo under the name "stable"
+        helmStable()
+        // registers the Helm incubator repo under the name "incubator"
+        helmIncubator()
+        // registers the Bitnami repo under the name "bitnami"
+        bitnami()
+    }
+}</code></pre>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_configuring_repository_credentials"><a class="anchor" href="#_configuring_repository_credentials"></a>Configuring Repository Credentials</h3>
@@ -1153,7 +1349,7 @@ block. It works very similarly to other places in Gradle where credentials are u
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
     repositories {
         example {
-            url = uri('http://helm-repo.example.com/')
+            url 'http://helm-repo.example.com/'
             credentials {
                 username = 'user'
                 password = 'password'
@@ -1169,7 +1365,7 @@ block. It works very similarly to other places in Gradle where credentials are u
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
     repositories {
         create("example") {
-            url.set(uri("http://helm-repo.example.com/")
+            url("http://helm-repo.example.com/")
             credentials {
                 username.set("user")
                 password.set("password")
@@ -1191,11 +1387,11 @@ are also supported:</p>
 helm {
     repositories {
         example {
-            url = uri('http://helm-repo.example.com/')
+            url 'http://helm-repo.example.com/'
 
             credentials(CertificateCredentials) {
-                certificateFile = file('path/to/cert.pem')
-                keyFile = file('path/to/key.pem')
+                certificateFile = file 'path/to/cert.pem'
+                keyFile = file 'path/to/key.pem'
             }
         }
     }
@@ -1210,7 +1406,7 @@ helm {
 helm {
     repositories {
         create("example") {
-            url.set(uri("http://helm-repo.example.com/")
+            url("http://helm-repo.example.com/")
 
             credentials(CertificateCredentials::class.java) {
                 certificateFile.set(file("path/to/cert.pem"))
@@ -1232,17 +1428,14 @@ helm {
 is packaged.</p>
 </div>
 <div class="paragraph">
-<p>This is most useful to insert the name and version into the chart, because they will often correspond to the
-Gradle project&#8217;s name and version:</p>
+<p>Filtering applies only to <code>*.yaml</code> files directly in the chart directory. Chart templates will <em>not</em> be filtered
+this way; instead apply filtering to the <code>values.yaml</code> file and then use Helm&#8217;s templating constructs for building
+the Chart templates.</p>
 </div>
-<div class="listingblock">
-<div class="title">Chart.yaml</div>
-<div class="content">
-<pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v1
-name: ${chartName}
-version: ${chartVersion}
-appVersion: ${projectVersion}</code></pre>
-</div>
+<div class="paragraph">
+<p>Filtered files are processed using a Groovy
+<a href="https://docs.groovy-lang.org/latest/html/api/groovy/text/SimpleTemplateEngine.html">SimpleTemplateEngine</a>. Filter
+expressions are Groovy expressions enclosed in <code>${</code> and <code>}</code>, for example <code>${chartName}</code>.</p>
 </div>
 <div class="paragraph">
 <p>The following placeholders are automatically available based on the corresponding properties of the chart in
@@ -1272,25 +1465,71 @@ the DSL. You can also define additional placeholders and their values using the 
 </tr>
 </tbody>
 </table>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Only the files <em>Chart.yaml</em>, <em>requirements.yaml</em> and <em>values.yaml</em> are filtered this way. The actual templates
-in the chart are not filtered; you should use Helm&#8217;s templating constructs instead.
+The <code>name</code> and <code>version</code> in the Chart.yaml are automatically replaced based on the chart information from the
+Gradle script. You do not need to add filter expressions for these.
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_configure_the_filtering_step"><a class="anchor" href="#_configure_the_filtering_step"></a>Configure the Filtering Step</h3>
+<h3 id="_enable_or_disable_filtering"><a class="anchor" href="#_enable_or_disable_filtering"></a>Enable or Disable Filtering</h3>
 <div class="paragraph">
-<p>You can fine-tune the filtering process by modifying the <code>filtering</code> block, which is available both directly inside
-the <code>helm</code> block, as well as each chart. The chart-level filtering inherits from the global filtering but will
-override properties if they are defined in both places:</p>
+<p>The filtering is enabled by default. You can set the <code>filtering.enabled</code> property to <code>false</code> if you would not like
+the chart to be filtered. This can be done either on the project level or the chart level:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
+    // Disable filtering by default
+    filtering.enabled = false
+
+    charts {
+        chart1 {
+            // filtering will be enabled for this chart
+            filtering.enabled = true
+        }
+        chart2 {
+            // filtering will be disabled for this chart (inheriting settings from project level)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
+    // Disable filtering by default
+    filtering.enabled.set(false)
+
+    charts {
+        create("chart1") {
+            // filtering will be enabled for this chart
+            filtering.enabled.set(true)
+        }
+        create("chart2") {
+            // filtering will be disabled for this chart (inheriting settings from project level)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_supply_additional_values"><a class="anchor" href="#_supply_additional_values"></a>Supply Additional Values</h3>
+<div class="paragraph">
+<p>Use the <code>filtering.values</code> property to define additional values to be available in filtering expressions.
+Again, values may be specified in the project-level <code>filtering</code> block, as well as on a <code>filtering</code> block for an
+individual chart. Project-level and chart-level values are merged, with the chart-level values having precedence
+if a value is defined in both places.</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Groovy</div>
@@ -1332,59 +1571,124 @@ override properties if they are defined in both places:</p>
 }</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>You can also pass a <code>Provider</code> or <code>Property</code> as the value; in this case it will be resolved lazily when the filtering
-task runs.</p>
-</div>
-<div class="paragraph">
-<p>The following properties are available in the <code>filtering</code> block:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
+<div class="admonitionblock tip">
+<table>
 <tr>
-<th class="tableblock halign-left valign-top">Property</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Default Value</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can also pass a <code>Provider</code> or <code>Property</code> as the value; in this case it will be resolved lazily when the filtering
+task runs.
+</td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>boolean</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Enables or disables the entire filtering step.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">placeholderPrefix</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>${</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The string that marks the end of a resolvable placeholder inside the filtered YAML files.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">placeholderSuffix</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>String</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>}</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The string that marks the end of a resolvable placeholder inside the filtered YAML files.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">values</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Map</code></p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The values to be resolved in placeholders.</p></td>
-</tr>
-</tbody>
 </table>
+</div>
+<div class="sect3">
+<h4 id="_example_pass_the_jib_docker_image_name_and_version"><a class="anchor" href="#_example_pass_the_jib_docker_image_name_and_version"></a>Example: Pass the JIB Docker Image Name and Version</h4>
 <div class="paragraph">
-<p>INFO: <code>values</code> is a <code>MapProperty</code> which merges the values from different levels of <code>filtering</code> blocks. That means
-you can add some values in the global <code>helm.filtering</code> block, add some more inside the individual chart&#8217;s <code>filtering</code>
-block, and they will all be available for the placeholder resolution.</p>
+<p>Many Helm charts use the following conventional structure in their <code>values.yaml</code> to specify the Docker image to be
+used in Kubernetes deployments:</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">image:
+  repository: "gcr.io/awesome-project/awesome-image"
+  tag: "1.2.3"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the Docker image is built with JIB in the same project, we can avoid the repetition (which is bound to cause silly
+copy &amp; paste errors eventually) and pass the values from Gradle instead:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">build.gradle</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
+    filtering {
+        values.put 'imageRepository', jib.to.image
+        values.put 'imageTag', jib.to.tags.first()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">build.gradle.kts</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
+    filtering {
+        values.put("imageRepository", jib.to.image)
+        values.put("imageTag", jib.to.tags.first())
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then refer to these values in the <code>values.yaml</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">image:
+  repository: ${imageRepository}
+  tag: ${imageTag}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_values_from_files"><a class="anchor" href="#_values_from_files"></a>Values from Files</h4>
+<div class="paragraph">
+<p>Values can also be read from the contents of files; use the <code>filtering.fileValues</code> property for this. The following
+example would generate a RSA private key using <code>openssl</code> and then pass it to the filtering:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">def rsaKeyFile = objects.file()
+    .fileValue(file("$buildDir/rsa.key"))
+
+task generateRsaKey(type: Exec) {
+    // Declare the file as a task output so that task dependencies are set up by Gradle
+    outputs.file rsaKeyFile
+    executable = 'openssl'
+    arg 'genrsa', '-out', rsaKeyFile.get()
+}
+
+helm.filtering {
+    fileValues.put 'rsaKey', rsaKeyFile
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">val rsaKeyFile = objects.file()
+    .fileValue(file("$buildDir/rsa.key"))
+
+tasks.create("generateRsaKey", Exec::class) {
+    // Declare the file as a task output so that task dependencies are set up by Gradle
+    outputs.file(rsaKeyFile)
+    executable = "openssl"
+    arg("genrsa", "-out", rsaKeyFile.get())
+}
+
+helm.filtering {
+    fileValues.put("rsaKey", rsaKeyFile)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Afterwards, we can use this value in our <code>values.yaml</code> file (note that the value contains newlines, so we need
+to do some processing for correct YAML indentation):</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">rsaKey: |-
+${ rsaKey.readLines().each { "  $it" } }</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1394,7 +1698,7 @@ block, and they will all be available for the placeholder resolution.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The default workflow for building and packaging a Helm chart includes a lint step, which is
-performs by the <code>HelmLint</code> task and maps to a <code>helm lint</code> CLI call.</p>
+performed by the <code>HelmLint</code> task and maps to a <code>helm lint</code> CLI call.</p>
 </div>
 <div class="paragraph">
 <p>Both the global <code>helm</code> DSL block and each <code>chart</code> block provide a nested <code>lint</code> block, where you
@@ -1435,8 +1739,8 @@ and can selectively override certain aspects of it.</p>
         strict.set(true)
     }
 
-    (charts) {
-        "main" {
+    charts {
+        create("main") {
             // This configures linting only for the main chart
             lint {
                 // disable strict linting only for this chart
@@ -1450,11 +1754,24 @@ and can selectively override certain aspects of it.</p>
 <div class="sect2">
 <h3 id="_passing_values_to_the_linter"><a class="anchor" href="#_passing_values_to_the_linter"></a>Passing Values to the Linter</h3>
 <div class="paragraph">
-<p>You can pass values to the linter using the <code>values</code> and <code>valueFiles</code>.</p>
+<p>You can pass values to the linter using the <code>values</code>, <code>fileValues</code> and <code>valueFiles</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>values</code> contains values to be passed directly (CLI option: <code>--set</code> or <code>--set-string</code>)</p>
+</li>
+<li>
+<p><code>fileValues</code> contains values to be read from files (CLI option: <code>--set-file</code>)</p>
+</li>
+<li>
+<p><code>valueFiles</code> contains a list of files that contain values in YAML format (CLI option: <code>--values</code>)</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>This may be necessary if you use the <code>required</code> function in your Helm templates (see
-<a href="https://github.com/helm/helm/issues/2347">Helm issue #2347</a>). Also, it can be useful if
+<p>Passing values to <code>helm lint</code> may be necessary to avoid warnings if you use the <code>required</code> function in your Helm
+templates (see <a href="https://github.com/helm/helm/issues/2347">Helm issue #2347</a>). Also, it can be useful if
 you have conditional templates which would not be rendered when using the default values
 from values.yaml.</p>
 </div>
@@ -1466,7 +1783,7 @@ from values.yaml.</p>
 </td>
 <td class="content">
 <code>helm lint</code> does not actually perform a syntactic analysis of your charts; instead it renders
-the template internally (just as <code>helm install</code> would do) and checks the resulting YAML for
+the template internally (just as <code>helm template</code> would do) and checks the resulting YAML for
 correctness.
 </td>
 </tr>
@@ -1569,9 +1886,7 @@ global setting).</p>
 <h2 id="_managing_chart_dependencies"><a class="anchor" href="#_managing_chart_dependencies"></a>Managing Chart Dependencies</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The <code>helm</code> plugin can manage your
-<a href="https://docs.helm.sh/developing_charts/#chart-dependencies">chart&#8217;s dependencies</a>, modifying the
-<code>requirements.yaml</code> file accordingly.</p>
+<p>The <code>helm</code> plugin can manage dependencies between charts in the same Gradle build.</p>
 </div>
 <div class="paragraph">
 <p>This is especially useful if you have multiple charts in the same project (or in a multi-project build)
@@ -1579,9 +1894,9 @@ that depend on one another, because it will also add Gradle task dependencies to
 are packaged in the correct order.</p>
 </div>
 <div class="paragraph">
-<p>Note that you will still need a <code>requirements.yaml</code> file with <code>dependencies</code> entries; the plugin will not
-create it automatically. For each dependency declared in the Gradle script, it will find the matching
-dependency in <code>requirements.yaml</code> and modify its <code>repository</code> property.</p>
+<p>Chart dependencies are resolved by packaging the dependency chart and then extracting it into the <code>charts</code>
+sub-directory of the dependent chart. This does not involve any of the standard Helm dependency mechanisms
+(<code>helm dependency build</code> / <code>helm dependency update</code>) and will run before <code>helm dependency update</code>.</p>
 </div>
 <div class="sect2">
 <h3 id="_declaring_a_dependency"><a class="anchor" href="#_declaring_a_dependency"></a>Declaring a Dependency</h3>
@@ -1598,16 +1913,14 @@ dependency in <code>requirements.yaml</code> and modify its <code>repository</co
 
     foo {
         chartVersion = '1.2.3'
-        sourceDir = file('src/helm/foo')
+        sourceDir = file 'src/helm/foo'
     }
 
     bar {
         chartVersion = '3.2.1'
-        sourceDir = file('src/helm/bar')
+        sourceDir = file 'src/helm/bar'
 
-        dependencies {
-            foo chart: 'foo'
-        }
+        dependencies.add 'foo'
     }
 }</code></pre>
 </div>
@@ -1626,64 +1939,89 @@ dependency in <code>requirements.yaml</code> and modify its <code>repository</co
         chartVersion.set("3.2.1")
         sourceDir.set(file("src/helm/bar"))
 
-        dependencies {
-            "foo"(chart = "foo")
-        }
+        dependencies.add("foo")
     }
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The "method" name inside <code>dependencies</code> is the name that the dependency will have in the <code>requirements.yaml</code>,
-whereas the <code>chart</code> parameter specifies the name of the chart in the Gradle DSL.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The <code>dependencies</code> entry in the YAML file will be matched either by its <code>name</code> or an <code>alias</code>.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>You can also use an alternative syntax using <code>dependencies.add</code> if you prefer so:</p>
+<p>Instead of using the name, it is also possible to refer directly to the <code>HelmChart</code> DSL object in the dependency:</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Groovy</div>
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">dependencies.add(name: 'foo', chart: 'foo')</code></pre>
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm.charts {
+
+    foo {
+        chartVersion = '1.2.3'
+        sourceDir = file 'src/helm/foo'
+    }
+
+    bar {
+        chartVersion = '3.2.1'
+        sourceDir = file 'src/helm/bar'
+
+        dependencies.add foo
+    }
+}</code></pre>
 </div>
 </div>
 <div class="listingblock secondary">
 <div class="title">Kotlin</div>
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">dependencies.add(name = "foo", chart = "foo")</code></pre>
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">(helm.charts) {
+
+    val foo by creating {
+        chartVersion.set("1.2.3")
+        sourceDir.set(file("src/helm/foo"))
+    }
+
+    val bar by creating {
+        chartVersion.set("3.2.1")
+        sourceDir.set(file("src/helm/bar"))
+
+        dependencies.add(foo)
+    }
+}</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_dependency_in_chart_yaml"><a class="anchor" href="#_configuring_the_dependency_in_chart_yaml"></a>Configuring the Dependency in Chart.yaml</h3>
 <div class="paragraph">
-<p>The resulting <code>requirements.yaml</code> file for the <code>bar</code> chart will look as follows:</p>
+<p>Since the dependency resolution done by this plugin is simply a package-and-extract operation, it is <em>not</em> necessary
+to mention the dependency in your <code>Chart.yaml</code> file (or <code>requirements.yaml</code> for API version <code>v1</code>). However, for some
+advanced configuration of the dependency (e.g. when using an <code>alias</code> or <code>import-values</code>), you can still declare it.
+In that case, you should omit the <code>repository</code> so that <code>helm dependency update</code> will not attempt to resolve it from
+a chart repository:</p>
 </div>
 <div class="listingblock">
-<div class="title">requirements.yaml</div>
+<div class="title">bar/Chart.yaml</div>
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">dependencies:
+<pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">apiVersion: v2
+name: bar
+version: 3.2.1
+
+dependencies:
   - name: foo
-    repository: file://../foo</code></pre>
+    alias: fooAlias
+    import-values:
+      - fooData</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The URL in <code>repository</code> points to the local output directory of the <code>foo</code> chart,
-relative to the output directory of the <code>bar</code> chart.</p>
+<p>When running <code>helm dependency update</code> (via the <code>helmUpdateBarDependencies</code> task), it will output something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Dependency foo did not declare a repository. Assuming it exists in the charts directory</pre>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_chart_dependencies_in_multi_project_builds"><a class="anchor" href="#_chart_dependencies_in_multi_project_builds"></a>Chart Dependencies in Multi-Project Builds</h3>
 <div class="paragraph">
-<p>If you have a Gradle multi-project builds, chart dependencies can also refer to charts built by
+<p>If you have a Gradle multi-project build, chart dependencies can also refer to charts built by
 other projects.</p>
 </div>
 <div class="paragraph">
@@ -1694,7 +2032,7 @@ other projects.</p>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">dependencies {
     // Assuming that the foo chart is defined in the foo project
-    foo project: ':foo', chart: 'foo'
+    add project: ':foo', chart: 'foo'
 }</code></pre>
 </div>
 </div>
@@ -1703,7 +2041,7 @@ other projects.</p>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">dependencies {
     // Assuming that the foo chart is defined in the foo project
-    "foo"(project = ":foo", chart = "foo")
+    add(project = ":foo", chart = "foo")
 }</code></pre>
 </div>
 </div>
@@ -1716,7 +2054,7 @@ chart, the <code>chart</code> parameter can be omitted:</p>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">dependencies {
     // Referencing the main chart in the foo project
-    foo project: ':foo'
+    add project: ':foo'
 }</code></pre>
 </div>
 </div>
@@ -1725,7 +2063,71 @@ chart, the <code>chart</code> parameter can be omitted:</p>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">dependencies {
     // Referencing the main chart in the foo project
-    "foo"(project = ":foo")
+    add(project = ":foo")
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mixing_gradle_and_helm_dependency_resolution"><a class="anchor" href="#_mixing_gradle_and_helm_dependency_resolution"></a>Mixing Gradle and Helm Dependency Resolution</h3>
+<div class="paragraph">
+<p>A chart may have external dependencies (to be resolved by <code>helm dependency update</code>) in addition to the dependencies
+managed by the Gradle plugin.</p>
+</div>
+<div class="paragraph">
+<p>At the point when <code>helm dependency update</code> is run, the resolved charts from Gradle will already be present in the
+<code>charts/</code> sub-directory, and <code>helm dependency update</code> should be smart enough to ignore them.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resolving_external_chart_dependencies"><a class="anchor" href="#_resolving_external_chart_dependencies"></a>Resolving External Chart Dependencies</h3>
+<div class="paragraph">
+<p>The dependency resolution mechanism described here is primarily intended for resolving dependencies on charts in the
+same Gradle project, or in another Gradle project that is part of the same multi-project build. For dependencies on
+external charts, it is best to publish those to a <a href="https://helm.sh/docs/topics/chart_repository/">chart repository</a>
+(for example, using the <a href="#_publishing_charts"><code>helm-publish</code> plugin</a>)
+and then use Helm&#8217;s standard dependency mechanism to resolve them.</p>
+</div>
+<div class="paragraph">
+<p>However, in some cases you might prefer to use Gradle to resolve those dependencies. For example, if you already have
+a Maven repository for your internal artifacts, and only a few common charts to be used as dependencies, it might be
+more convenient to publish those charts to your Maven repository instead.</p>
+</div>
+<div class="paragraph">
+<p>The Helm plugin internally creates a dependency configuration called <code>helm&lt;Chart&gt;Dependencies</code>, for example
+<code>helmFooDependencies</code> for a chart named <code>foo</code>. You can use Gradle&#8217;s standard <code>dependencies</code> block to add external
+module dependencies to this configuration. It is required that these resolve to a single tar.gz compressed file,
+like the one that is produced by <code>helm package</code>.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm.charts {
+    foo {
+        sourceDir = file 'src/helm/foo'
+    }
+}
+
+// Note: this is the Gradle project dependencies block, not the chart's
+dependencies {
+    // Assuming that a packaged Helm chart is available at these GAV coordinates
+    helmFooDependencies 'com.example.bar:bar-helm-chart:3.2.1@tgz'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm.charts {
+    create("foo") {
+        sourceDir.set(file("src/helm/foo"))
+    }
+}
+
+// Note: this is the Gradle project dependencies block, not the chart's
+dependencies {
+    // Assuming that a packaged Helm chart is available at these GAV coordinates
+    "helmFooDependencies"("com.example.bar:bar-helm-chart:3.2.1@tgz")
 }</code></pre>
 </div>
 </div>
@@ -1765,7 +2167,7 @@ or consider creating a PR to add support for it.</p>
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-publish' version '0.4.4'
+    id 'org.unbroken-dome.helm-publish' version '1.0.0'
 }</code></pre>
 </div>
 </div>
@@ -1773,7 +2175,7 @@ or consider creating a PR to add support for it.</p>
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-publish") version "0.4.4"
+    id("org.unbroken-dome.helm-publish") version "1.0.0"
 }</code></pre>
 </div>
 </div>
@@ -2041,7 +2443,7 @@ chart by setting its <code>publish</code> property to <code>false</code>:</p>
 <h2 id="_managing_releases"><a class="anchor" href="#_managing_releases"></a>Managing Releases</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>With the <code>helm-release</code> plugin, you can manage Helm releases on a remote Kubernetes cluster.</p>
+<p>With the <code>helm-releases</code> plugin, you can manage Helm releases on a remote Kubernetes cluster.</p>
 </div>
 <div class="paragraph">
 <p>It allows you to define your releases in the Gradle DSL, in a declarative fashion. In this way, it can
@@ -2050,7 +2452,26 @@ be used as an alternative to tools like <a href="https://github.com/roboll/helmf
 instead of defining a custom file format.</p>
 </div>
 <div class="paragraph">
-<p>Define your releases using the <code>helm.repositories</code> block in your Gradle script:</p>
+<p>Apply the <code>helm-releases</code> plugin to your project:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
+    id 'org.unbroken-dome.helm-releases' version '1.0.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
+    id("org.unbroken-dome.helm-releases") version "1.0.0"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define your releases using the <code>helm.releases</code> block in your Gradle script:</p>
 </div>
 <div class="listingblock primary">
 <div class="title">Groovy</div>
@@ -2092,7 +2513,7 @@ instead of defining a custom file format.</p>
 </div>
 <div class="paragraph">
 <p>There are quite a few properties you can set for a release; most of them correspond to a command line
-option in <code>helm install</code>, <code>helm upgrade</code> or <code>helm delete</code>.</p>
+option in <code>helm install</code>, <code>helm upgrade</code> or <code>helm uninstall</code>.</p>
 </div>
 <div class="paragraph">
 <p>The <code>from</code> method is quite powerful, as it accepts various sources for the chart from which the release
@@ -2131,15 +2552,13 @@ to <code>from</code>:</p>
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
-    charts {
-        create("foo") {
-            // configure the foo chart ...
-        }
+    val foo by charts.creating {
+        // configure the foo chart ...
     }
 
     releases {
-        foo {
-            from charts["foo"]
+        create("foo") {
+            from(foo)
         }
     }
 }</code></pre>
@@ -2186,9 +2605,9 @@ from(chart(project = ":foo"))</code></pre>
 <p>Installs the release named X. This task will also do upgrades; depending on the <code>replace</code> property
 it will either call <code>helm upgrade --install</code> (by default) or <code>helm install --replace</code>.</p>
 </dd>
-<dt class="hdlist1">Task <code>helmDelete&lt;X&gt;</code></dt>
+<dt class="hdlist1">Task <code>helmUninstall&lt;X&gt;</code></dt>
 <dd>
-<p>Deletes the release named X (by calling <code>helm delete</code>).</p>
+<p>Uninstalls the release named X (by calling <code>helm uninstall</code>).</p>
 </dd>
 </dl>
 </div>
@@ -2201,9 +2620,9 @@ it will either call <code>helm upgrade --install</code> (by default) or <code>he
 <dd>
 <p>Install or upgrade all releases.</p>
 </dd>
-<dt class="hdlist1">Task <code>helmDelete</code></dt>
+<dt class="hdlist1">Task <code>helmUninstall</code></dt>
 <dd>
-<p>Delete all releases.</p>
+<p>Uninstall all releases configured in the build script.</p>
 </dd>
 </dl>
 </div>
@@ -2226,8 +2645,8 @@ up to date before it is installed.
 <h3 id="_release_dependencies"><a class="anchor" href="#_release_dependencies"></a>Release Dependencies</h3>
 <div class="paragraph">
 <p>You can express dependencies between releases, to influence the order of installations/deletions
-when using the <code>helmInstall</code> or <code>helmDelete</code> task. A release will always be installed after all
-its dependencies, and deleted before its dependencies are deleted.</p>
+when using the <code>helmInstall</code> or <code>helmUninstall</code> task. A release will always be installed after all
+its dependencies, and uninstalled before its dependencies are uninstalled.</p>
 </div>
 <div class="paragraph">
 <p>Currently it is not possible to define dependencies on releases in another Gradle project.</p>
@@ -2241,7 +2660,7 @@ its dependencies, and deleted before its dependencies are deleted.</p>
 <td class="content">
 While a release dependency influences the order of <code>install</code> invocations, it does not guarantee
 that the release will be up and running on the cluster when the installation of the dependent release
-begins.. By default, <code>helm install</code> does not wait until the deployment is complete&#8201;&#8212;&#8201;if this is what
+begins. By default, <code>helm install</code> does not wait until the deployment is complete&#8201;&#8212;&#8201;if this is what
 you need, you can set <code>wait</code> to <code>true</code> in the release, so that the install/upgrade command is invoked
 with the <code>--wait</code> flag.
 </td>
@@ -2279,6 +2698,34 @@ with the <code>--wait</code> flag.
     }
 }</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installupgrade_logic"><a class="anchor" href="#_installupgrade_logic"></a>Install/Upgrade logic</h3>
+<div class="paragraph">
+<p>The installation task that the plugin creates for each release, named <code>helmInstall&lt;Name&gt;Release</code>, will perform an
+install or upgrade based on the following logic:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>if the release has the <code>replace</code> property set to <code>true</code>, it will always call <code>helm install --replace</code></p>
+</li>
+<li>
+<p>Otherwise, it calls <code>helm ls</code> as an intermediate step to determine the current status of the release.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the release exists but previously failed, it will call <code>helm install --replace</code>. This works around the
+<code>UPGRADE FAILED: "&lt;name&gt;" has no deployed releases</code> issue if a previous call to <code>helm install</code> was not successful.</p>
+</li>
+<li>
+<p>Otherwise, it will call <code>helm upgrade --install</code> (also if the release does not exist).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -2322,14 +2769,7 @@ plugins {
     id 'org.unbroken-dome.helm-commands' version '&lt;VERSION&gt;'
 }
 
-helm {
-    home = file("${project.buildDir}/helm/home")
-}
-
-task helmInit(type: HelmInit)
-
 task installMariaDb(type: HelmInstall) {
-    dependsOn helmInit
     chart = 'stable/mariadb'
     version = '4.3.1'
     releaseName = 'mariadb'
@@ -2351,12 +2791,12 @@ In addition, such properties are automatically inherited by subprojects.</p>
 </div>
 <div class="paragraph">
 <p>Some of these properties allow evaluation as a Groovy <code>GString</code>, so that you can do things like
-<code>-Phelm.home=$buildDir/helm/home</code> (but the dollar signs may need to be escaped so the shell does not
-treat them as environment variables).</p>
+<code>-Phelm.executable=$rootDir/helm/bin/helm3</code> (but the dollar signs may need to be escaped so the shell does not
+treat them as environment variables). GStrings will be evaluated in the context of each project.</p>
 </div>
 <div class="paragraph">
 <p>In general, the name of the project property corresponds to the path of the property in the DSL,
-e.g. <code>helm.home</code>.</p>
+e.g. <code>helm.executable</code>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -2383,29 +2823,20 @@ allow for easier overriding.
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Property</th>
-<th class="tableblock halign-left valign-top"> Description</th>
+<th class="tableblock halign-left valign-top">Description</th>
 <th class="tableblock halign-left valign-top">GString</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.executable</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the Helm CLI executable. Defaults to <code>helm</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the Helm CLI executable. The <code>PATH</code> variable is taken into account, so this
+  can just be <code>"helm"</code> if the Helm client is installed in a suitable location. Defaults to <code>helm</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.debug</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enable verbose output from the Helm CLI.</p></td>
-<td class="tableblock halign-left valign-top"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.home</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Location of the Helm home directory.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.host</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Address of Tiller, in the format <code>host:port</code>.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -2419,8 +2850,16 @@ allow for easier overriding.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.timeoutSeconds</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Timeout used for various Helm CLI commands.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.remoteTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time to wait for an individual Kubernetes operation (like Jobs or hooks).
++
+May be specified in Helm format (e.g. <code>3m30s</code>), in ISO format (e.g. <code>PT3M30S</code>) or as a plain number indicating the
+number of seconds (e.g. <code>210</code>).</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.namespace</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target namespace for Kubernetes operations.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -2428,58 +2867,28 @@ allow for easier overriding.
 <td class="tableblock halign-left valign-top"><p class="tableblock">The base output directory for charts; defaults to <code>$buildDir/helm/charts</code>.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
 </tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_tiller"><a class="anchor" href="#_tiller"></a>Tiller</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
 <tr>
-<th class="tableblock halign-left valign-top">Property</th>
-<th class="tableblock halign-left valign-top"> Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.tiller.install</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">If <code>true</code>, install Tiller on the cluster.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.tmpDir</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base temporary directory for various intermediate artifacts. Defaults to <code>$buildDir/tmp/helm</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.tiller.namespace</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Namespace of Tiller.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.xdgDataHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing data. Corresponds to the <code>XDG_DATA_HOME</code> environment variable.
+  Defaults to <code>$buildDir/helm/data</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.tiller.forceUpgrade</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Force upgrade of Tiller to the current Helm version.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.xdgConfigHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing configuration. Corresponds to the <code>XDG_CONFIG_HOME</code> environment variable.
+  Defaults to <code>$buildDir/helm/config</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.tiller.historyMax</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Limit the maximum number of revisions saved per release.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.tiller.replicas</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Amount of Tiller instances to run on the cluster.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.tiller.serviceAccount</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the service account to use for Tiller.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.tiller.image</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Override the Tiller image.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.tiller.upgrade</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade if Tiller is already installed.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.tiller.wait</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Block until Tiller is running and ready to receive requests (defaults to <code>true</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.xdgCacheHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing data. Corresponds to the <code>XDG_CACHE_HOME</code> environment variable.
+  Defaults to <code>$rootDir/.gradle/helm/cache</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
 </tr>
 </tbody>
 </table>
@@ -2498,7 +2907,7 @@ allow for easier overriding.
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Property</th>
-<th class="tableblock halign-left valign-top"> Description</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2535,21 +2944,13 @@ allow for easier overriding.
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Property</th>
-<th class="tableblock halign-left valign-top"> Description</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.filtering.enabled</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Globally enable or disable filtering. Defaults to <code>true</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.filtering.placeholderPrefix</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prefix that demarcates a placeholder in filtered YAML files. Defaults to <code>${</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.filtering.placeholderSuffix</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Suffix that demarcates a placeholder in filtered YAML files. Defaults to <code>}</code>.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2564,7 +2965,7 @@ allow for easier overriding.
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Property</th>
-<th class="tableblock halign-left valign-top"> Description</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2589,7 +2990,7 @@ allow for easier overriding.
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Property</th>
-<th class="tableblock halign-left valign-top"> Description</th>
+<th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
@@ -2597,19 +2998,9 @@ allow for easier overriding.
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.dryRun</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Only perform a dry run when installing or deleting releases.</p></td>
 </tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>| <code>helm.atomic</code>
-| Perform releases atomically</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">:leveloffset!:</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.atomic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Perform releases atomically.</p></td>
 </tr>
 </tbody>
 </table>
@@ -2619,7 +3010,7 @@ allow for easier overriding.
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 0.4.4<br>
+Version 1.0.0<br>
 Last updated 2019-01-20 23:31:23 +0100
 </div>
 </div>

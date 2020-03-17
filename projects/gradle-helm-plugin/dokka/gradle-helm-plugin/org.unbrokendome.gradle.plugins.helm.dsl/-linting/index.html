@@ -24,6 +24,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="file-values.html">fileValues</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">fileValues</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Values read from the contents of files, to be used by the linter.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="strict.html">strict</a></p>
 </td>
 <td>
@@ -37,7 +46,7 @@
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">valueFiles</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code>
-<p>Value files to supply to the linter.</p>
+<p>A collection of YAML files containing values to be used by the linter.</p>
 </td>
 </tr>
 <tr>
@@ -46,7 +55,7 @@
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">values</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
-<p>Values to supply to the linter.</p>
+<p>Values to be used by the linter.</p>
 </td>
 </tr>
 </tbody>

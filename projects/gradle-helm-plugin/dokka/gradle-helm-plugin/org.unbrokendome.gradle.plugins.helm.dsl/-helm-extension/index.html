@@ -8,7 +8,7 @@
 <a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.dsl</a>&nbsp;/&nbsp;<a href="./index.html">HelmExtension</a><br/>
 <br/>
 <h1>HelmExtension</h1>
-<code><span class="keyword">interface </span><span class="identifier">HelmExtension</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-global-helm-options/index.html"><span class="identifier">GlobalHelmOptions</span></a></code>
+<code><span class="keyword">interface </span><span class="identifier">HelmExtension</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-global-helm-options/index.html"><span class="identifier">GlobalHelmOptions</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/index.html"><span class="identifier">HelmServerOptions</span></a></code>
 <p>The main Helm DSL extension, accessible using the <code>helm { ... }</code> block in build scripts.</p>
 <h3>Properties</h3>
 <table>
@@ -34,57 +34,11 @@ can just be <code>"helm"</code> if the Helm client is installed in a suitable lo
 </tr>
 <tr>
 <td>
-<p><a href="home.html">home</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">home</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
-<p>The path of the Helm home directory. If this provider has a value, it will be used to set the
-<code>HELM_HOME</code> environment variable for each Helm invocation.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="host.html">host</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">host</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>Address of Tiller, in the format <code>host:port</code>.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="kube-config.html">kubeConfig</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">kubeConfig</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code>
-<p>Path to the Kubernetes configuration file.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="kube-context.html">kubeContext</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">kubeContext</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>Name of the kubeconfig context to use.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="output-dir.html">outputDir</a></p>
 </td>
 <td>
 <code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">outputDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
 <p>Base output directory for Helm charts.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="timeout-seconds.html">timeoutSeconds</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">timeoutSeconds</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span></code>
-<p>Time in seconds to wait for any individual Kubernetes operation (like Jobs for hooks). Default is 300.</p>
 </td>
 </tr>
 </tbody>
@@ -101,6 +55,69 @@ can just be <code>"helm"</code> if the Helm client is installed in a suitable lo
 <p>Additional command-line arguments to pass to the Helm CLI.</p>
 </td>
 </tr>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/kube-config.html">kubeConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">kubeConfig</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code>
+<p>Path to the Kubernetes configuration file.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/kube-context.html">kubeContext</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">kubeContext</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Name of the kubeconfig context to use.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/namespace.html">namespace</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">namespace</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Namespace scope for this request.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/remote-timeout.html">remoteTimeout</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">remoteTimeout</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><span class="identifier">Duration</span><span class="symbol">&gt;</span></code>
+<p>Time to wait for any individual Kubernetes operation (like Jobs for hooks). Default is 300.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.command/-global-helm-options/xdg-cache-home.html">xdgCacheHome</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">xdgCacheHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
+<p>Base directory for storing cached data.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.command/-global-helm-options/xdg-config-home.html">xdgConfigHome</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">xdgConfigHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
+<p>Base directory for storing configuration.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.command/-global-helm-options/xdg-data-home.html">xdgDataHome</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">xdgDataHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
+<p>Base directory for storing data.</p>
+</td>
+</tr>
 </tbody>
 </table>
 <h3>Inherited Functions</h3>
@@ -111,8 +128,17 @@ can just be <code>"helm"</code> if the Helm client is installed in a suitable lo
 <p><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/exec-helm.html">execHelm</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider$execHelm(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider$execHelm(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider$execHelm(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider$execHelm(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider$execHelm(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider$execHelm(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code>
 <p>Executes a Helm CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/exec-helm-capture-output.html">execHelmCaptureOutput</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">execHelmCaptureOutput</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider$execHelmCaptureOutput(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider$execHelmCaptureOutput(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider$execHelmCaptureOutput(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">&gt;</span><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-result/index.html"><span class="identifier">HelmExecResult</span></a></code>
+<p>Executes a Helm CLI command, and captures its output.</p>
 </td>
 </tr>
 </tbody>
@@ -125,7 +151,7 @@ can just be <code>"helm"</code> if the Helm client is installed in a suitable lo
 <p><a href="../../org.unbrokendome.gradle.plugins.helm.command/exec-helm.html">execHelm</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">.</span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code>
+<code><span class="keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">.</span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code>
 <p>Executes a Helm CLI command.</p>
 </td>
 </tr>

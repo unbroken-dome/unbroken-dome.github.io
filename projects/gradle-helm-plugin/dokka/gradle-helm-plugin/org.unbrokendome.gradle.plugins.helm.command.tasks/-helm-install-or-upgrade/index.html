@@ -8,8 +8,10 @@
 <a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a>&nbsp;/&nbsp;<a href="./index.html">HelmInstallOrUpgrade</a><br/>
 <br/>
 <h1>HelmInstallOrUpgrade</h1>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmInstallOrUpgrade</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-server-command-task/index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmInstallOrUpgrade</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-installation-command-task/index.html"><span class="identifier">AbstractHelmInstallationCommandTask</span></a></code>
 <p>Installs a chart into a remote Kubernetes cluster as a new release, or upgrades an existing release.</p>
+<p>This task will call <code>helm upgrade --install</code> by default, or <code>helm install --replace</code> if the release does
+not exist or has previously failed.</p>
 <h3>Constructors</h3>
 <table>
 <tbody>
@@ -29,51 +31,6 @@
 <tbody>
 <tr>
 <td>
-<p><a href="atomic.html">atomic</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">atomic</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
-<p>If <code>true</code>, install or upgrade atomically.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="chart.html">chart</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">chart</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>The chart to be installed. This can be any of the forms accepted by the Helm CLI.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="dry-run.html">dryRun</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">dryRun</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
-<p>If <code>true</code>, simulate an install.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="namespace.html">namespace</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">namespace</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>Namespace to install the release into. Defaults to the current kube config namespace.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="release-name.html">releaseName</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">releaseName</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>Release name. If unspecified, Helm will auto-generate a name.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="replace.html">replace</a></p>
 </td>
 <td>
@@ -83,48 +40,21 @@
 </tr>
 <tr>
 <td>
-<p><a href="repository.html">repository</a></p>
+<p><a href="reset-values.html">resetValues</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">repository</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="http://docs.oracle.com/javase/6/docs/api/java/net/URI.html"><span class="identifier">URI</span></a><span class="symbol">&gt;</span></code>
-<p>Chart repository URL where to locate the requested chart. Corresponds to the <code>--repo</code> Helm CLI parameter.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="value-files.html">valueFiles</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">valueFiles</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code>
-<p>A collection of YAML files containing values for this release.</p>
+<code><span class="keyword">val </span><span class="identifier">resetValues</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code>, reset the values to the ones built into the chart when upgrading.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="values.html">values</a></p>
+<p><a href="reuse-values.html">reuseValues</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">values</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
-<p>Values to be used for the release.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="version.html">version</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">version</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>Specify the exact chart version to install. If this is not specified, the latest version is installed.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="wait.html">wait</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">wait</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
-<p>If <code>true</code>, will wait until all Pods, PVCs, Services, and minimum number of Pods of a Deployment are in a ready
-state before marking the release as successful. It will wait for as along as <a href="../-abstract-helm-server-command-task/timeout-seconds.html">timeoutSeconds</a>.</p>
+<code><span class="keyword">val </span><span class="identifier">reuseValues</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code>, reuse the last release's values, and merge in any new values. If <a href="reset-values.html">resetValues</a> is specified,
+this is ignored.</p>
 </td>
 </tr>
 </tbody>
@@ -134,47 +64,166 @@ state before marking the release as successful. It will wait for as along as <a 
 <tbody>
 <tr>
 <td>
-<p><a href="../-abstract-helm-server-command-task/host.html">host</a></p>
+<p><a href="../-abstract-helm-installation-command-task/atomic.html">atomic</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">host</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>Address of Tiller, in the format <code>host:port</code>.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-abstract-helm-server-command-task/kube-config.html">kubeConfig</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">kubeConfig</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code>
-<p>Path to the Kubernetes configuration file.</p>
+<code><span class="keyword">val </span><span class="identifier">atomic</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code>, roll back changes on failure.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="../-abstract-helm-server-command-task/kube-context.html">kubeContext</a></p>
+<p><a href="../-abstract-helm-installation-command-task/ca-file.html">caFile</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">kubeContext</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>Name of the kubeconfig context to use.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-abstract-helm-server-command-task/tiller-namespace.html">tillerNamespace</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">tillerNamespace</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>Namespace of Tiller.</p>
+<code><span class="keyword">val </span><span class="identifier">caFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code>
+<p>Verify certificates of HTTPS-enabled servers using this CA bundle.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="../-abstract-helm-server-command-task/timeout-seconds.html">timeoutSeconds</a></p>
+<p><a href="../-abstract-helm-installation-command-task/cert-file.html">certFile</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">timeoutSeconds</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span></code>
-<p>Time in seconds to wait for any individual Kubernetes operation (like Jobs for hooks). Default is 300.</p>
+<code><span class="keyword">val </span><span class="identifier">certFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code>
+<p>Identify HTTPS client using this SSL certificate file.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/chart.html">chart</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">chart</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>The chart to be installed. This can be any of the forms accepted by the Helm CLI.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/devel.html">devel</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">devel</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code>, use development versions, too. Equivalent to version <code>&gt;0.0.0-0</code>.
+If <a href="../-abstract-helm-installation-command-task/version.html">version</a> is set, this is ignored.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/dry-run.html">dryRun</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">dryRun</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code>, simulate an install.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/file-values.html">fileValues</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">fileValues</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Values read from the contents of files, to be used for the release.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/key-file.html">keyFile</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">keyFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code>
+<p>Identify HTTPS client using this SSL key file.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/no-hooks.html">noHooks</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">noHooks</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code>, prevent hooks from running during the operation.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/password.html">password</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">password</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Chart repository password where to locate the requested chart.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/release-name.html">releaseName</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">releaseName</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Release name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/repository.html">repository</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">repository</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="http://docs.oracle.com/javase/6/docs/api/java/net/URI.html"><span class="identifier">URI</span></a><span class="symbol">&gt;</span></code>
+<p>Chart repository URL where to locate the requested chart.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/username.html">username</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">username</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Chart repository username where to locate the requested chart.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/value-files.html">valueFiles</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">valueFiles</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code>
+<p>A collection of YAML files containing values for this release.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/values.html">values</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">values</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Values to be used for the release.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/verify.html">verify</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">verify</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code>, verify the package before installing it.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/version.html">version</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">version</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Specify the exact chart version to install. If this is not specified, the latest version is installed.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-installation-command-task/wait.html">wait</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">wait</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code>, will wait until all Pods, PVCs, Services, and minimum number of Pods of a Deployment are in a ready
+state before marking the release as successful. It will wait for as along as <a href="../-abstract-helm-server-command-task/remote-timeout.html">remoteTimeout</a>.</p>
 </td>
 </tr>
 </tbody>
@@ -196,25 +245,11 @@ state before marking the release as successful. It will wait for as along as <a 
 <tbody>
 <tr>
 <td>
-<p><a href="../-abstract-helm-server-command-task/modify-helm-exec-spec.html">modifyHelmExecSpec</a></p>
+<p><a href="../-abstract-helm-installation-command-task/from.html">from</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="identifier">modifyHelmExecSpec</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Modifies the <a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html">HelmExecSpec</a> before a Helm command is executed.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../../org.unbrokendome.gradle.plugins.helm.command/exec-helm.html">execHelm</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">.</span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code>
-<p>Executes a Helm CLI command.</p>
+<code><span class="keyword">fun </span><span class="identifier">from</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmInstallationCommandTask$from(kotlin.Any)/chart">chart</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets the chart to be installed. The value can be any of the forms accepted by the Helm CLI.</p>
 </td>
 </tr>
 </tbody>

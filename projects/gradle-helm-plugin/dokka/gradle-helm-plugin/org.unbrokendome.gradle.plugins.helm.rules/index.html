@@ -16,13 +16,24 @@
 <p><a href="-abstract-rule/index.html">AbstractRule</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractRule</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Rule.html"><span class="identifier">Rule</span></a></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractRule</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Rule.html"><span class="identifier">Rule</span></a></code>
+<p>Abstract base class for all domain object rules.</p>
+</td>
 </tr>
 </tbody>
 </table>
 <h3>Properties</h3>
 <table>
 <tbody>
+<tr>
+<td>
+<p><a href="collect-chart-sources-task-name.html">collectChartSourcesTaskName</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">collectChartSourcesTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>The name of the <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/Sync.html">Sync</a> task to copy the extra files into this chart.</p>
+</td>
+</tr>
 <tr>
 <td>
 <p><a href="dir-artifact-configuration-name.html">dirArtifactConfigurationName</a></p>
@@ -65,7 +76,7 @@
 </td>
 <td>
 <code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">packagedArtifactConfigurationName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
-<p>The name of the <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Configuration.html">Configuration</a> that contains the package artifact for this chart.</p>
+<p>The name of the <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Configuration.html">Configuration</a> that contains the packaged artifact for this chart.</p>
 </td>
 </tr>
 <tr>
@@ -83,7 +94,7 @@
 </td>
 <td>
 <code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">updateDependenciesTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
-<p>The name of the <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-build-or-update-dependencies/index.html">HelmBuildOrUpdateDependencies</a> task for this chart.</p>
+<p>The name of the <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-update-dependencies/index.html">HelmUpdateDependencies</a> task for this chart.</p>
 </td>
 </tr>
 </tbody>

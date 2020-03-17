@@ -17,21 +17,28 @@
 </tr>
 <tr>
 <td>
+<a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-abstract-helm-dependencies-task/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmDependenciesTask</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-abstract-helm-installation-command-task/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmInstallationCommandTask</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
 <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-abstract-helm-server-command-task/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmServerCommandTask</a></td>
 <td>
-<p>Base class for tasks representing Helm CLI commands that communicate with Tiller.</p>
+<p>Base class for tasks representing Helm CLI commands that communicate with the remote Kubernetes cluster.</p>
 </td>
 </tr>
 <tr>
 <td>
 <a href="../org.unbrokendome.gradle.plugins.helm.rules/-abstract-rule/index.html">org.unbrokendome.gradle.plugins.helm.rules.AbstractRule</a></td>
 <td>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-action/index.html">org.gradle.api.Action</a> (extensions in package org.unbrokendome.gradle.plugins.helm.util)</td>
-<td>
+<p>Abstract base class for all domain object rules.</p>
 </td>
 </tr>
 <tr>
@@ -104,17 +111,8 @@
 <td>
 <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-build-dependencies/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.HelmBuildDependencies</a></td>
 <td>
-<p>Builds the chart dependencies from the <em>requirements.lock</em> or <em>requirements.yaml</em> file. Corresponds to the
-<code>helm dependency build</code> CLI command.</p>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-build-or-update-dependencies/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.HelmBuildOrUpdateDependencies</a></td>
-<td>
-<p>Builds or updates chart dependencies. This is a combination of the <code>helm dependency update</code> and
-<code>helm dependency build</code> CLI commands, which executes either <code>update</code> or <code>build</code> according to the following
-logic:</p>
+<p>Reconstructs the chart dependencies from the lock file, or mirrors the behavior of <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-update-dependencies/index.html">HelmUpdateDependencies</a>
+if the lock file does not exist.</p>
 </td>
 </tr>
 <tr>
@@ -133,15 +131,20 @@ logic:</p>
 </tr>
 <tr>
 <td>
+<a href="../org.unbrokendome.gradle.plugins.helm.tasks/-helm-collect-chart-dependencies/index.html">org.unbrokendome.gradle.plugins.helm.tasks.HelmCollectChartDependencies</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
 <a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-commands-plugin/index.html">org.unbrokendome.gradle.plugins.helm.command.HelmCommandsPlugin</a></td>
 <td>
 </td>
 </tr>
 <tr>
 <td>
-<a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-delete/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.HelmDelete</a></td>
+<a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-exception/index.html">org.unbrokendome.gradle.plugins.helm.command.HelmExecException</a></td>
 <td>
-<p>Deletes a release from the cluster. Corresponds to the <code>helm delete</code> CLI command.</p>
 </td>
 </tr>
 <tr>
@@ -149,6 +152,13 @@ logic:</p>
 <a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html">org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider</a></td>
 <td>
 <p>Provides a context to execute Helm CLI commands.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-result/index.html">org.unbrokendome.gradle.plugins.helm.command.HelmExecResult</a></td>
+<td>
+<p>Provides information about the result of a Helm CLI invocation.</p>
 </td>
 </tr>
 <tr>
@@ -174,13 +184,6 @@ logic:</p>
 </tr>
 <tr>
 <td>
-<a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-init/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.HelmInit</a></td>
-<td>
-<p>Initialize Helm on the client and/or server side. Corresponds to the <code>helm init</code> CLI command.</p>
-</td>
-</tr>
-<tr>
-<td>
 <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-install/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.HelmInstall</a></td>
 <td>
 <p>Installs a chart into the cluster. Corresponds to the <code>helm install</code> CLI command.</p>
@@ -195,17 +198,16 @@ logic:</p>
 </tr>
 <tr>
 <td>
-<a href="../org.unbrokendome.gradle.plugins.helm.release.rules/-helm-install-release-task-rule/index.html">org.unbrokendome.gradle.plugins.helm.release.rules.HelmInstallReleaseTaskRule</a></td>
-<td>
-<p>A rule that creates a <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-install-or-upgrade/index.html">HelmInstallOrUpgrade</a> task for a release.</p>
-</td>
-</tr>
-<tr>
-<td>
 <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-lint/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.HelmLint</a></td>
 <td>
 <p>Runs a series of tests to verify that a chart is well-formed.
 Corresponds to the <code>helm lint</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-options.html">org.unbrokendome.gradle.plugins.helm.command.HelmOptions</a></td>
+<td>
 </td>
 </tr>
 <tr>
@@ -259,7 +261,7 @@ Corresponds to the <code>helm lint</code> CLI command.</p>
 <td>
 <a href="../org.unbrokendome.gradle.plugins.helm.release.dsl/-helm-release/index.html">org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease</a></td>
 <td>
-<p>Represents a release to be installed into or deleted from a Kubernetes cluster.</p>
+<p>Represents a release to be installed into or uninstalled from a Kubernetes cluster.</p>
 </td>
 </tr>
 <tr>
@@ -277,6 +279,18 @@ Corresponds to the <code>helm lint</code> CLI command.</p>
 </tr>
 <tr>
 <td>
+<a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-repository-handler/index.html">org.unbrokendome.gradle.plugins.helm.dsl.HelmRepositoryHandler</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/index.html">org.unbrokendome.gradle.plugins.helm.command.HelmServerOptions</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
 <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-test/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.HelmTest</a></td>
 <td>
 <p>Runs the tests for a release. Corresponds to the <code>helm test</code> CLI command.</p>
@@ -284,10 +298,24 @@ Corresponds to the <code>helm lint</code> CLI command.</p>
 </tr>
 <tr>
 <td>
+<a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-uninstall/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.HelmUninstall</a></td>
+<td>
+<p>Uninstalls a release from the cluster. Corresponds to the <code>helm uninstall</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
 <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-update-dependencies/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.HelmUpdateDependencies</a></td>
 <td>
-<p>Updates the chart dependencies from the <em>requirements.yaml</em> file, and creates a <em>requirements.lock</em> file that
-fixes the versions of chart dependencies. Corresponds to the <code>helm dependency update</code> CLI command.</p>
+<p>Updates the chart dependencies from the <code>Chart.yaml</code> file, and creates a <code>Chart.lock</code> file that
+fixes the versions of chart dependencies.</p>
+</td>
+</tr>
+<tr>
+<td>
+<a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-update-repositories/index.html">org.unbrokendome.gradle.plugins.helm.command.tasks.HelmUpdateRepositories</a></td>
+<td>
+<p>Gets the latest information about charts from chart repositories.</p>
 </td>
 </tr>
 <tr>
@@ -299,6 +327,12 @@ fixes the versions of chart dependencies. Corresponds to the <code>helm dependen
 </tr>
 <tr>
 <td>
+<a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-value-options/index.html">org.unbrokendome.gradle.plugins.helm.command.HelmValueOptions</a></td>
+<td>
+</td>
+</tr>
+<tr>
+<td>
 <a href="../org.unbrokendome.gradle.plugins.helm.dsl/-linting/index.html">org.unbrokendome.gradle.plugins.helm.dsl.Linting</a></td>
 <td>
 <p>Defines options for linting Helm charts using the <code>helm lint</code> command.</p>
@@ -306,7 +340,7 @@ fixes the versions of chart dependencies. Corresponds to the <code>helm dependen
 </tr>
 <tr>
 <td>
-<a href="../org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.model.-object-factory/index.html">org.gradle.api.model.ObjectFactory</a> (extensions in package org.unbrokendome.gradle.plugins.helm.util)</td>
+<a href="../org.gradle.kotlin.dsl/org.gradle.api.provider.-map-property/index.html">org.gradle.api.provider.MapProperty</a> (extensions in package org.gradle.kotlin.dsl)</td>
 <td>
 </td>
 </tr>
@@ -321,13 +355,6 @@ fixes the versions of chart dependencies. Corresponds to the <code>helm dependen
 <td>
 <a href="../org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-project/index.html">org.gradle.api.Project</a> (extensions in package org.unbrokendome.gradle.plugins.helm.util)</td>
 <td>
-</td>
-</tr>
-<tr>
-<td>
-<a href="../org.unbrokendome.gradle.plugins.helm.dsl/-tiller/index.html">org.unbrokendome.gradle.plugins.helm.dsl.Tiller</a></td>
-<td>
-<p>Defines options for setting up Tiller on a remote Kubernetes cluster.</p>
 </td>
 </tr>
 </tbody>

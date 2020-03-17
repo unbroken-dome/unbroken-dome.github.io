@@ -11,5 +11,7 @@
 <a name="org.unbrokendome.gradle.plugins.helm.command.tasks.HelmInstallOrUpgrade$&lt;init&gt;()"></a>
 <code><span class="identifier">HelmInstallOrUpgrade</span><span class="symbol">(</span><span class="symbol">)</span></code>
 <p>Installs a chart into a remote Kubernetes cluster as a new release, or upgrades an existing release.</p>
+<p>This task will call <code>helm upgrade --install</code> by default, or <code>helm install --replace</code> if the release does
+not exist or has previously failed.</p>
 </BODY>
 </HTML>

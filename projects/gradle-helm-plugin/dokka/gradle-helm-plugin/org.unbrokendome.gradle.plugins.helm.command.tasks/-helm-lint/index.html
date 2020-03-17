@@ -8,7 +8,7 @@
 <a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a>&nbsp;/&nbsp;<a href="./index.html">HelmLint</a><br/>
 <br/>
 <h1>HelmLint</h1>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmLint</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a></code>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmLint</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-value-options/index.html"><span class="identifier">HelmValueOptions</span></a></code>
 <p>Runs a series of tests to verify that a chart is well-formed.
 Corresponds to the <code>helm lint</code> CLI command.</p>
 <h3>Constructors</h3>
@@ -36,6 +36,15 @@ Corresponds to the <code>helm lint</code> CLI command.</p>
 <td>
 <code><span class="keyword">val </span><span class="identifier">chartDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
 <p>The directory that contains the sources for the Helm chart.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="file-values.html">fileValues</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">fileValues</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Values read from the contents of files, to be used by the linter.</p>
 </td>
 </tr>
 <tr>
@@ -84,7 +93,7 @@ Corresponds to the <code>helm lint</code> CLI command.</p>
 <p><a href="../-abstract-helm-command-task/debug.html">debug</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">debug</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<code><span class="keyword">val </span><span class="identifier">debug</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
 <p>Indicates whether to use the verbose output (<code>--debug</code> flag) when invoking commands.</p>
 </td>
 </tr>
@@ -93,7 +102,7 @@ Corresponds to the <code>helm lint</code> CLI command.</p>
 <p><a href="../-abstract-helm-command-task/executable.html">executable</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">executable</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<code><span class="keyword">val </span><span class="identifier">executable</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
 <p>The name or path of the Helm executable. The <code>PATH</code> variable is taken into account, so this
 can just be <code>"helm"</code> if the Helm client is installed in a suitable location.</p>
 </td>
@@ -103,18 +112,56 @@ can just be <code>"helm"</code> if the Helm client is installed in a suitable lo
 <p><a href="../-abstract-helm-command-task/extra-args.html">extraArgs</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">extraArgs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ListProperty.html"><span class="identifier">ListProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<code><span class="keyword">val </span><span class="identifier">extraArgs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ListProperty.html"><span class="identifier">ListProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
 <p>Additional command-line arguments to pass to the Helm CLI.</p>
 </td>
 </tr>
 <tr>
 <td>
-<p><a href="../-abstract-helm-command-task/home.html">home</a></p>
+<p><a href="../-abstract-helm-command-task/registry-config-file.html">registryConfigFile</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">home</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
-<p>The path of the Helm home directory. If this provider has a value, it will be used to set the
-<code>HELM_HOME</code> environment variable for each Helm invocation.</p>
+<code><span class="keyword">val </span><span class="identifier">registryConfigFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFile.html"><span class="identifier">RegularFile</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/repository-cache-dir.html">repositoryCacheDir</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">repositoryCacheDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/repository-config-file.html">repositoryConfigFile</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">repositoryConfigFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFile.html"><span class="identifier">RegularFile</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/xdg-cache-home.html">xdgCacheHome</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">xdgCacheHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
+<p>Base directory for storing cached data.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/xdg-config-home.html">xdgConfigHome</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">xdgConfigHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
+<p>Base directory for storing configuration.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/xdg-data-home.html">xdgDataHome</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">xdgDataHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
+<p>Base directory for storing data.</p>
 </td>
 </tr>
 </tbody>
@@ -139,41 +186,7 @@ can just be <code>"helm"</code> if the Helm client is installed in a suitable lo
 <p><a href="../-abstract-helm-command-task/exec-helm.html">execHelm</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code>
-<p>Executes a Helm CLI command.</p>
-<code><span class="keyword">fun </span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code></td>
-</tr>
-<tr>
-<td>
-<p><a href="../-abstract-helm-command-task/modify-helm-exec-spec.html">modifyHelmExecSpec</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="identifier">modifyHelmExecSpec</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Modifies the <a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html">HelmExecSpec</a> before a Helm command is executed.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-abstract-helm-command-task/register-helm-home-as-input-dir.html">registerHelmHomeAsInputDir</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><span class="identifier">registerHelmHomeAsInputDir</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
-<p>Register the <a href="../-abstract-helm-command-task/home.html">home</a> property as an input directory for this task.</p>
-</td>
-</tr>
-</tbody>
-</table>
-<h3>Extension Functions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="../../org.unbrokendome.gradle.plugins.helm.command/exec-helm.html">execHelm</a></p>
-</td>
-<td>
-<code><span class="keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">.</span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code>
-<p>Executes a Helm CLI command.</p>
-</td>
+<code><span class="keyword">fun </span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code></td>
 </tr>
 </tbody>
 </table>

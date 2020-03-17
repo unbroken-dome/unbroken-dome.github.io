@@ -1,0 +1,113 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmUninstall - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a>&nbsp;/&nbsp;<a href="./index.html">HelmUninstall</a><br/>
+<br/>
+<h1>HelmUninstall</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmUninstall</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-server-command-task/index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code>
+<p>Uninstalls a release from the cluster. Corresponds to the <code>helm uninstall</code> CLI command.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">HelmUninstall</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Uninstalls a release from the cluster. Corresponds to the <code>helm uninstall</code> CLI command.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="dry-run.html">dryRun</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">dryRun</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code>, simulate an uninstall.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="keep-history.html">keepHistory</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">keepHistory</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code>. remove all associated resources and mark the release as deleted, but retain the release history.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="release-name.html">releaseName</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">releaseName</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>The name of the release to be uninstalled.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-abstract-helm-server-command-task/kube-config.html">kubeConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">kubeConfig</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code>
+<p>Path to the Kubernetes configuration file.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-server-command-task/kube-context.html">kubeContext</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">kubeContext</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Name of the kubeconfig context to use.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-server-command-task/namespace.html">namespace</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">namespace</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Namespace scope for this request.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-server-command-task/remote-timeout.html">remoteTimeout</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">remoteTimeout</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><span class="identifier">Duration</span><span class="symbol">&gt;</span></code>
+<p>Time in seconds to wait for any individual Kubernetes operation (like Jobs for hooks). Default is 300.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="uninstall-release.html">uninstallRelease</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">uninstallRelease</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

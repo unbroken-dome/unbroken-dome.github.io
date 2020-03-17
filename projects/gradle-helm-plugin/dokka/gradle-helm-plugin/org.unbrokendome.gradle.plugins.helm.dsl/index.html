@@ -34,7 +34,7 @@
 <p><a href="-helm-extension/index.html">HelmExtension</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">HelmExtension</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-global-helm-options/index.html"><span class="identifier">GlobalHelmOptions</span></a></code>
+<code><span class="keyword">interface </span><span class="identifier">HelmExtension</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-global-helm-options/index.html"><span class="identifier">GlobalHelmOptions</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/index.html"><span class="identifier">HelmServerOptions</span></a></code>
 <p>The main Helm DSL extension, accessible using the <code>helm { ... }</code> block in build scripts.</p>
 </td>
 </tr>
@@ -49,20 +49,18 @@
 </tr>
 <tr>
 <td>
+<p><a href="-helm-repository-handler/index.html">HelmRepositoryHandler</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmRepositoryHandler</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/NamedDomainObjectContainer.html"><span class="identifier">NamedDomainObjectContainer</span></a><span class="symbol">&lt;</span><a href="-helm-repository/index.html"><span class="identifier">HelmRepository</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
 <p><a href="-linting/index.html">Linting</a></p>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">Linting</span></code>
 <p>Defines options for linting Helm charts using the <code>helm lint</code> command.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="-tiller/index.html">Tiller</a></p>
-</td>
-<td>
-<code><span class="keyword">interface </span><span class="identifier">Tiller</span></code>
-<p>Defines options for setting up Tiller on a remote Kubernetes cluster.</p>
 </td>
 </tr>
 </tbody>

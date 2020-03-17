@@ -12,13 +12,13 @@
 <code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">dependsOn</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/SetProperty.html"><span class="identifier">SetProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
 <p>Names of other releases that this release depends on.</p>
 <p>A dependency between two releases will create task dependencies such that the dependency will be installed
-before, and deleted after, the dependent release.</p>
+before, and uninstalled after, the dependent release.</p>
 <p>Currently such dependencies can be expressed only within the same project.</p>
 <a name="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$dependsOn(kotlin.String)"></a>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">dependsOn</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$dependsOn(kotlin.String)/releaseName">releaseName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Express a dependency on another release.</p>
 <p>A dependency between two releases will create task dependencies such that the dependency will be installed
-before, and deleted after, the dependent release.</p>
+before, and uninstalled after, the dependent release.</p>
 <p>Currently such dependencies can be expressed only within the same project.</p>
 <a name="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$dependsOn(kotlin.Array((kotlin.String)))"></a>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">dependsOn</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$dependsOn(kotlin.Array((kotlin.String)))/releaseNames">releaseNames</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>

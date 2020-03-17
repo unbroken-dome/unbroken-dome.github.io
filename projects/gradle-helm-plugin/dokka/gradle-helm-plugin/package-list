@@ -1,17 +1,6 @@
 $dokka.format:html
 $dokka.linkExtension:html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$andThen(org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.util.andThen.T)), kotlin.Function1((org.unbrokendome.gradle.plugins.helm.util.andThen.T, kotlin.Unit)))org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-action/and-then.html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$andThen(org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.util.andThen.T)), org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.util.andThen.T)))org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-action/and-then.html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$booleanProviderFromProjectProperty(org.gradle.api.Project, kotlin.String, kotlin.Boolean)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-project/boolean-provider-from-project-property.html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$coalesceProvider(org.gradle.api.Project, kotlin.Array((org.gradle.api.provider.Provider((org.unbrokendome.gradle.plugins.helm.util.coalesceProvider.T)))))org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-project/coalesce-provider.html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$dirProviderFromProjectProperty(org.gradle.api.Project, kotlin.String, kotlin.Boolean)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-project/dir-provider-from-project-property.html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$dirProviderFromProjectProperty(org.gradle.api.Project, kotlin.String, org.gradle.api.provider.Provider((kotlin.String)), kotlin.Boolean)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-project/dir-provider-from-project-property.html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$fileProviderFromProjectProperty(org.gradle.api.Project, kotlin.String, kotlin.Boolean)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-project/file-provider-from-project-property.html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$intProviderFromProjectProperty(org.gradle.api.Project, kotlin.String)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-project/int-provider-from-project-property.html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$listProperty(org.gradle.api.model.ObjectFactory)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.model.-object-factory/list-property.html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$mapProperty(org.gradle.api.model.ObjectFactory)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.model.-object-factory/map-property.html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$property(org.gradle.api.model.ObjectFactory)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.model.-object-factory/property.html
-$dokka.location:org.unbrokendome.gradle.plugins.helm.util$setProperty(org.gradle.api.model.ObjectFactory)org.unbrokendome.gradle.plugins.helm.util/org.gradle.api.model.-object-factory/set-property.html
+$dokka.location:org.gradle.kotlin.dsl$putFrom(org.gradle.api.provider.MapProperty((org.gradle.kotlin.dsl.putFrom.K, org.gradle.kotlin.dsl.putFrom.V)), org.gradle.kotlin.dsl.putFrom.K, org.gradle.api.provider.Provider((org.gradle.kotlin.dsl.putFrom.V)))org.gradle.kotlin.dsl/org.gradle.api.provider.-map-property/put-from.html
 $dokka.location:org.unbrokendome.gradle.plugins.helm.util$versionProvider#org.gradle.api.Projectorg.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-project/version-provider.html
 org.gradle.kotlin.dsl
 org.unbrokendome.gradle.plugins.helm

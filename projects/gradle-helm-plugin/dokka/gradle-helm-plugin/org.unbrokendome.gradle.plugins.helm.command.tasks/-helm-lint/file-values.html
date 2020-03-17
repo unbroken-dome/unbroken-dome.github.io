@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmLint.fileValues - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a>&nbsp;/&nbsp;<a href="index.html">HelmLint</a>&nbsp;/&nbsp;<a href="./file-values.html">fileValues</a><br/>
+<br/>
+<h1>fileValues</h1>
+<a name="org.unbrokendome.gradle.plugins.helm.command.tasks.HelmLint$fileValues"></a>
+<code><span class="keyword">val </span><span class="identifier">fileValues</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Overrides <a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-value-options/file-values.html">HelmValueOptions.fileValues</a></p>
+<p>Values read from the contents of files, to be used by the linter.</p>
+<p>Corresponds to the <code>--set-file</code> CLI option.</p>
+<p>The values of the map can be of any type that is accepted by <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Project.html#file(java.lang.Object)">Project.file</a>. Additionally, when adding a
+<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html">Provider</a> that represents an output file of another task, the corresponding install/upgrade task will
+automatically have a task dependency on the producing task.</p>
+<p>Not to be confused with <a href="value-files.html">valueFiles</a>, which contains a collection of YAML files that supply multiple values.</p>
+</BODY>
+</HTML>
