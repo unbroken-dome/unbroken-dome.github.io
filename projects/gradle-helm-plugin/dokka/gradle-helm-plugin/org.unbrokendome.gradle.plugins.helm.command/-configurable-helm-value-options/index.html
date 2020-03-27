@@ -1,0 +1,86 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ConfigurableHelmValueOptions - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command</a>&nbsp;/&nbsp;<a href="./index.html">ConfigurableHelmValueOptions</a><br/>
+<br/>
+<h1>ConfigurableHelmValueOptions</h1>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmValueOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-helm-value-options/index.html"><span class="identifier">HelmValueOptions</span></a><span class="symbol">, </span><a href="../-configurable-helm-options.html"><span class="identifier">ConfigurableHelmOptions</span></a></code>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="file-values.html">fileValues</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">fileValues</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Values read from the contents of files.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="value-files.html">valueFiles</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">valueFiles</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code>
+<p>A collection of YAML files containing values.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="values.html">values</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">values</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Values to be passed directly.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-abstract-helm-installation-command-task/index.html">AbstractHelmInstallationCommandTask</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmInstallationCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-abstract-helm-server-operation-command-task/index.html"><span class="identifier">AbstractHelmServerOperationCommandTask</span></a><span class="symbol">, </span><a href="../-configurable-helm-install-from-repository-options/index.html"><span class="identifier">ConfigurableHelmInstallFromRepositoryOptions</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-lint/index.html">HelmLint</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmLint</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a></code>
+<p>Runs a series of tests to verify that a chart is well-formed.
+Corresponds to the <code>helm lint</code> CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.release.dsl/-helm-release-properties/index.html">HelmReleaseProperties</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmReleaseProperties</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="../-configurable-helm-install-from-repository-options/index.html"><span class="identifier">ConfigurableHelmInstallFromRepositoryOptions</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a></code>
+<p>Contains the configurable properties of a Helm release; these can be modified on the core release object
+as well as a target-specific variant.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.release.dsl/-helm-release-target-object/index.html">HelmReleaseTargetObject</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmReleaseTargetObject</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="../-configurable-helm-installation-options/index.html"><span class="identifier">ConfigurableHelmInstallationOptions</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a></code>
+<p>Defines a target configuration for installing and uninstalling releases.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

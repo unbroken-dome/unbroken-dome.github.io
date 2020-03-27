@@ -20,11 +20,48 @@
 </tr>
 <tr>
 <td>
-<p><a href="-helm-release/index.html">HelmRelease</a></p>
+<p><a href="-helm-core-release/index.html">HelmCoreRelease</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">HelmRelease</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a></code>
+<code><span class="keyword">interface </span><span class="identifier">HelmCoreRelease</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="-helm-release-properties/index.html"><span class="identifier">HelmReleaseProperties</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-install-from-repository-options/index.html"><span class="identifier">ConfigurableHelmInstallFromRepositoryOptions</span></a></code>
 <p>Represents a release to be installed into or uninstalled from a Kubernetes cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-release.html">HelmRelease</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmRelease</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="-helm-core-release/index.html"><span class="identifier">HelmCoreRelease</span></a><span class="symbol">, </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/plugins/ExtensionAware.html"><span class="identifier">ExtensionAware</span></a></code>
+<p>Represents a release to be installed into or uninstalled from a Kubernetes cluster.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-release-properties/index.html">HelmReleaseProperties</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmReleaseProperties</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-install-from-repository-options/index.html"><span class="identifier">ConfigurableHelmInstallFromRepositoryOptions</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-value-options/index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a></code>
+<p>Contains the configurable properties of a Helm release; these can be modified on the core release object
+as well as a target-specific variant.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-release-target.html">HelmReleaseTarget</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmReleaseTarget</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-release-target-object/index.html"><span class="identifier">HelmReleaseTargetObject</span></a><span class="symbol">, </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/plugins/ExtensionAware.html"><span class="identifier">ExtensionAware</span></a></code>
+<p>Defines a target configuration for installing and uninstalling releases.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-release-target-object/index.html">HelmReleaseTargetObject</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmReleaseTargetObject</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-installation-options/index.html"><span class="identifier">ConfigurableHelmInstallationOptions</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-value-options/index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a></code>
+<p>Defines a target configuration for installing and uninstalling releases.</p>
 </td>
 </tr>
 </tbody>

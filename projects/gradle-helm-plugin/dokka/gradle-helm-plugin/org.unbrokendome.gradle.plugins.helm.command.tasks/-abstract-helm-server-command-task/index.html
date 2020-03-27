@@ -8,7 +8,7 @@
 <a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a>&nbsp;/&nbsp;<a href="./index.html">AbstractHelmServerCommandTask</a><br/>
 <br/>
 <h1>AbstractHelmServerCommandTask</h1>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmServerCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/index.html"><span class="identifier">HelmServerOptions</span></a></code>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmServerCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/index.html"><span class="identifier">ConfigurableHelmServerOptions</span></a></code>
 <p>Base class for tasks representing Helm CLI commands that communicate with the remote Kubernetes cluster.</p>
 <h3>Constructors</h3>
 <table>
@@ -54,15 +54,6 @@
 <p>Namespace scope for this request.</p>
 </td>
 </tr>
-<tr>
-<td>
-<p><a href="remote-timeout.html">remoteTimeout</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">remoteTimeout</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><span class="identifier">Duration</span><span class="symbol">&gt;</span></code>
-<p>Time in seconds to wait for any individual Kubernetes operation (like Jobs for hooks). Default is 300.</p>
-</td>
-</tr>
 </tbody>
 </table>
 <h3>Inherited Properties</h3>
@@ -73,28 +64,21 @@
 <p><a href="../-abstract-helm-command-task/debug.html">debug</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">debug</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
-<p>Indicates whether to use the verbose output (<code>--debug</code> flag) when invoking commands.</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">debug</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
 <p><a href="../-abstract-helm-command-task/executable.html">executable</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">executable</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>The name or path of the Helm executable. The <code>PATH</code> variable is taken into account, so this
-can just be <code>"helm"</code> if the Helm client is installed in a suitable location.</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">executable</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
 <p><a href="../-abstract-helm-command-task/extra-args.html">extraArgs</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">extraArgs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ListProperty.html"><span class="identifier">ListProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>Additional command-line arguments to pass to the Helm CLI.</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">extraArgs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
@@ -122,27 +106,21 @@ can just be <code>"helm"</code> if the Helm client is installed in a suitable lo
 <p><a href="../-abstract-helm-command-task/xdg-cache-home.html">xdgCacheHome</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">xdgCacheHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
-<p>Base directory for storing cached data.</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">xdgCacheHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
 <p><a href="../-abstract-helm-command-task/xdg-config-home.html">xdgConfigHome</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">xdgConfigHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
-<p>Base directory for storing configuration.</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">xdgConfigHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 <tr>
 <td>
 <p><a href="../-abstract-helm-command-task/xdg-data-home.html">xdgDataHome</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">xdgDataHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
-<p>Base directory for storing data.</p>
-</td>
+<code><span class="keyword">val </span><span class="identifier">xdgDataHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
 </tr>
 </tbody>
 </table>
@@ -163,10 +141,13 @@ can just be <code>"helm"</code> if the Helm client is installed in a suitable lo
 <tbody>
 <tr>
 <td>
-<p><a href="../-abstract-helm-installation-command-task/index.html">AbstractHelmInstallationCommandTask</a></p>
+<p><a href="../-abstract-helm-server-operation-command-task/index.html">AbstractHelmServerOperationCommandTask</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmInstallationCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a><span class="symbol">, </span><span class="identifier">HelmInstallationOptions</span></code></td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmServerOperationCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-operation-options/index.html"><span class="identifier">ConfigurableHelmServerOperationOptions</span></a></code>
+<p>Base class for tasks that call a Helm CLI command representing an operation on the server
+(<code>install</code>, <code>uninstall</code>, <code>upgrade</code>).</p>
+</td>
 </tr>
 <tr>
 <td>
@@ -175,15 +156,6 @@ can just be <code>"helm"</code> if the Helm client is installed in a suitable lo
 <td>
 <code><span class="keyword">class </span><span class="identifier">HelmTest</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code>
 <p>Runs the tests for a release. Corresponds to the <code>helm test</code> CLI command.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-helm-uninstall/index.html">HelmUninstall</a></p>
-</td>
-<td>
-<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmUninstall</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code>
-<p>Uninstalls a release from the cluster. Corresponds to the <code>helm uninstall</code> CLI command.</p>
 </td>
 </tr>
 </tbody>

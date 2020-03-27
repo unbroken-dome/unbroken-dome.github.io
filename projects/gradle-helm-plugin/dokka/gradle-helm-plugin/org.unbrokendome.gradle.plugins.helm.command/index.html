@@ -13,12 +13,61 @@
 <tbody>
 <tr>
 <td>
+<p><a href="-configurable-global-helm-options/index.html">ConfigurableGlobalHelmOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableGlobalHelmOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-global-helm-options/index.html"><span class="identifier">GlobalHelmOptions</span></a><span class="symbol">, </span><a href="-configurable-helm-options.html"><span class="identifier">ConfigurableHelmOptions</span></a></code>
+<p>Holds options that apply to all Helm commands.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-configurable-helm-install-from-repository-options/index.html">ConfigurableHelmInstallFromRepositoryOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmInstallFromRepositoryOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-configurable-helm-installation-options/index.html"><span class="identifier">ConfigurableHelmInstallationOptions</span></a><span class="symbol">, </span><a href="-helm-install-from-repository-options/index.html"><span class="identifier">HelmInstallFromRepositoryOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-configurable-helm-installation-options/index.html">ConfigurableHelmInstallationOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmInstallationOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-configurable-helm-server-operation-options/index.html"><span class="identifier">ConfigurableHelmServerOperationOptions</span></a><span class="symbol">, </span><a href="-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-configurable-helm-options.html">ConfigurableHelmOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-options.html"><span class="identifier">HelmOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-configurable-helm-server-operation-options/index.html">ConfigurableHelmServerOperationOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmServerOperationOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-configurable-helm-server-options/index.html"><span class="identifier">ConfigurableHelmServerOptions</span></a><span class="symbol">, </span><a href="-helm-server-operation-options/index.html"><span class="identifier">HelmServerOperationOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-configurable-helm-server-options/index.html">ConfigurableHelmServerOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmServerOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-server-options/index.html"><span class="identifier">HelmServerOptions</span></a><span class="symbol">, </span><a href="-configurable-helm-options.html"><span class="identifier">ConfigurableHelmOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-configurable-helm-value-options/index.html">ConfigurableHelmValueOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmValueOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-value-options/index.html"><span class="identifier">HelmValueOptions</span></a><span class="symbol">, </span><a href="-configurable-helm-options.html"><span class="identifier">ConfigurableHelmOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
 <p><a href="-global-helm-options/index.html">GlobalHelmOptions</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">GlobalHelmOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-options.html"><span class="identifier">HelmOptions</span></a></code>
-<p>Holds options that apply to all Helm commands.</p>
-</td>
+<code><span class="keyword">interface </span><span class="identifier">GlobalHelmOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-options.html"><span class="identifier">HelmOptions</span></a></code></td>
 </tr>
 <tr>
 <td>
@@ -56,6 +105,20 @@
 </tr>
 <tr>
 <td>
+<p><a href="-helm-install-from-repository-options/index.html">HelmInstallFromRepositoryOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmInstallFromRepositoryOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-installation-options/index.html">HelmInstallationOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmInstallationOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-server-operation-options/index.html"><span class="identifier">HelmServerOperationOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
 <p><a href="-helm-options.html">HelmOptions</a></p>
 </td>
 <td>
@@ -63,17 +126,24 @@
 </tr>
 <tr>
 <td>
+<p><a href="-helm-server-operation-options/index.html">HelmServerOperationOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmServerOperationOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-server-options/index.html"><span class="identifier">HelmServerOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
 <p><a href="-helm-server-options/index.html">HelmServerOptions</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">HelmServerOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-global-helm-options/index.html"><span class="identifier">GlobalHelmOptions</span></a></code></td>
+<code><span class="keyword">interface </span><span class="identifier">HelmServerOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-options.html"><span class="identifier">HelmOptions</span></a></code></td>
 </tr>
 <tr>
 <td>
 <p><a href="-helm-value-options/index.html">HelmValueOptions</a></p>
 </td>
 <td>
-<code><span class="keyword">interface </span><span class="identifier">HelmValueOptions</span></code></td>
+<code><span class="keyword">interface </span><span class="identifier">HelmValueOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-options.html"><span class="identifier">HelmOptions</span></a></code></td>
 </tr>
 </tbody>
 </table>
@@ -100,6 +170,13 @@
 <code><span class="keyword">fun </span><a href="-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">.</span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code>
 <p>Executes a Helm CLI command.</p>
 </td>
+</tr>
+<tr>
+<td>
+<p><a href="with-defaults.html">withDefaults</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">.</span><span class="identifier">withDefaults</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions)/defaults">defaults</span><span class="symbol">:</span>&nbsp;<a href="-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
 </tr>
 </tbody>
 </table>

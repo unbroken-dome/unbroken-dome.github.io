@@ -110,15 +110,6 @@ If <a href="../-abstract-helm-installation-command-task/version.html">version</a
 </tr>
 <tr>
 <td>
-<p><a href="../-abstract-helm-installation-command-task/dry-run.html">dryRun</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">dryRun</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
-<p>If <code>true</code>, simulate an install.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="../-abstract-helm-installation-command-task/file-values.html">fileValues</a></p>
 </td>
 <td>
@@ -133,15 +124,6 @@ If <a href="../-abstract-helm-installation-command-task/version.html">version</a
 <td>
 <code><span class="keyword">val </span><span class="identifier">keyFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code>
 <p>Identify HTTPS client using this SSL key file.</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../-abstract-helm-installation-command-task/no-hooks.html">noHooks</a></p>
-</td>
-<td>
-<code><span class="keyword">val </span><span class="identifier">noHooks</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
-<p>If <code>true</code>, prevent hooks from running during the operation.</p>
 </td>
 </tr>
 <tr>
@@ -223,7 +205,7 @@ If <a href="../-abstract-helm-installation-command-task/version.html">version</a
 <td>
 <code><span class="keyword">val </span><span class="identifier">wait</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
 <p>If <code>true</code>, will wait until all Pods, PVCs, Services, and minimum number of Pods of a Deployment are in a ready
-state before marking the release as successful. It will wait for as along as <a href="../-abstract-helm-server-command-task/remote-timeout.html">remoteTimeout</a>.</p>
+state before marking the release as successful. It will wait for as along as <a href="../-abstract-helm-server-operation-command-task/remote-timeout.html">remoteTimeout</a>.</p>
 </td>
 </tr>
 </tbody>
@@ -251,6 +233,18 @@ state before marking the release as successful. It will wait for as along as <a 
 <code><span class="keyword">fun </span><span class="identifier">from</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmInstallationCommandTask$from(kotlin.Any)/chart">chart</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Sets the chart to be installed. The value can be any of the forms accepted by the Helm CLI.</p>
 </td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../../org.unbrokendome.gradle.plugins.helm.command/with-defaults.html">withDefaults</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">.</span><span class="identifier">withDefaults</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions)/defaults">defaults</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
 </tr>
 </tbody>
 </table>

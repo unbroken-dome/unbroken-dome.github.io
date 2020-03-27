@@ -511,7 +511,7 @@ $(addBlockSwitches);
 <div id="header">
 <h1>Gradle Helm Plugin</h1>
 <div class="details">
-<span id="revnumber">version 1.0.0</span>
+<span id="revnumber">version 1.1.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -579,6 +579,9 @@ $(addBlockSwitches);
 <li><a href="#_release_tasks">Release Tasks</a></li>
 <li><a href="#_release_dependencies">Release Dependencies</a></li>
 <li><a href="#_installupgrade_logic">Install/Upgrade logic</a></li>
+<li><a href="#_installation_task_dependencies">Installation Task Dependencies</a></li>
+<li><a href="#_using_release_targets">Using Release Targets</a></li>
+<li><a href="#_using_tags_to_select_releases">Using Tags to Select Releases</a></li>
 </ul>
 </li>
 <li><a href="#_using_helm_commands">Using Helm Commands</a>
@@ -657,7 +660,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '1.0.0'
+    id 'org.unbroken-dome.helm' version '1.1.0'
 }</code></pre>
 </div>
 </div>
@@ -665,7 +668,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "1.0.0"
+    id("org.unbroken-dome.helm") version "1.1.0"
 }</code></pre>
 </div>
 </div>
@@ -714,7 +717,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-commands' version '1.0.0'
+    id 'org.unbroken-dome.helm-commands' version '1.1.0'
 }</code></pre>
 </div>
 </div>
@@ -722,7 +725,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-commands") version "1.0.0"
+    id("org.unbroken-dome.helm-commands") version "1.1.0"
 }</code></pre>
 </div>
 </div>
@@ -740,7 +743,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '1.0.0'
+    id 'org.unbroken-dome.helm' version '1.1.0'
 }</code></pre>
 </div>
 </div>
@@ -748,7 +751,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "1.0.0"
+    id("org.unbroken-dome.helm") version "1.1.0"
 }</code></pre>
 </div>
 </div>
@@ -765,7 +768,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-publish' version '1.0.0'
+    id 'org.unbroken-dome.helm-publish' version '1.1.0'
 }</code></pre>
 </div>
 </div>
@@ -773,7 +776,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-publish") version "1.0.0"
+    id("org.unbroken-dome.helm-publish") version "1.1.0"
 }</code></pre>
 </div>
 </div>
@@ -791,7 +794,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-releases' version '1.0.0'
+    id 'org.unbroken-dome.helm-releases' version '1.1.0'
 }</code></pre>
 </div>
 </div>
@@ -799,7 +802,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-releases") version "1.0.0"
+    id("org.unbroken-dome.helm-releases") version "1.1.0"
 }</code></pre>
 </div>
 </div>
@@ -968,7 +971,7 @@ tasks will be added automatically.</p>
 <div class="listingblock primary">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '1.0.0'
+    id 'org.unbroken-dome.helm' version '1.1.0'
 }
 
 helm {
@@ -988,7 +991,7 @@ helm {
 <div class="listingblock secondary">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "1.0.0"
+    id("org.unbroken-dome.helm") version "1.1.0"
 }
 
 helm {
@@ -1685,8 +1688,8 @@ to do some processing for correct YAML indentation):</p>
 <div class="listingblock">
 <div class="title">values.yaml</div>
 <div class="content">
-<pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">rsaKey: |-
-${ rsaKey.readLines().each { "  $it" } }</code></pre>
+<pre class="prettyprint highlight"><code class="language-yaml" data-lang="yaml">rsaKey: |
+  ${ rsaKey.collectReplacements { it == '\n' ? '\n    ' : null } }</code></pre>
 </div>
 </div>
 </div>
@@ -2167,7 +2170,7 @@ or consider creating a PR to add support for it.</p>
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-publish' version '1.0.0'
+    id 'org.unbroken-dome.helm-publish' version '1.1.0'
 }</code></pre>
 </div>
 </div>
@@ -2175,7 +2178,7 @@ or consider creating a PR to add support for it.</p>
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-publish") version "1.0.0"
+    id("org.unbroken-dome.helm-publish") version "1.1.0"
 }</code></pre>
 </div>
 </div>
@@ -2458,7 +2461,7 @@ instead of defining a custom file format.</p>
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-releases' version '1.0.0'
+    id 'org.unbroken-dome.helm-releases' version '1.1.0'
 }</code></pre>
 </div>
 </div>
@@ -2466,7 +2469,7 @@ instead of defining a custom file format.</p>
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-releases") version "1.0.0"
+    id("org.unbroken-dome.helm-releases") version "1.1.0"
 }</code></pre>
 </div>
 </div>
@@ -2728,6 +2731,542 @@ install or upgrade based on the following logic:</p>
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_installation_task_dependencies"><a class="anchor" href="#_installation_task_dependencies"></a>Installation Task Dependencies</h3>
+<div class="paragraph">
+<p>Sometimes it is necessary to execute other task dependencies before a release can be installed. For example, when
+using Helm and <a href="https://plugins.gradle.org/plugin/com.google.cloud.tools.jib">jib</a> together, you may want to
+call the <code>jib</code> task that builds your Docker image before you install the release.</p>
+</div>
+<div class="paragraph">
+<p>You can declare such dependencies using the <code>installDependsOn</code> property or method on the release:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm.releases {
+
+    myApp {
+        // ...
+        installDependsOn 'jib'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm.releases {
+
+    create("myApp") {
+        // ...
+        installDependsOn("jib")
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_release_targets"><a class="anchor" href="#_using_release_targets"></a>Using Release Targets</h3>
+<div class="paragraph">
+<p>A frequent requirement when using Helm is to designate different <em>release targets</em>, with target-specific configuration
+applied to each chart depending on the target. For example, you might use release targets to model different
+server environments, stages of development (e.g. dev / test / production), or different variants of installation.</p>
+</div>
+<div class="sect3">
+<h4 id="_defining_release_targets"><a class="anchor" href="#_defining_release_targets"></a>Defining Release Targets</h4>
+<div class="paragraph">
+<p>Use the <code>helm.releaseTargets</code> container in the Gradle build script to add release targets. For example, you might
+want to use a different <code>kubeContext</code> for each target, and use the <code>--atomic</code> flag only for production installs:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
+    releaseTargets {
+        local {
+            kubeContext = 'docker-for-desktop'
+        }
+        production {
+            kubeContext = 'aws'
+            atomic = true
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
+    releaseTargets {
+        create("local") {
+            kubeContext.set("docker-for-desktop")
+        }
+        create("production") {
+            kubeContext.set("aws")
+            atomic.set(true)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>INFO: If you don&#8217;t create your own release targets, the plugin will create a release target named <code>default</code> that
+uses all the default properties. As soon as you create other release targets, the <code>default</code> target will back away.</p>
+</div>
+<div class="paragraph">
+<p>Values (and related properties) can be added to a release target as well, and they will be used for <em>every</em> release
+that is installed to this target:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
+    releaseTargets {
+        local {
+            values.put('replication.enabled', false)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
+    releaseTargets {
+        create("local") {
+            values.put("replication.enabled", false)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a release is installed to a target, the parameters for the <code>helm install</code> / <code>helm upgrade</code> call are determined
+from the properties of both the release and the release target. If a property is defined on both the release and the
+release target, the release has precedence (except for values, which will be merged from both sources).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_installing_to_and_uninstalling_from_a_specific_target"><a class="anchor" href="#_installing_to_and_uninstalling_from_a_specific_target"></a>Installing to and Uninstalling From a Specific Target</h4>
+<div class="paragraph">
+<p>For each Gradle run, one of the release targets will be the <em>active</em> release target. This can be controlled by setting
+the <code>helm.release.target</code> property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-bash" data-lang="bash">./gradlew helmInstall -Phelm.release.target=production</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is also useful to set a default value for this property in your <code>gradle.properties</code> file, to indicate a default
+release target that can be selectively overridden on the command line:</p>
+</div>
+<div class="listingblock">
+<div class="title">gradle.properties</div>
+<div class="content">
+<pre class="prettyprint highlight"><code>helm.release.target=local</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For each Gradle build with the plugin, there can only ever be one active release target. You cannot install
+charts to multiple targets from within the same build. Even though the plugin registers tasks like
+<code>helmInstallMyReleaseToLocal</code> even for inactive targets, those will be SKIPPED when part of the task execution graph.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_target_specific_release_configuration"><a class="anchor" href="#_target_specific_release_configuration"></a>Target-Specific Release Configuration</h4>
+<div class="paragraph">
+<p>Inside a <code>release</code>, you can add a <code>forTarget { }</code> block that applies configuration only for a specific target.
+For example, many Helm charts can be configured to create a <code>Secret</code> or use an existing secret:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
+    releaseTargets {
+        local
+        production
+    }
+
+    releases {
+        myApp {
+            from 'my-repo/my-application'
+            forTarget('local') {
+                values.put('auth.username', 'username')
+                values.put('auth.password', 'password')
+            }
+            forTarget('production') {
+                values.put('auth.existingSecret', 'some-existing-secret')
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
+    releaseTargets {
+        create("local")
+        create("production")
+    }
+
+    releases {
+        create("myApp") {
+            from("my-repo/my-application")
+            forTarget("local") {
+                values.put("auth.username", "username")
+                values.put("auth.password", "password")
+            }
+            forTarget("production") {
+                values.put("auth.existingSecret", "some-existing-secret")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you prefix the argument to <code>forTarget</code> with an exclamation mark (e.g. <code>forTarget("!local")</code>), the block
+will be evaluated for all targets <em>but</em> the given one.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>forTarget</code> blocks are evaluated lazily when the release is actually installed to the given target. You can modify
+most of the properties of the <code>release</code> in the <code>forTarget</code> block. For example, to add additional installation task
+dependencies based on the target, call <code>installDependsOn</code> inside a <code>forTarget</code> block:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
+    releases {
+        myApp {
+            from 'my-repo/my-application'
+            forTarget('local') {
+                installDependsOn 'jibDockerBuild'
+            }
+            forTarget('production') {
+                installDependsOn 'jib'
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
+    releases {
+        create("myApp") {
+            from("my-repo/my-application")
+            forTarget("local") {
+                installDependsOn("jibDockerBuild")
+            }
+            forTarget("!local") {
+                installDependsOn("jib")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you need to apply dynamic target-specific configuration that depends on the target name, the scope of each
+<code>forTarget</code> block contains a <code>target</code> property that allows access to the target for which the release is being
+configured. In the case where this <code>target</code> reference is all you need, you could even use <code>forAnyTarget</code>, which
+is always called.</p>
+</div>
+<div class="paragraph">
+<p>For example, to pass a specific file to <code>fileValues</code>, whose name depends on the release target name,
+you could do this:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
+    releases {
+        myApp {
+            from 'my-repo/my-application'
+            forAnyTarget {
+                fileValues.put('tls.certificate', "cert/cert-${target.name}.pem")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
+    releases {
+        create("myApp") {
+            from("my-repo/my-application")
+            forAnyTarget {
+                fileValues.put("tls.certificate", "cert/cert-${target.name}.pem")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For more advanced scenarios, both the release and the release target DSL objects are <code>ExtensionAware</code>, which
+means they have an extra properties extension where you can store custom properties that can then be accessed
+in a <code>forTarget</code> or <code>forAnyTarget</code> block.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_directories_of_value_files"><a class="anchor" href="#_directories_of_value_files"></a>Directories of Value Files</h5>
+<div class="paragraph">
+<p>Since values and value files are the most common thing to customize per target, there exists another handy mechanism
+which allows you to declare a <code>valuesDir</code> directory containing YAML files with filenames according to a specific
+convention. Assuming you have a directory containing value files like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>📂 myapp-values
+  📄 values.yaml
+  📄 values-local.yaml
+  📄 values-production.yaml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pass the path of the directory to the release by calling <code>valuesDir</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
+    releases {
+        myApp {
+            from 'my-repo/my-application'
+            valuesDir 'myapp-values'
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
+    releases {
+        create("myApp") {
+            from("my-repo/my-application")
+            valuesDir("myapp-values")
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When installing a release to a given target, the <code>values-&lt;target&gt;.yaml</code> file is automatically passed to the
+<code>helm install</code> or <code>helm upgrade</code> command. If the directory contains a <code>values.yaml</code> file (without a suffix), then it
+will be used for all targets, but with a lower precedence than the target-specific values files, meaning you can
+define common defaults in <code>values.yaml</code> and then selectively override them for each target.</p>
+</div>
+<div class="paragraph">
+<p>Each of the files in the values directory is optional, if a certain file name pattern does not exist, it will not
+be used.</p>
+</div>
+<div class="paragraph">
+<p>In the above example, when installing <code>myApp</code> to the <code>local</code> target, it would call <code>helm install</code> / <code>helm upgrade</code>
+with the option <code>--values myapp-values/values.yaml,myapp-values/values-local.yaml</code>. Similarly, when installing to the
+<code>production</code> target, it would use the option <code>--values myapp-values/values.yaml,myapp-values/values-production.yaml</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Use the built-in Gradle mechanisms to automatically declare a <code>valuesDir</code> for each release according to your own
+convention. Assuming your directory structure contains value files for each release in a subdirectory
+<code>$projectDir/helm-values/&lt;release-name&gt;</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm.releases.all {
+    valuesDir "helm-values/$name"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm.releases.all {
+    valuesDir("helm-values/$name")
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_tags_to_select_releases"><a class="anchor" href="#_using_tags_to_select_releases"></a>Using Tags to Select Releases</h3>
+<div class="paragraph">
+<p>Often you want to declare multiple releases in your build script, but you want to selectively install only a subset
+of them. For example, when installing a set of applications in a local cluster, you might want to include infrastructure
+components like a database or message queue as well, but exclude them when installing to production because they can
+be assumed to be managed externally.</p>
+</div>
+<div class="paragraph">
+<p>The <code>helm-releases</code> plugin offers a powerful tagging mechanism for such setups:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Each release may be assigned a set of tags</p>
+</li>
+<li>
+<p>A release target may contain a selection expression to use only a subset of releases</p>
+</li>
+<li>
+<p>A global selection expression allows you to further filter the set of releases per-build</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the following example, we create two releases <code>myApp</code> and <code>mongodb</code>, and assign them tags <code>application</code> and
+<code>database</code>, respectively:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm.releases {
+    myApp {
+        from 'my-repo/my-application'
+        tags 'application'
+    }
+    mongodb {
+        from 'bitnami/mongodb'
+        tags 'database'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm.releases {
+    create("myApp") {
+        from("my-repo/my-application")
+        tags("application")
+    }
+    create("mongodb") {
+        from("bitnami/mongodb")
+        tags("database")
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can specify a select expression in our release targets to configure which releases should be installed to
+each target. In its simplest form, the select expression is just the name of a tag, which must then be present on
+the release. The expression <code>*</code> (which is also the default) matches any release.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm.releaseTargets {
+    local {
+        // this is the default
+        selectTags = '*'
+    }
+    production {
+        // When installing to production, only install releases tagged "application"
+        selectTags = 'application'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm.releaseTargets {
+    create("local") {
+        // this is the default
+        selectTags = "*"
+    }
+    create("production") {
+        // When installing to production, only install releases tagged "application"
+        selectTags = "application"
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can combine tags in a select expression using the operators <code>&amp;</code> (and), <code>|</code> (or) and <code>!</code> (not). Comma and space also
+mean "or". Some examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>!database</code> matches any release except ones tagged with <code>database</code></p>
+</li>
+<li>
+<p><code>application,infrastructure</code> matches any release tagged <code>application</code> <em>or</em> <code>infrastructure</code></p>
+</li>
+<li>
+<p><code>infrastructure &amp; !database</code> matches any release tagged <code>infrastructure</code>, but not tagged <code>database</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition to setting <code>selectTags</code> on a release target, you can also set the property <code>helm.release.tags</code> on the
+command line to further narrow down the set of releases per-build.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-bash" data-lang="bash"># this will install only "application"-tagged releases to the "local" target
+./gradlew helmInstall -Phelm.release.target=local -Phelm.release.tags=application</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>INFO: If both <code>helm.release.tags</code> and the active release target contain a select expression for tags, they will be
+both combined using "and". This means that a release will only be installed if it matches <em>both</em> the <code>helm.release.tags</code>
+expression and the <code>selectTags</code> expression of the release target.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -2851,9 +3390,8 @@ allow for easier overriding.
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.remoteTimeout</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Time to wait for an individual Kubernetes operation (like Jobs or hooks).
-+
-May be specified in Helm format (e.g. <code>3m30s</code>), in ISO format (e.g. <code>PT3M30S</code>) or as a plain number indicating the
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time to wait for an individual Kubernetes operation (like Jobs or hooks).</p>
+<p class="tableblock">May be specified in Helm format (e.g. <code>3m30s</code>), in ISO format (e.g. <code>PT3M30S</code>) or as a plain number indicating the
 number of seconds (e.g. <code>210</code>).</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
@@ -2995,12 +3533,28 @@ number of seconds (e.g. <code>210</code>).</p></td>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.atomic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Perform releases atomically (use <code>--atomic</code> flag).</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.dryRun</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Only perform a dry run when installing or deleting releases.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.atomic</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Perform releases atomically.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.noHooks</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the <code>--no-hooks</code> flag when installing or uninstalling.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.release.target</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify the active release target. Defaults to <code>default</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.release.tags</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify an expression to filter releases by tag. By default, all releases are matched.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.wait</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the <code>--wait</code> flag when installing.</p></td>
 </tr>
 </tbody>
 </table>
@@ -3010,7 +3564,7 @@ number of seconds (e.g. <code>210</code>).</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 1.0.0<br>
+Version 1.1.0<br>
 Last updated 2019-01-20 23:31:23 +0100
 </div>
 </div>
