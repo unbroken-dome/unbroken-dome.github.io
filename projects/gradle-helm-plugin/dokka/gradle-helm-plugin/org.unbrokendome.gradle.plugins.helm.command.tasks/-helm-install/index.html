@@ -79,6 +79,15 @@
 </tr>
 <tr>
 <td>
+<p><a href="../-abstract-helm-installation-command-task/create-namespace.html">createNamespace</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">createNamespace</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code>, create the release namespace if not present.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="../-abstract-helm-installation-command-task/devel.html">devel</a></p>
 </td>
 <td>
@@ -173,7 +182,7 @@ If <a href="../-abstract-helm-installation-command-task/version.html">version</a
 <p><a href="../-abstract-helm-installation-command-task/version.html">version</a></p>
 </td>
 <td>
-<code><span class="keyword">val </span><span class="identifier">version</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">version</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
 <p>Specify the exact chart version to install. If this is not specified, the latest version is installed.</p>
 </td>
 </tr>
@@ -223,7 +232,7 @@ state before marking the release as successful. It will wait for as along as <a 
 <p><a href="../../org.unbrokendome.gradle.plugins.helm.command/with-defaults.html">withDefaults</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">.</span><span class="identifier">withDefaults</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions)/defaults">defaults</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
+<code><span class="keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">.</span><span class="identifier">withDefaults</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.gradle.api.provider.ProviderFactory)/defaults">defaults</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.gradle.api.provider.ProviderFactory)/providers">providers</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ProviderFactory.html"><span class="identifier">ProviderFactory</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
 </tr>
 </tbody>
 </table>

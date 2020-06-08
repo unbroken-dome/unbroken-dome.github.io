@@ -511,7 +511,7 @@ $(addBlockSwitches);
 <div id="header">
 <h1>Gradle Helm Plugin</h1>
 <div class="details">
-<span id="revnumber">version 1.1.0</span>
+<span id="revnumber">version 1.2.0</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -530,6 +530,7 @@ $(addBlockSwitches);
 <ul class="sectlevel2">
 <li><a href="#_global_helm_options">Global Helm Options</a></li>
 <li><a href="#_helm_directories">Helm Directories</a></li>
+<li><a href="#_automatic_download_of_the_helm_client">Automatic Download of the Helm Client</a></li>
 </ul>
 </li>
 <li><a href="#_defining_charts">Defining Charts</a>
@@ -577,11 +578,12 @@ $(addBlockSwitches);
 <li><a href="#_managing_releases">Managing Releases</a>
 <ul class="sectlevel2">
 <li><a href="#_release_tasks">Release Tasks</a></li>
+<li><a href="#release-installation-order">Release Installation Order</a></li>
 <li><a href="#_release_dependencies">Release Dependencies</a></li>
 <li><a href="#_installupgrade_logic">Install/Upgrade logic</a></li>
 <li><a href="#_installation_task_dependencies">Installation Task Dependencies</a></li>
 <li><a href="#_using_release_targets">Using Release Targets</a></li>
-<li><a href="#_using_tags_to_select_releases">Using Tags to Select Releases</a></li>
+<li><a href="#using-tags-to-select-releases">Using Tags to Select Releases</a></li>
 </ul>
 </li>
 <li><a href="#_using_helm_commands">Using Helm Commands</a>
@@ -660,7 +662,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '1.1.0'
+    id 'org.unbroken-dome.helm' version '1.2.0'
 }</code></pre>
 </div>
 </div>
@@ -668,7 +670,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "1.1.0"
+    id("org.unbroken-dome.helm") version "1.2.0"
 }</code></pre>
 </div>
 </div>
@@ -717,7 +719,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-commands' version '1.1.0'
+    id 'org.unbroken-dome.helm-commands' version '1.2.0'
 }</code></pre>
 </div>
 </div>
@@ -725,7 +727,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-commands") version "1.1.0"
+    id("org.unbroken-dome.helm-commands") version "1.2.0"
 }</code></pre>
 </div>
 </div>
@@ -743,7 +745,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '1.1.0'
+    id 'org.unbroken-dome.helm' version '1.2.0'
 }</code></pre>
 </div>
 </div>
@@ -751,7 +753,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "1.1.0"
+    id("org.unbroken-dome.helm") version "1.2.0"
 }</code></pre>
 </div>
 </div>
@@ -768,7 +770,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-publish' version '1.1.0'
+    id 'org.unbroken-dome.helm-publish' version '1.2.0'
 }</code></pre>
 </div>
 </div>
@@ -776,7 +778,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-publish") version "1.1.0"
+    id("org.unbroken-dome.helm-publish") version "1.2.0"
 }</code></pre>
 </div>
 </div>
@@ -794,7 +796,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-releases' version '1.1.0'
+    id 'org.unbroken-dome.helm-releases' version '1.2.0'
 }</code></pre>
 </div>
 </div>
@@ -802,7 +804,7 @@ means that some features offered by the plugin may not be available in the CLI a
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-releases") version "1.1.0"
+    id("org.unbroken-dome.helm-releases") version "1.2.0"
 }</code></pre>
 </div>
 </div>
@@ -846,29 +848,45 @@ See <a href="#_configuration_from_project_properties">Configuration from Project
 <col style="width: 33.3333%;">
 <col style="width: 33.3334%;">
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top"><code>helm</code> CLI option</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Property</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm</code> CLI option</p>
-<p class="tableblock"><code>executable</code>
-Path to the <code>helm</code> executable. The <code>PATH</code> environment variable is taken into account, so this can just be <code>helm</code>
- (which is the default) if the Helm client is installed in a suitable location.</p>
-<p class="tableblock"><code>extraArgs</code>
-Additional arguments to pass to <em>every</em> invocation of <code>helm</code>. This can be used for command-line options that have
- no counterpart in the plugin.</p>
-<p class="tableblock"><code>kubeConfig</code>
-Path to the Kubernetes configuration file.
-Environment variable <code>KUBECONFIG</code></p>
-<p class="tableblock"><code>kubeContext</code>
-Name of the kubeconfig context to use.
-<code>--kube-context</code></p>
-<p class="tableblock"><code>namespace</code>
-Kubernetes namespace scope.
-<code>--namespace</code></p>
-<p class="tableblock"><code>remoteTimeout</code>
-Time to wait for any individual Kubernetes operation (like Jobs for hooks).
-<code>--timeout</code> (on certain commands like <code>install</code>, <code>upgrade</code> or <code>uninstall</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>executable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> Path to the <code>helm</code> executable. The <code>PATH</code> environment variable is taken into account, so this can just be <code>helm</code>
+ (which is the default) if the Helm client is installed in a suitable location.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>extraArgs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional arguments to pass to <em>every</em> invocation of <code>helm</code>. This can be used for command-line options that have
+ no counterpart in the plugin.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubeConfig</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the Kubernetes configuration file.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Environment variable <code>KUBECONFIG</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubeContext</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the kubeconfig context to use.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <code>--kube-context</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <code>namespace</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes namespace scope.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <code>--namespace</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remoteTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> Time to wait for any individual Kubernetes operation (like Jobs for hooks).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--timeout</code> (on certain commands like <code>install</code>, <code>upgrade</code> or <code>uninstall</code>)</p></td>
 </tr>
 </tbody>
 </table>
@@ -897,24 +915,32 @@ by the Helm CLI.</p>
 <col style="width: 25%;">
 <col style="width: 25%;">
 </colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><code>helm</code> extension property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+<th class="tableblock halign-left valign-top">Default Value</th>
+</tr>
+</thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm</code> extension property</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Environment variable</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Default Value</p>
-<p class="tableblock"><code>xdgDataHome</code>
-Base directory for storing data. (Note: this does not currently seem to be used by any <code>helm</code> command.)
-<code>XDG_DATA_HOME</code>
-<code>build/helm/data</code> under the project dir</p>
-<p class="tableblock"><code>xdgConfigHome</code>
-Base directory for storing configuration.
-<code>XDG_CONFIG_HOME</code>
-<code>build/helm/config</code> under the project dir</p>
-<p class="tableblock"><code>xdgCacheHome</code>
-Base directory for storing cached data.
-<code>XDG_CACHE_HOME</code>
-<code>.gradle/helm/cache</code> under the <em>root</em> project dir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdgDataHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing data. (Note: this does not currently seem to be used by any <code>helm</code> command.)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XDG_DATA_HOME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>build/helm/data</code> under the project dir</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdgConfigHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XDG_CONFIG_HOME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>build/helm/config</code> under the project dir</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdgCacheHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing cached data.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XDG_CACHE_HOME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.gradle/helm/cache</code> under the <em>root</em> project dir</p></td>
 </tr>
 </tbody>
 </table>
@@ -956,6 +982,118 @@ If necessary, you can always set the cache home to a project-local directory, fo
 </table>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_automatic_download_of_the_helm_client"><a class="anchor" href="#_automatic_download_of_the_helm_client"></a>Automatic Download of the Helm Client</h3>
+<div class="paragraph">
+<p>As an alternative to using a locally installed Helm client, the plugin can automatically download a Helm client
+distribution from the official Helm website. This allows build scripts to be more independent from the environment
+found on the local machine where the Gradle build runs.</p>
+</div>
+<div class="paragraph">
+<p>The download can be configured either through the <code>helm.downloadClient</code> DSL block or through project properties (e.g.
+in the <code>gradle.properties</code> file). Project properties have the advantage of being automatically inherited by subprojects,
+and are easier to adapt for the local machine.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows how the download can be configured in the build script:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm {
+    downloadClient {
+        enabled = true
+        version = '3.2.0'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm {
+    downloadClient {
+        enabled.set(true)
+        version.set("3.2.0")
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example shows how the download can be configured using the gradle.properties file:</p>
+</div>
+<div class="listingblock">
+<div class="title">gradle.properties</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-properties" data-lang="properties">helm.client.download.enabled=true
+helm.client.download.version=3.2.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following properties control the download of the Helm client:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">DSL property under <code>helm.downloadClient</code></th>
+<th class="tableblock halign-left valign-top">Project property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.client.download.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set to <code>true</code>, the Helm client is downloaded from the remote location.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <code>helm.client.download.version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The version of the Helm client to be downloaded.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> The latest version of Helm available at the time the plugin is published (currently <code>3.2.0</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <code>destinationDir</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The base directory where Helm client executables are extracted. By default, this is a directory under
+ <code>(rootDir)/.gradle</code>, so the client will only be downloaded and extracted once in a multi-module build, and is not
+ removed by a <code>clean</code> task. You can set this to a different directory (e.g. under the <code>build</code> directory) if you
+ prefer different behavior.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"> <code>.gradle/helm/client</code> under the <em>root</em> project dir</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.client.download.baseUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The base URL for downloading the client executables.</p>
+<p class="tableblock">  You can change this to a different URL if required, for example when behind a corporate proxy.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://get.helm.sh/" class="bare">https://get.helm.sh/</a></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.client.download.group</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A pseudo "group" coordinate for the Helm client artifacts; required for Gradle artifact resolution.</p>
+<p class="tableblock">  Change this to a different value in the unlikely case that the default group name <code>sh.helm</code> conflicts
+  with other external dependencies used by the build script.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sh.helm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.client.download.osClassifier</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Override the OS classifier (the suffix of the downloaded filename) if auto-detection does not work as expected.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auto-detected for the current system based on Java system properties.</p>
+<p class="tableblock">  For example, <code>darwin-amd64</code> or <code>windows-amd64</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -971,7 +1109,7 @@ tasks will be added automatically.</p>
 <div class="listingblock primary">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm' version '1.1.0'
+    id 'org.unbroken-dome.helm' version '1.2.0'
 }
 
 helm {
@@ -991,7 +1129,7 @@ helm {
 <div class="listingblock secondary">
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm") version "1.1.0"
+    id("org.unbroken-dome.helm") version "1.2.0"
 }
 
 helm {
@@ -2170,7 +2308,7 @@ or consider creating a PR to add support for it.</p>
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-publish' version '1.1.0'
+    id 'org.unbroken-dome.helm-publish' version '1.2.0'
 }</code></pre>
 </div>
 </div>
@@ -2178,7 +2316,7 @@ or consider creating a PR to add support for it.</p>
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-publish") version "1.1.0"
+    id("org.unbroken-dome.helm-publish") version "1.2.0"
 }</code></pre>
 </div>
 </div>
@@ -2461,7 +2599,7 @@ instead of defining a custom file format.</p>
 <div class="title">Groovy</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">plugins {
-    id 'org.unbroken-dome.helm-releases' version '1.1.0'
+    id 'org.unbroken-dome.helm-releases' version '1.2.0'
 }</code></pre>
 </div>
 </div>
@@ -2469,7 +2607,7 @@ instead of defining a custom file format.</p>
 <div class="title">Kotlin</div>
 <div class="content">
 <pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">plugins {
-    id("org.unbroken-dome.helm-releases") version "1.1.0"
+    id("org.unbroken-dome.helm-releases") version "1.2.0"
 }</code></pre>
 </div>
 </div>
@@ -2645,14 +2783,16 @@ up to date before it is installed.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_release_dependencies"><a class="anchor" href="#_release_dependencies"></a>Release Dependencies</h3>
+<h3 id="release-installation-order"><a class="anchor" href="#release-installation-order"></a>Release Installation Order</h3>
 <div class="paragraph">
-<p>You can express dependencies between releases, to influence the order of installations/deletions
-when using the <code>helmInstall</code> or <code>helmUninstall</code> task. A release will always be installed after all
-its dependencies, and uninstalled before its dependencies are uninstalled.</p>
+<p>You can influence the order in which releases are installed or uninstalled by calling <code>mustInstallAfter</code>
+on the release. This is similar to what the <code>mustRunAfter</code> method from the Gradle DSL does for tasks:
+<code>mustInstallAfter</code> does not express a "hard" dependency on another release; instead it only influences
+the order in which their install tasks are called when both are requested to be installed in the current
+Gradle invocation.</p>
 </div>
 <div class="paragraph">
-<p>Currently it is not possible to define dependencies on releases in another Gradle project.</p>
+<p>Currently it is not possible to refer to releases in another Gradle project.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -2661,7 +2801,7 @@ its dependencies, and uninstalled before its dependencies are uninstalled.</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-While a release dependency influences the order of <code>install</code> invocations, it does not guarantee
+While <code>mustInstallAfter</code> influences the order of <code>helm install</code> invocations, it does not guarantee
 that the release will be up and running on the cluster when the installation of the dependent release
 begins. By default, <code>helm install</code> does not wait until the deployment is complete&#8201;&#8212;&#8201;if this is what
 you need, you can set <code>wait</code> to <code>true</code> in the release, so that the install/upgrade command is invoked
@@ -2677,10 +2817,136 @@ with the <code>--wait</code> flag.
 
     postgres {
         from 'stable/postgresql'
+
+        // Set the wait property to true if the following release
+        // requires this to be successfully deployed
+        wait = true
     }
 
     myApp {
         // ...
+        mustInstallAfter 'postgres'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm.releases {
+
+    create("postgres") {
+        from("stable/postgresql")
+
+        // Set the wait property to true if the following release
+        // requires this to be successfully deployed
+        wait = true
+    }
+
+    create("myApp") {
+        // ...
+        mustInstallAfter("postgres")
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Similarly, influencing the order of uninstalls is also possible using the <code>mustUninstallAfter</code> method. Note that
+<code>mustInstallAfter</code> and <code>mustUninstallAfter</code> are completely independent; neither of them implies the other. If you
+want to express both installation and uninstallation ordering between two releases, you must do so explicitly by
+calling both <code>mustInstallAfter</code> and <code>mustUninstallAfter</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm.releases {
+
+    postgres {
+        from 'stable/postgresql'
+
+        // Set the wait property to true if the following release
+        // requires this to be successfully deployed
+        wait = true
+
+        // We can refer to a release by name even before it is declared --
+        // the references are resolved lazily
+        mustUninstallAfter 'myApp'
+    }
+
+    myApp {
+        // ...
+        mustInstallAfter 'postgres'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-kotlin" data-lang="kotlin">helm.releases {
+
+    create("postgres") {
+        from("stable/postgresql")
+
+        // Set the wait property to true if the following release
+        // requires this to be successfully deployed
+        wait = true
+
+        // We can refer to a release by name even before it is declared --
+        // the references are resolved lazily
+        mustUninstallAfter("myApp")
+    }
+
+    create("myApp") {
+        // ...
+        mustInstallAfter("postgres")
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_dependencies"><a class="anchor" href="#_release_dependencies"></a>Release Dependencies</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This feature is now deprecated as of version 1.2.0, and will removed in a future version. Instead, please use
+<a href="#using-tags-to-select-releases">tags</a> to specify which releases to install, and
+<a href="#release-installation-order">Release Installation Order</a> to indicate in which order they should be installed.</p>
+</div>
+<div class="paragraph">
+<p>Release dependencies are now deprecated because the side effects of automatically installing or uninstalling a
+dependent release may often be undesirable. If the dependent release is already installed, then it would always
+be upgraded even if that is not necessary. Likewise, the automatic uninstallation is not always desired and should
+be controlled in a more fine-grained way using the other mechanisms documented here.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>dependsOn</code> property and method on a release allows you to indicate that a certain release depends on another
+release. As a consequence, when release A depends on release B, then release B will automatically installed before
+release A is installed, and uninstalled after release A is uninstalled.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-groovy" data-lang="groovy">helm.releases {
+
+    postgres {
+        from 'stable/postgresql'
+    }
+
+    myApp {
+        // myApp depending on postgres means that whenever myApp is installed,
+        // postgres will be automatically installed first; and whenever myApp
+        // is uninstalled, postgres will be uninstalled afterwards.
         dependsOn 'postgres'
     }
 }</code></pre>
@@ -2696,7 +2962,9 @@ with the <code>--wait</code> flag.
     }
 
     create("myApp") {
-        // ...
+        // myApp depending on postgres means that whenever myApp is installed,
+        // postgres will be automatically installed first; and whenever myApp
+        // is uninstalled, postgres will be uninstalled afterwards.
         dependsOn("postgres")
     }
 }</code></pre>
@@ -3142,7 +3410,7 @@ convention. Assuming your directory structure contains value files for each rele
 </div>
 </div>
 <div class="sect2">
-<h3 id="_using_tags_to_select_releases"><a class="anchor" href="#_using_tags_to_select_releases"></a>Using Tags to Select Releases</h3>
+<h3 id="using-tags-to-select-releases"><a class="anchor" href="#using-tags-to-select-releases"></a>Using Tags to Select Releases</h3>
 <div class="paragraph">
 <p>Often you want to declare multiple releases in your build script, but you want to selectively install only a subset
 of them. For example, when installing a set of applications in a local cluster, you might want to include infrastructure
@@ -3564,7 +3832,7 @@ number of seconds (e.g. <code>210</code>).</p></td>
 </div>
 <div id="footer">
 <div id="footer-text">
-Version 1.1.0<br>
+Version 1.2.0<br>
 Last updated 2019-01-20 23:31:23 +0100
 </div>
 </div>

@@ -87,20 +87,20 @@
 </tr>
 <tr>
 <td>
-<p><a href="-helm-exec-result/index.html">HelmExecResult</a></p>
-</td>
-<td>
-<code><span class="keyword">data</span> <span class="keyword">class </span><span class="identifier">HelmExecResult</span></code>
-<p>Provides information about the result of a Helm CLI invocation.</p>
-</td>
-</tr>
-<tr>
-<td>
 <p><a href="-helm-exec-spec/index.html">HelmExecSpec</a></p>
 </td>
 <td>
 <code><span class="keyword">interface </span><span class="identifier">HelmExecSpec</span></code>
 <p>Configures and executes a Helm CLI command.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-extract-client/index.html">HelmExtractClient</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmExtractClient</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/DefaultTask.html"><span class="identifier">DefaultTask</span></a></code>
+<p>Downloads and extracts a Helm client executable package.</p>
 </td>
 </tr>
 <tr>
@@ -147,18 +147,6 @@
 </tr>
 </tbody>
 </table>
-<h3>Exceptions</h3>
-<table>
-<tbody>
-<tr>
-<td>
-<p><a href="-helm-exec-exception/index.html">HelmExecException</a></p>
-</td>
-<td>
-<code><span class="keyword">class </span><span class="identifier">HelmExecException</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-runtime-exception/index.html"><span class="identifier">RuntimeException</span></a></code></td>
-</tr>
-</tbody>
-</table>
 <h3>Functions</h3>
 <table>
 <tbody>
@@ -167,7 +155,7 @@
 <p><a href="exec-helm.html">execHelm</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><a href="-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">.</span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/process/ExecResult.html"><span class="identifier">ExecResult</span></a></code>
+<code><span class="keyword">fun </span><a href="-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">.</span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$execHelm(org.unbrokendome.gradle.plugins.helm.command.HelmExecProvider, kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Executes a Helm CLI command.</p>
 </td>
 </tr>
@@ -176,7 +164,7 @@
 <p><a href="with-defaults.html">withDefaults</a></p>
 </td>
 <td>
-<code><span class="keyword">fun </span><a href="-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">.</span><span class="identifier">withDefaults</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions)/defaults">defaults</span><span class="symbol">:</span>&nbsp;<a href="-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
+<code><span class="keyword">fun </span><a href="-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">.</span><span class="identifier">withDefaults</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.gradle.api.provider.ProviderFactory)/defaults">defaults</span><span class="symbol">:</span>&nbsp;<a href="-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.gradle.api.provider.ProviderFactory)/providers">providers</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ProviderFactory.html"><span class="identifier">ProviderFactory</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
 </tr>
 </tbody>
 </table>

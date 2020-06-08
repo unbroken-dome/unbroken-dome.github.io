@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmReleaseProperties.mustInstallAfter - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.release.dsl</a>&nbsp;/&nbsp;<a href="index.html">HelmReleaseProperties</a>&nbsp;/&nbsp;<a href="./must-install-after.html">mustInstallAfter</a><br/>
+<br/>
+<h1>mustInstallAfter</h1>
+<a name="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$mustInstallAfter"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">mustInstallAfter</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>A set of release names that this release must be installed after, if installation of both releases is
+requested by the current build.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Task.html#mustRunAfter(java.lang.Object...)">Task.mustRunAfter</a></p>
+</p>
+<a name="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$mustInstallAfter(kotlin.Array((kotlin.String)))"></a>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">mustInstallAfter</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$mustInstallAfter(kotlin.Array((kotlin.String)))/releaseNames">releaseNames</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Specifies that this release must be installed after all the supplied releases.</p>
+<h3>Parameters</h3>
+<p><a name="releaseNames"></a>
+<code>releaseNames</code> - names of releases that this release must be installed after</p>
+<p><strong>See Also</strong><br/>
+<p><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Task.html#mustRunAfter(java.lang.Object...)">Task.mustRunAfter</a></p>
+</p>
+</BODY>
+</HTML>

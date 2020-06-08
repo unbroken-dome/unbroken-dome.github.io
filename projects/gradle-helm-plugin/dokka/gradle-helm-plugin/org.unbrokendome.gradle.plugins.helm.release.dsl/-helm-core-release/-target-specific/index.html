@@ -41,7 +41,7 @@
 <p><a href="../../-helm-release-properties/depends-on.html">dependsOn</a></p>
 </td>
 <td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">dependsOn</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/SetProperty.html"><span class="identifier">SetProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><s><span class="identifier">dependsOn</span></s><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/SetProperty.html"><span class="identifier">SetProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
 <p>Names of other releases that this release depends on.</p>
 </td>
 </tr>
@@ -67,6 +67,26 @@ May contain any of the notations supported by <a href="https://docs.gradle.org/c
 </tr>
 <tr>
 <td>
+<p><a href="../../-helm-release-properties/must-install-after.html">mustInstallAfter</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">mustInstallAfter</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>A set of release names that this release must be installed after, if installation of both releases is
+requested by the current build.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../-helm-release-properties/must-uninstall-after.html">mustUninstallAfter</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">mustUninstallAfter</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>A set of release names that this release must be uninstalled after, if uninstallation of both releases is
+requested by the current build.</p>
+</td>
+</tr>
+<tr>
+<td>
 <p><a href="../../-helm-release-properties/release-name.html">releaseName</a></p>
 </td>
 <td>
@@ -83,15 +103,6 @@ DSL.</p>
 <code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">replace</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
 <p>If <code>true</code>, the associated <code>helmInstall</code> task will replace an existing release with the same name
 (using <code>helm install --replace</code> instead of <code>helm upgrade --install</code>).</p>
-</td>
-</tr>
-<tr>
-<td>
-<p><a href="../../-helm-release-properties/version.html">version</a></p>
-</td>
-<td>
-<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">version</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
-<p>Specify the exact chart version to install. If this is not specified, the latest version is installed.</p>
 </td>
 </tr>
 </tbody>
@@ -117,9 +128,9 @@ DSL.</p>
 <p><a href="../../-helm-release-properties/depends-on.html">dependsOn</a></p>
 </td>
 <td>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">dependsOn</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$dependsOn(kotlin.String)/releaseName">releaseName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><s><span class="identifier">dependsOn</span></s><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$dependsOn(kotlin.String)/releaseName">releaseName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Express a dependency on another release.</p>
-<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">dependsOn</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$dependsOn(kotlin.Array((kotlin.String)))/releaseNames">releaseNames</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><s><span class="identifier">dependsOn</span></s><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$dependsOn(kotlin.Array((kotlin.String)))/releaseNames">releaseNames</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Express a dependency on several other releases.</p>
 </td>
 </tr>
@@ -140,6 +151,24 @@ DSL.</p>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">installDependsOn</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$installDependsOn(kotlin.collections.Iterable((kotlin.Any)))/paths">paths</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
 <code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">installDependsOn</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$installDependsOn(kotlin.Array((kotlin.Any)))/paths">paths</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
 <p>Declare additional dependencies for the task that installs this release.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../-helm-release-properties/must-install-after.html">mustInstallAfter</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">mustInstallAfter</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$mustInstallAfter(kotlin.Array((kotlin.String)))/releaseNames">releaseNames</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Specifies that this release must be installed after all the supplied releases.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../../-helm-release-properties/must-uninstall-after.html">mustUninstallAfter</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">mustUninstallAfter</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$mustUninstallAfter(kotlin.Array((kotlin.String)))/releaseNames">releaseNames</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Specifies that this release must be uninstalled after all the supplied releases.</p>
 </td>
 </tr>
 </tbody>
