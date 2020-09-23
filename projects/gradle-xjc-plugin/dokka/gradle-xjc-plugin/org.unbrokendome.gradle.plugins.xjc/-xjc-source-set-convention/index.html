@@ -1,0 +1,151 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>XjcSourceSetConvention - gradle-xjc-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-xjc-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.xjc</a>&nbsp;/&nbsp;<a href="./index.html">XjcSourceSetConvention</a><br/>
+<br/>
+<h1>XjcSourceSetConvention</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">XjcSourceSetConvention</span></code> <a href="https://github.com/unbroken-dome/gradle-xjc-plugin/blob/v2.0.0/src/main/kotlin/org/unbrokendome/gradle/plugins/xjc/XjcSourceSetConvention.kt#L21">(source)</a>
+<p>Mixed into each <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/SourceSet.html">SourceSet</a> when the <a href="../-xjc-plugin/index.html">XjcPlugin</a> is applied.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="xjc-binding.html">xjcBinding</a></h4>
+</td>
+<td>
+<p>The XJC binding customizations source.</p>
+<code><span class="keyword">val </span><span class="identifier">xjcBinding</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-catalog.html">xjcCatalog</a></h4>
+</td>
+<td>
+<p>The XJC catalog source for this set.</p>
+<code><span class="keyword">val </span><span class="identifier">xjcCatalog</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-catalog-resolution-configuration-name.html">xjcCatalogResolutionConfigurationName</a></h4>
+</td>
+<td>
+<p>The name of the catalog resolution configuration for this source set. This configuration should be used for
+artifacts containing other schemas that need to be resolved from a catalog.</p>
+<code><span class="keyword">val </span><span class="identifier">xjcCatalogResolutionConfigurationName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-classpath-configuration-name.html">xjcClasspathConfigurationName</a></h4>
+</td>
+<td>
+<p>The name of the XJC classpath configuration for this source set. This configuration should be used for
+adding plugins to the XJC generation step.</p>
+<code><span class="keyword">val </span><span class="identifier">xjcClasspathConfigurationName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-episodes-configuration-name.html">xjcEpisodesConfigurationName</a></h4>
+</td>
+<td>
+<p>The name of the XJC episodes configuration for this source set.</p>
+<code><span class="keyword">val </span><span class="identifier">xjcEpisodesConfigurationName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-extra-args.html">xjcExtraArgs</a></h4>
+</td>
+<td>
+<p>Additional arguments to be passed to XJC for this source set.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">xjcExtraArgs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ListProperty.html"><span class="identifier">ListProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-generate-episode.html">xjcGenerateEpisode</a></h4>
+</td>
+<td>
+<p>If <code>true</code>, instructs XJC to generate an episode file at <code>META-INF/sun-jaxb.episode</code>.
+The generated episode file will then be included in the <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/SourceSet.html#resources(groovy.lang.Closure)">resources</a> of this source set.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">xjcGenerateEpisode</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-generate-task-name.html">xjcGenerateTaskName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="../-xjc-generate/index.html">XjcGenerate</a> task that will perform the XJC generation for this source set.</p>
+<code><span class="keyword">val </span><span class="identifier">xjcGenerateTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-schema.html">xjcSchema</a></h4>
+</td>
+<td>
+<p>The XJC schema source.</p>
+<code><span class="keyword">val </span><span class="identifier">xjcSchema</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-target-package.html">xjcTargetPackage</a></h4>
+</td>
+<td>
+<p>The target package for XJC.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">xjcTargetPackage</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-url.html">xjcUrl</a></h4>
+</td>
+<td>
+<p>The XJC URL source for this set.</p>
+<code><span class="keyword">val </span><span class="identifier">xjcUrl</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="xjc-binding.html">xjcBinding</a></h4>
+</td>
+<td>
+<p>Configures the XJC binding customizations source for this set.</p>
+<code><span class="keyword">fun </span><span class="identifier">xjcBinding</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.xjc.XjcSourceSetConvention$xjcBinding(org.gradle.api.Action((org.gradle.api.file.SourceDirectorySet)))/configureAction">configureAction</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">xjcBinding</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.xjc.XjcSourceSetConvention$xjcBinding(groovy.lang.Closure((kotlin.Any)))/configureClosure">configureClosure</span><span class="symbol">:</span>&nbsp;<span class="identifier">Closure</span><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-catalog.html">xjcCatalog</a></h4>
+</td>
+<td>
+<p>Configures the XJC catalog source for this set.</p>
+<code><span class="keyword">fun </span><span class="identifier">xjcCatalog</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.xjc.XjcSourceSetConvention$xjcCatalog(org.gradle.api.Action((org.gradle.api.file.SourceDirectorySet)))/configureAction">configureAction</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">xjcCatalog</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.xjc.XjcSourceSetConvention$xjcCatalog(groovy.lang.Closure((kotlin.Any)))/configureClosure">configureClosure</span><span class="symbol">:</span>&nbsp;<span class="identifier">Closure</span><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-schema.html">xjcSchema</a></h4>
+</td>
+<td>
+<p>Configures the XJC schema source for this set.</p>
+<code><span class="keyword">fun </span><span class="identifier">xjcSchema</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.xjc.XjcSourceSetConvention$xjcSchema(org.gradle.api.Action((org.gradle.api.file.SourceDirectorySet)))/configureAction">configureAction</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">xjcSchema</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.xjc.XjcSourceSetConvention$xjcSchema(groovy.lang.Closure((kotlin.Any)))/configureClosure">configureClosure</span><span class="symbol">:</span>&nbsp;<span class="identifier">Closure</span><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-url.html">xjcUrl</a></h4>
+</td>
+<td>
+<p>Configures the XJC URL source for this set.</p>
+<code><span class="keyword">fun </span><span class="identifier">xjcUrl</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.xjc.XjcSourceSetConvention$xjcUrl(org.gradle.api.Action((org.gradle.api.file.SourceDirectorySet)))/configureAction">configureAction</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code><br/>
+<code><span class="keyword">fun </span><span class="identifier">xjcUrl</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.xjc.XjcSourceSetConvention$xjcUrl(groovy.lang.Closure((kotlin.Any)))/configureClosure">configureClosure</span><span class="symbol">:</span>&nbsp;<span class="identifier">Closure</span><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/SourceDirectorySet.html"><span class="identifier">SourceDirectorySet</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,148 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>XjcGenerate - gradle-xjc-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-xjc-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.xjc</a>&nbsp;/&nbsp;<a href="./index.html">XjcGenerate</a><br/>
+<br/>
+<h1>XjcGenerate</h1>
+<code><span class="identifier">@CacheableTask</span> <span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">XjcGenerate</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/DefaultTask.html"><span class="identifier">DefaultTask</span></a><span class="symbol">, </span><a href="../-xjc-generator-options/index.html"><span class="identifier">XjcGeneratorOptions</span></a></code> <a href="https://github.com/unbroken-dome/gradle-xjc-plugin/blob/v2.0.0/src/main/kotlin/org/unbrokendome/gradle/plugins/xjc/XjcGenerate.kt#L33">(source)</a>
+<p>Invokes XJC to generate code from schemas.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Invokes XJC to generate code from schemas.</p>
+<code><span class="identifier">XjcGenerate</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.xjc.XjcGenerate$<init>(org.gradle.workers.WorkerExecutor)/workerExecutor">workerExecutor</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/workers/WorkerExecutor.html"><span class="identifier">WorkerExecutor</span></a><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="binding-files.html">bindingFiles</a></h4>
+</td>
+<td>
+<p>The binding customization files.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">bindingFiles</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="catalog-resolution-classpath.html">catalogResolutionClasspath</a></h4>
+</td>
+<td>
+<p>A <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Configuration.html">Configuration</a> to be used for catalog resolution with the <code>maven:</code> URI scheme.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">catalogResolutionClasspath</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Configuration.html"><span class="identifier">Configuration</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="catalogs.html">catalogs</a></h4>
+</td>
+<td>
+<p>The catalog files.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">catalogs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="episode-output-directory.html">episodeOutputDirectory</a></h4>
+</td>
+<td>
+<p>The base output directory for generated episodes. Only relevant if <a href="generate-episode.html">generateEpisode</a> is set to <code>true</code>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">episodeOutputDirectory</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="episodes.html">episodes</a></h4>
+</td>
+<td>
+<p>Episodes to be imported into this XJC generation step.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">episodes</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="extra-args.html">extraArgs</a></h4>
+</td>
+<td>
+<p>Additional arguments to be passed to XJC for this source set.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">extraArgs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ListProperty.html"><span class="identifier">ListProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="generate-episode.html">generateEpisode</a></h4>
+</td>
+<td>
+<p>If <code>true</code>, instructs XJC to generate an episode file at <code>META-INF/sun-jaxb.episode</code>.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">generateEpisode</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="output-directory.html">outputDirectory</a></h4>
+</td>
+<td>
+<p>The output directory where generated files will be placed.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">outputDirectory</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="plugin-classpath.html">pluginClasspath</a></h4>
+</td>
+<td>
+<p>The classpath containing XJC plugins.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">pluginClasspath</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="source.html">source</a></h4>
+</td>
+<td>
+<p>The schema files.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">source</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="target-package.html">targetPackage</a></h4>
+</td>
+<td>
+<p>The target package for XJC.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">targetPackage</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="tool-classpath.html">toolClasspath</a></h4>
+</td>
+<td>
+<p>The classpath containing the XJC tool itself.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">toolClasspath</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="url-sources.html">urlSources</a></h4>
+</td>
+<td>
+<p>The URL sources. These should be text files that contain a URL referencing another schema on each line.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">urlSources</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="generate.html">generate</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">generate</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

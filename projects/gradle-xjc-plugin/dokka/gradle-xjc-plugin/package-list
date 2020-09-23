@@ -1,0 +1,16 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:org.gradle.kotlin.dsl$xjcBinding#org.gradle.api.tasks.SourceSetorg.gradle.kotlin.dsl/org.gradle.api.tasks.-source-set/xjc-binding.html
+$dokka.location:org.gradle.kotlin.dsl$xjcBinding(org.gradle.api.tasks.SourceSet, kotlin.Function1((org.gradle.api.file.SourceDirectorySet, kotlin.Unit)))org.gradle.kotlin.dsl/org.gradle.api.tasks.-source-set/xjc-binding.html
+$dokka.location:org.gradle.kotlin.dsl$xjcCatalog#org.gradle.api.tasks.SourceSetorg.gradle.kotlin.dsl/org.gradle.api.tasks.-source-set/xjc-catalog.html
+$dokka.location:org.gradle.kotlin.dsl$xjcCatalog(org.gradle.api.tasks.SourceSet, kotlin.Function1((org.gradle.api.file.SourceDirectorySet, kotlin.Unit)))org.gradle.kotlin.dsl/org.gradle.api.tasks.-source-set/xjc-catalog.html
+$dokka.location:org.gradle.kotlin.dsl$xjcExtraArgs#org.gradle.api.tasks.SourceSetorg.gradle.kotlin.dsl/org.gradle.api.tasks.-source-set/xjc-extra-args.html
+$dokka.location:org.gradle.kotlin.dsl$xjcGenerateEpisode#org.gradle.api.tasks.SourceSetorg.gradle.kotlin.dsl/org.gradle.api.tasks.-source-set/xjc-generate-episode.html
+$dokka.location:org.gradle.kotlin.dsl$xjcSchema#org.gradle.api.tasks.SourceSetorg.gradle.kotlin.dsl/org.gradle.api.tasks.-source-set/xjc-schema.html
+$dokka.location:org.gradle.kotlin.dsl$xjcSchema(org.gradle.api.tasks.SourceSet, kotlin.Function1((org.gradle.api.file.SourceDirectorySet, kotlin.Unit)))org.gradle.kotlin.dsl/org.gradle.api.tasks.-source-set/xjc-schema.html
+$dokka.location:org.gradle.kotlin.dsl$xjcTargetPackage#org.gradle.api.tasks.SourceSetorg.gradle.kotlin.dsl/org.gradle.api.tasks.-source-set/xjc-target-package.html
+$dokka.location:org.gradle.kotlin.dsl$xjcUrl#org.gradle.api.tasks.SourceSetorg.gradle.kotlin.dsl/org.gradle.api.tasks.-source-set/xjc-url.html
+$dokka.location:org.gradle.kotlin.dsl$xjcUrl(org.gradle.api.tasks.SourceSet, kotlin.Function1((org.gradle.api.file.SourceDirectorySet, kotlin.Unit)))org.gradle.kotlin.dsl/org.gradle.api.tasks.-source-set/xjc-url.html
+org.gradle.kotlin.dsl
+org.unbrokendome.gradle.plugins.xjc
+org.unbrokendome.gradle.plugins.xjc.resolver

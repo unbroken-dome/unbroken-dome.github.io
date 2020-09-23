@@ -1,0 +1,62 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>XjcExtension - gradle-xjc-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-xjc-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.xjc</a>&nbsp;/&nbsp;<a href="./index.html">XjcExtension</a><br/>
+<br/>
+<h1>XjcExtension</h1>
+<code><span class="keyword">interface </span><span class="identifier">XjcExtension</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-xjc-generator-options/index.html"><span class="identifier">XjcGeneratorOptions</span></a></code> <a href="https://github.com/unbroken-dome/gradle-xjc-plugin/blob/v2.0.0/src/main/kotlin/org/unbrokendome/gradle/plugins/xjc/XjcExtension.kt#L12">(source)</a>
+<p>Contains global configuration for the <a href="../-xjc-plugin/index.html">XjcPlugin</a>. It is added to the project when the plugin is applied.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="extra-args.html">extraArgs</a></h4>
+</td>
+<td>
+<p>Additional arguments to be passed to the XJC compiler.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">extraArgs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ListProperty.html"><span class="identifier">ListProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="src-dir-name.html">srcDirName</a></h4>
+</td>
+<td>
+<p>The conventional name of the XJC source directories.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">srcDirName</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xjc-version.html">xjcVersion</a></h4>
+</td>
+<td>
+<p>The version of the XJC <em>tool</em> to use.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">xjcVersion</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-d-e-f-a-u-l-t_-s-r-c_-d-i-r_-n-a-m-e.html">DEFAULT_SRC_DIR_NAME</a></h4>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">DEFAULT_SRC_DIR_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-d-e-f-a-u-l-t_-x-j-c_-v-e-r-s-i-o-n.html">DEFAULT_XJC_VERSION</a></h4>
+</td>
+<td>
+<code><span class="keyword">const</span> <span class="keyword">val </span><span class="identifier">DEFAULT_XJC_VERSION</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

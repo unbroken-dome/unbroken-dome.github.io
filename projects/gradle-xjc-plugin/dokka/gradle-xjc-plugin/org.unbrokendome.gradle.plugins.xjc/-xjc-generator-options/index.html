@@ -1,0 +1,123 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>XjcGeneratorOptions - gradle-xjc-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-xjc-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.xjc</a>&nbsp;/&nbsp;<a href="./index.html">XjcGeneratorOptions</a><br/>
+<br/>
+<h1>XjcGeneratorOptions</h1>
+<code><span class="keyword">interface </span><span class="identifier">XjcGeneratorOptions</span></code> <a href="https://github.com/unbroken-dome/gradle-xjc-plugin/blob/v2.0.0/src/main/kotlin/org/unbrokendome/gradle/plugins/xjc/XjcGeneratorOptions.kt#L19">(source)</a>
+<p>Flag-style options for influencing the XJC generator behavior.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="content-for-wildcard.html">contentForWildcard</a></h4>
+</td>
+<td>
+<p>If <code>true</code>, generates content property for types with multiple <code>xs:any</code> derived elements (which is supposed to
+be correct behavior).</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">contentForWildcard</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="doc-locale.html">docLocale</a></h4>
+</td>
+<td>
+<p>The documentation locale to be used when running XJC. This may influence the language of documentation
+comments in XJC-generated files.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">docLocale</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://docs.oracle.com/javase/6/docs/api/java/util/Locale.html"><span class="identifier">Locale</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="enable-introspection.html">enableIntrospection</a></h4>
+</td>
+<td>
+<p>If <code>true</code>, fix getter/setter generation to match the Bean introspection API.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">enableIntrospection</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="encoding.html">encoding</a></h4>
+</td>
+<td>
+<p>The encoding to use for generated files.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">encoding</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="extension.html">extension</a></h4>
+</td>
+<td>
+<p>If <code>true</code>, enable JAXB vendor extensions.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">extension</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="no-file-header.html">noFileHeader</a></h4>
+</td>
+<td>
+<p>If <code>true</code>, suppresses the generation of a file header comment that includes some note and time stamp.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">noFileHeader</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="package-level-annotations.html">packageLevelAnnotations</a></h4>
+</td>
+<td>
+<p>If <code>true</code>, generate package-level annotations into <code>package-info.java</code> files. If <code>false</code>, those annotations
+are internalized into the other generated classes.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">packageLevelAnnotations</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="read-only.html">readOnly</a></h4>
+</td>
+<td>
+<p>If <code>true</code> write-protect the generated Java source files.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">readOnly</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="strict-check.html">strictCheck</a></h4>
+</td>
+<td>
+<p>If <code>true</code>, perform strict schema validation.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">strictCheck</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="target-version.html">targetVersion</a></h4>
+</td>
+<td>
+<p>The version of the JAXB specification to target.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">targetVersion</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../-xjc-extension/index.html">XjcExtension</a></h4>
+</td>
+<td>
+<p>Contains global configuration for the <a href="../-xjc-plugin/index.html">XjcPlugin</a>. It is added to the project when the plugin is applied.</p>
+<code><span class="keyword">interface </span><span class="identifier">XjcExtension</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">XjcGeneratorOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-xjc-generate/index.html">XjcGenerate</a></h4>
+</td>
+<td>
+<p>Invokes XJC to generate code from schemas.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">XjcGenerate</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/DefaultTask.html"><span class="identifier">DefaultTask</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">XjcGeneratorOptions</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

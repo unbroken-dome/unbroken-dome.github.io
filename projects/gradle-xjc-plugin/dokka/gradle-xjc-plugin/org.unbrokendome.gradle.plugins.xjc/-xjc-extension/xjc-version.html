@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>XjcExtension.xjcVersion - gradle-xjc-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-xjc-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.xjc</a>&nbsp;/&nbsp;<a href="index.html">XjcExtension</a>&nbsp;/&nbsp;<a href="./xjc-version.html">xjcVersion</a><br/>
+<br/>
+<h1>xjcVersion</h1>
+<a name="org.unbrokendome.gradle.plugins.xjc.XjcExtension$xjcVersion"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">xjcVersion</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code> <a href="https://github.com/unbroken-dome/gradle-xjc-plugin/blob/v2.0.0/src/main/kotlin/org/unbrokendome/gradle/plugins/xjc/XjcExtension.kt#L32">(source)</a>
+<p>The version of the XJC <em>tool</em> to use.</p>
+<p>This will influence the version of the XJC compiler that is used, but not (directly) the parameters
+that are passed to it. Valid values are <code>2.2</code>, <code>2.3</code> and <code>3.0</code>.</p>
+<p>The value of this property only influences the set of
+<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Configuration.html#defaultDependencies(org.gradle.api.Action<? super org.gradle.api.artifacts.DependencySet>)">defaultDependencies</a> on the global <code>xjcTool</code>
+configuration. This means that if you added any dependencies to that configuration, this property will have
+no effect.</p>
+<p>The default is currently <code>2.3</code>, but this may change in future versions of the plugin.</p>
+</BODY>
+</HTML>

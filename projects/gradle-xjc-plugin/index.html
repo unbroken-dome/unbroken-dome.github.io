@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>Gradle XJC Plugin</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment @import statement to use as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite::before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+:not(pre)>code.nobreak{word-wrap:normal}
+:not(pre)>code.nowrap{white-space:nowrap}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details>summary:first-of-type{cursor:pointer;display:list-item;outline:none;margin-bottom:.75em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
+table.tableblock{max-width:100%;border-collapse:separate}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.hidden {
+    display: none;
+}
+
+.switch {
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: #7a2518;
+    display: inline-block;
+}
+
+.switch--item {
+    padding: 10px;
+    background-color: #ffffff;
+    color: #7a2518;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.switch--item.selected {
+    background-color: #7a2519;
+    color: #ffffff;
+}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script type="text/javascript">
+function addBlockSwitches() {
+    $('.primary').each(function() {
+        primary = $(this);
+        createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+        primary.children('.title').remove();
+    });
+    $('.secondary').each(function(idx, node) {
+        secondary = $(node);
+        primary = findPrimary(secondary);
+        switchItem = createSwitchItem(secondary, primary.children('.switch'));
+        switchItem.content.addClass('hidden');
+        findPrimary(secondary).append(switchItem.content);
+        secondary.remove();
+    });
+}
+
+function createBlockSwitch(primary) {
+    blockSwitch = $('<div class="switch"></div>');
+    primary.prepend(blockSwitch);
+    return blockSwitch;
+}
+
+function findPrimary(secondary) {
+    candidate = secondary.prev();
+    while (!candidate.is('.primary')) {
+        candidate = candidate.prev();
+    }
+    return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+    blockName = block.children('.title').text();
+    content = block.children('.content').first().append(block.next('.colist'));
+    item = $('<div class="switch--item">' + blockName + '</div>');
+    item.on('click', '', content, function(e) {
+        $(this).addClass('selected');
+        $(this).siblings().removeClass('selected');
+        e.data.siblings('.content').addClass('hidden');
+        e.data.removeClass('hidden');
+    });
+    blockSwitch.append(item);
+    return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+</script>
+
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Gradle XJC Plugin</h1>
+<div class="details">
+<span id="revnumber">version 2.0.0</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_prerequisites">Prerequisites</a></li>
+<li><a href="#_quick_start">Quick Start</a></li>
+<li><a href="#_using_source_sets">Using Source Sets</a>
+<ul class="sectlevel2">
+<li><a href="#_support_for_multiple_source_sets">Support for Multiple Source Sets</a></li>
+<li><a href="#_customizing_paths">Customizing Paths</a></li>
+</ul>
+</li>
+<li><a href="#_remote_schema_locations">Remote Schema Locations</a></li>
+<li><a href="#_xjc_versions">XJC Versions</a>
+<ul class="sectlevel2">
+<li><a href="#_selecting_an_xjc_version">Selecting an XJC Version</a></li>
+<li><a href="#_setting_the_xjc_tool_classpath_explicitly">Setting the XJC Tool Classpath Explicitly</a></li>
+</ul>
+</li>
+<li><a href="#_controlling_xjc_behavior">Controlling XJC Behavior</a>
+<ul class="sectlevel2">
+<li><a href="#_configuring_xjc_with_gradle_project_properties">Configuring XJC with Gradle Project Properties</a></li>
+</ul>
+</li>
+<li><a href="#_using_xjc_plugins">Using XJC Plugins</a>
+<ul class="sectlevel2">
+<li><a href="#_specifying_the_plugin_classpath">Specifying the plugin classpath</a></li>
+<li><a href="#_specifying_extra_arguments">Specifying extra arguments</a></li>
+</ul>
+</li>
+<li><a href="#_using_episodes">Using Episodes</a>
+<ul class="sectlevel2">
+<li><a href="#_producing_an_episode_file">Producing an Episode File</a></li>
+<li><a href="#_consuming_episodes">Consuming Episodes</a></li>
+</ul>
+</li>
+<li><a href="#_working_with_catalogs">Working with Catalogs</a>
+<ul class="sectlevel2">
+<li><a href="#_the_classpath_and_maven_uri_schemes">The <code>classpath:</code> and <code>maven:</code> URI Schemes</a></li>
+</ul>
+</li>
+<li><a href="#_migrating_from_earlier_versions">Migrating from Earlier Versions</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This Gradle plugin allows integrating <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/xjc.html">XJC</a>
+code generation into a Gradle build.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You need at least the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Gradle 5.6 or higher</p>
+</li>
+<li>
+<p>JDK 8 or higher (for running Gradle)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quick_start"><a class="anchor" href="#_quick_start"></a>Quick Start</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Apply the <code>org.unbroken-dome.xjc</code> plugin to your Gradle project:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">plugins {
+    id 'org.unbroken-dome.xjc' version '2.0.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">plugins {
+    id("org.unbroken-dome.xjc") version "2.0.0"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Put your XJC source files into <code>src/main/schema</code>. This includes XML schema files (extension <code>.xsd</code>),
+binding customizations (extension <code>.xjb</code>) and catalog files (extension <code>.cat</code>).</p>
+</div>
+<div class="paragraph">
+<p>Add a dependency on <code>jaxb-api</code> to the <code>implementation</code> configuration of your source set.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">dependencies {
+    implementation 'javax.xml.bind:jaxb-api:2.3.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">dependencies {
+    implementation("javax.xml.bind:jaxb-api:2.3.0")
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you are developing a <a href="https://docs.gradle.org/current/userguide/java_library_plugin.html">Java library</a>,
+and the generated classes should be part of the library&#8217;s public API, then you should use the <code>api</code> configuration
+instead.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Now, whenever the project&#8217;s sources are built, XJC will automatically be invoked to generate Java files and
+include them in the compilation.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_source_sets"><a class="anchor" href="#_using_source_sets"></a>Using Source Sets</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Many Gradle Java projects use multiple
+<a href="https://docs.gradle.org/current/userguide/building_java_projects.html#sec:java_source_sets">source sets</a>. This
+includes the <code>main</code> source set for the project&#8217;s production code, as well as the <code>test</code> source set for unit tests by
+default, and can easily be extended with additional, custom source sets in a Gradle build script.</p>
+</div>
+<div class="sect2">
+<h3 id="_support_for_multiple_source_sets"><a class="anchor" href="#_support_for_multiple_source_sets"></a>Support for Multiple Source Sets</h3>
+<div class="paragraph">
+<p>The <code>org.unbroken-dome.xjc</code> plugin adds XJC functionality for <em>each</em> source set in the project, both for existing
+source sets and source sets that are added after the plugin is applied.</p>
+</div>
+<div class="paragraph">
+<p>For each source set there will be a task of type <code>XjcGenerate</code> that will do the actual work of invoking XJC for
+the source set. You will rarely need to call this task directly, because the plugin already sets up task dependencies
+for <code>compileJava</code> so that the generated sources are ready before the compilation starts.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_customizing_paths"><a class="anchor" href="#_customizing_paths"></a>Customizing Paths</h3>
+<div class="paragraph">
+<p>By default, all XJC input files for a source set are expected in the <code>src/&lt;name&gt;/schema</code> directory, where <code>&lt;name&gt;</code>
+is the name of the source set. For example,</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>put XJC input files for the <code>main</code> source set into <code>src/main/schema</code>;</p>
+</li>
+<li>
+<p>put XJC input files for the <code>test</code> source set into <code>src/test/schema</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you would like to change the default subdirectory name from <code>schema</code> to something else, you can do this conveniently
+by setting the <code>xjcSrcDir</code> property on the project&#8217;s global <code>xjc</code> extension. For example, to use the <code>xjc</code> subdirectory
+instead of <code>schema</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">xjc {
+    srcDirName = 'xjc'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">xjc {
+    srcDirName.set("xjc")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Each group of input files (schemas, binding customizations, catalogs, and URL sources) is also made available
+on the source set as a
+<a href="https://docs.gradle.org/current/dsl/org.gradle.api.file.SourceDirectorySet.html#org.gradle.api.file.SourceDirectorySet"><code>SourceDirectorySet</code></a>
+for further customization:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>xjcSchema</code> for schema files</p>
+</li>
+<li>
+<p><code>xjcBinding</code> for binding customization files</p>
+</li>
+<li>
+<p><code>xjcUrl</code> for files listing remote schema URLs</p>
+</li>
+<li>
+<p><code>xjcCatalog</code> for catalog files</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For example, to include another directory containing catalogs:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">sourceSets {
+    main {
+        xjcCatalog.srcDir("custom/catalog/path")
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">sourceSets.named("main") {
+    xjcCatalog.srcDir("custom/catalog/path")
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_remote_schema_locations"><a class="anchor" href="#_remote_schema_locations"></a>Remote Schema Locations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>XJC supports processing schemas from remote locations, in addition to schemas stored in the
+local file system.</p>
+</div>
+<div class="paragraph">
+<p>To use such remote schemas with the <code>org.unbroken-dome.xjc</code> Gradle plugin, add a text file
+with the extension <code>.url</code> into your <code>src/main/schema</code> directory. The <code>.url</code> file should list
+one remote schema URL per line.</p>
+</div>
+<div class="paragraph">
+<p>For example, to use the <a href="https://www.w3.org/TR/xmldsig-core/">xmldsig</a> schema from w3.org,
+add the following file to your project:</p>
+</div>
+<div class="listingblock">
+<div class="title">src/main/schema/xmldsig.url</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="text">https://www.w3.org/TR/2002/REC-xmldsig-core-20020212/xmldsig-core-schema.xsd</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that this works best with schemas that are guaranteed to be immutable at the remote
+location. If your <code>.url</code> file or other input files do not change, the Gradle task will not
+pick up changes from the remote schema location, and will still report as "up to date" in the
+Gradle build.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To force a re-run of XJC even if your input files have not changed, use the <code>--rerun-tasks</code>
+flag when invoking Gradle.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>In most cases, it is still recommended to manually download the <code>.xsd</code> files and put them into
+your source directory. This will make your build less dependent on outside circumstances or network
+connectivity, and thus more robust and reproducible.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_xjc_versions"><a class="anchor" href="#_xjc_versions"></a>XJC Versions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>XJC has been around for a long time and comes in a variety of versions, including standard versions provided by
+Oracle and non-standard forks from third parties. They should usually correspond with the version of the JAXB
+API / runtime used, but it is also possible to use a newer XJC to generate code for use with an earlier JAXB target.</p>
+</div>
+<div class="paragraph">
+<p>The <code>org.unbroken-dome.xjc</code> plugin supports the standard XJC versions 2.2, 2.3 and 3.0. Other versions may work
+as well but are not tested. The plugin will use XJC 2.3 by default if the version is not specified.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+XJC 3.0 is currently in milestone status but since the interface to XJC has not
+really changed over the years, it should be safe to consider it stable. Nevertheless, the plugin will use XJC 2.3
+as default until version 3.0 is released.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_selecting_an_xjc_version"><a class="anchor" href="#_selecting_an_xjc_version"></a>Selecting an XJC Version</h3>
+<div class="paragraph">
+<p>The easiest way to select an XJC version is to use the property <code>xjcVersion</code> on the global <code>xjc</code> extension.
+The value should be one of the supported versions. This is a global setting because it is assumed that the
+same XJC version will be used for each source set.</p>
+</div>
+<div class="paragraph">
+<p>For example, to use XJC 3.0:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">xjc {
+    xjcVersion = '3.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">xjc {
+    xjcVersion.set("3.0")
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+When changing the XJC version, remember to also use an appropriate version of the JAXB API in your
+dependencies. The plugin doesn&#8217;t do this.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Changing the version with the <code>xjcVersion</code> property will effectively change the classpath that is used for
+invoking XJC, with the following dependencies:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">XJC Version</th>
+<th class="tableblock halign-left valign-top">Classpath artifacts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.sun.xml.bind:jaxb-xjc:2.2.11</code>
+  <code>com.sun.xml.bind:jaxb-core:2.2.11</code>
+  <code>com.sun.xml.bind:jaxb-impl:2.2.11</code>
+  <code>javax.xml.bind:jaxb-api:2.2.11</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.sun.xml.bind:jaxb-xjc:2.3.3</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>com.sun.xml.bind:jaxb-xjc:3.0.0-M4</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_setting_the_xjc_tool_classpath_explicitly"><a class="anchor" href="#_setting_the_xjc_tool_classpath_explicitly"></a>Setting the XJC Tool Classpath Explicitly</h3>
+<div class="paragraph">
+<p>You can also manually configure the classpath for invoking XJC by adding dependencies
+to the <code>xjcTool</code> configuration. As soon as this configuration contains any dependencies,
+the defaults will back away, and the <code>xjc.xjcVersion</code> property will have no effect.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">dependencies {
+    xjcTool 'com.sun.xml.bind:jaxb-xjc:3.0.0-M4'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">dependencies {
+    "xjcTool"("com.sun.xml.bind:jaxb-xjc:3.0.0-M4")
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_controlling_xjc_behavior"><a class="anchor" href="#_controlling_xjc_behavior"></a>Controlling XJC Behavior</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <a href="https://docs.oracle.com/javase/8/docs/technotes/tools/unix/xjc.html">command line version</a> of XJC supports
+a number of arguments to fine-tune the code generation. The XJC Gradle plugin supports many of these as properties
+which can be set in the build script.</p>
+</div>
+<div class="paragraph">
+<p>The following properties are available in the project-scoped <code>xjc</code> block, and apply to all XJC invocations
+(for all source sets):</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Equivalent <code>xjc</code> CLI flag</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>targetVersion</code> (<code>String</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The version of the JAXB specification to target.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-target</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(use latest version)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>docLocale</code> (<code>java.util.Locale</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The locale to be used when running XJC. This may influence the language of documentation comments in XJC-generated files.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(no equivalent)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JVM default locale</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>encoding</code> (<code>String</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The encoding for generated files.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-encoding</code> (non-standard)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>UTF-8</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>strictCheck</code> (<code>Boolean</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Perform strict schema validation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-nv</code> (if <code>false</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>packageLevelAnnotations</code> (<code>Boolean</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generate package-level annotations into <code>package-info.java</code> files.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-npa</code> (if <code>false</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>noFileHeader</code> (<code>Boolean</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Suppress the generation of a file header comment that includes some note and timestamp.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-no-header</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>true</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>enableIntrospection</code> (<code>Boolean</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fix getter/setter generation to match the Bean introspection API.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-enableIntrospection</code> (non-standard)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>contentForWildcard</code> (<code>Boolean</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generates content property for types with multiple <code>xs:any</code> derived elements (which is
+  supposed to be correct behavior).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-contentForWildcard</code> (non-standard)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>readOnly</code> (<code>Boolean</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write-protect the generated Java source files.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-readOnly</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>extension</code> (<code>Boolean</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable JAXB vendor extensions.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-extension</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code> (<code>true</code> if any <code>-X&#8230;&#8203;</code> argument is present in <code>extraArgs</code>)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The following property is available for each source set:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Equivalent <code>xjc</code> CLI flag</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xjcTargetPackage</code> (<code>String</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target package for XJC.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-p</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(not set)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_configuring_xjc_with_gradle_project_properties"><a class="anchor" href="#_configuring_xjc_with_gradle_project_properties"></a>Configuring XJC with Gradle Project Properties</h3>
+<div class="paragraph">
+<p>As an alternative to configuring the above settings in your build script, you can use Gradle project
+properties, either from a <code>gradle.properties</code> file or passed on the command line using the <code>-P</code> switch.
+The property name correspond to the dot-separated path of the DSL properties.</p>
+</div>
+<div class="paragraph">
+<p>Gradle properties are automatically picked up by subprojects in a multi-project build, so they are
+especially useful for configuring multiple projects at once.</p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="title">gradle.properties</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="properties">xjc.xjcVersion=2.3
+xjc.targetVersion=2.2
+xjc.docLocale=en
+xjc.strictCheck=false
+xjc.enableIntrospection=true
+xjc.contentForWildcard=true
+xjc.verbosity=quiet</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To selectively override properties for a Gradle build, use the <code>-P</code> switch on the command line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">gradle build -Pxjc.verbosity=verbose</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Using Gradle properties has lower precedence than explicitly setting them in your
+build script.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_xjc_plugins"><a class="anchor" href="#_using_xjc_plugins"></a>Using XJC Plugins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>XJC allows hooking into and extending the code-generation process by using plugins. A plugin might, for example, add
+<code>equals()</code> and <code>toString()</code> methods into generated classes.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Some XJC plugins generate code that requires additional compile-time or runtime dependencies. Activating such plugins
+might require that you add these dependencies to your Gradle dependency configurations, e.g. <code>implementation</code>.
+Please check the documentation for these plugins for their additional dependencies.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_specifying_the_plugin_classpath"><a class="anchor" href="#_specifying_the_plugin_classpath"></a>Specifying the plugin classpath</h3>
+<div class="paragraph">
+<p>The plugin JARs must be on the classpath for the <code>xjc</code> invocation. With the xjc Gradle plugin, you can do this very
+comfortably by adding dependencies to the <code>xjcClasspath</code> configuration.</p>
+</div>
+<div class="paragraph">
+<p>For example, to use the <a href="https://github.com/highsource/jaxb2-basics">JAXB2 Basics</a> plugin:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">dependencies {
+    xjcClasspath 'org.jvnet.jaxb2_commons:jaxb2-basics:0.12.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">dependencies {
+    "xjcClasspath"("org.jvnet.jaxb2_commons:jaxb2-basics:0.12.0")
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When using multiple source sets with XJC, there will be a separate XJC plugin classpath configuration for each source
+set in the project. For the <code>main</code> sourceSet, the configuration is called <code>xjcCatalogResolution</code> as described above.
+For other source sets it will be called <code>&lt;name&gt;XjcClasspath</code>, for example, <code>testXjcClasspath</code> for the
+<code>test</code> source set.</p>
+</div>
+<div class="paragraph">
+<p>In addition, the plugin creates a configuration called <code>xjcClasspathGlobal</code>, which is extended by all other plugin
+classpath configurations. Any plugin dependencies placed in this configuration will be picked up by XJC builds for
+all source sets.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_specifying_extra_arguments"><a class="anchor" href="#_specifying_extra_arguments"></a>Specifying extra arguments</h3>
+<div class="paragraph">
+<p>Most XJC plugins need to be activated and/or configured using command-line arguments. You can specify these extra
+arguments using the <code>xjcExtraArgs</code> property on the source set. For example, to add the <code>-Xequals</code> and <code>-XtoString</code>
+arguments:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">sourceSets {
+    main {
+        xjcExtraArgs.addAll '-Xequals', '-XhashCode', '-XtoString'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">sourceSets.named("main") {
+    xjcExtraArgs.addAll("-Xequals", "-XhashCode", "-XtoString")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The plugin will automatically switch on the JAXB extension mode if there are parameters starting with <code>-X</code>
+present, regardless of the <code>extension</code> option.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The project-scoped <code>xjc</code> block also has an <code>extraArgs</code> property. Arguments added on this level will be used by
+the XJC builds for all source sets. If both <code>xjc.extraArgs</code> and the source set&#8217;s <code>xjcExtraArgs</code> are used, then the
+global ones are added first, and the source-set-scoped ones afterwards.</p>
+</div>
+<div class="paragraph">
+<p>For example, you could use a combination of the <code>xjcClasspathGlobal</code> configuration and the global <code>extraArgs</code> to
+apply and configure a plugin for all source sets:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">dependencies {
+    xjcClasspathGlobal 'org.jvnet.jaxb2_commons:jaxb2-basics:0.12.0'
+}
+
+xjc {
+    extraArgs.add '-Xequals', '-XhashCode', '-XtoString'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">dependencies {
+    "xjcClasspathGlobal"("org.jvnet.jaxb2_commons:jaxb2-basics:0.12.0")
+}
+
+xjc {
+    extraArgs.add("-Xequals", "-XhashCode", "-XtoString")
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_episodes"><a class="anchor" href="#_using_episodes"></a>Using Episodes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An episode file is a special file that contains information about the generated classes and can be imported by
+subsequent xjc runs to re-use the generated code. If the episode file is placed in the "magic" location
+<code>META-INF/sun-jaxb.episode</code> inside a JAR file, it can be picked up automatically by dependent builds. This is
+convenient when an import hierarchy of XML schemas should be reflected in a dependency hierarchy of JARs.</p>
+</div>
+<div class="sect2">
+<h3 id="_producing_an_episode_file"><a class="anchor" href="#_producing_an_episode_file"></a>Producing an Episode File</h3>
+<div class="paragraph">
+<p>To instruct XJC to produce an episode file, simply set the <code>xjcGenerateEpisode</code> property on the source set to <code>true</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">sourceSets {
+    main {
+        xjcGenerateEpisode = true
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">sourceSets.named("main") {
+    xjcGenerateEpisode.set(true)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output of the XJC generation will now include an episode file at <code>META-INF/sun-jaxb.episode</code>, which is set up
+as an input to the source set&#8217;s <code>resources</code>. As a consequence, this episode file will also end up in the JAR when
+generated from the <code>main</code> source set.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_consuming_episodes"><a class="anchor" href="#_consuming_episodes"></a>Consuming Episodes</h3>
+<div class="paragraph">
+<p>Episode files are not consumed directly, but through JARs that contain them under <code>META-INF/sun-jaxb.episode</code>.
+To specify dependencies that contain episodes to be imported into the XJC build, add the libraries containing them
+to the <code>xjcEpisode</code> configuration:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">dependencies {
+    xjcEpisode 'org.example:my-model:1.2.3'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">dependencies {
+    "xjcEpisode"("org.example:my-model:1.2.3")
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Each source set will get its own episode dependency configuration. For the <code>main</code> source set, this configuration
+is called <code>xjcEpisode</code>; for other source sets it will be called <code>&lt;name&gt;XjcEpisode</code>. For example, to specify episode
+dependencies for the <code>test</code> source set, use the <code>testXjcEpisode</code> configuration.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>These dependencies should resolve to JAR files; if they contain a <code>META-INF/sun-jaxb.episode</code> entry it will be
+imported by the current <code>xjc</code> invocation. If they don&#8217;t contain such a file they are simply ignored, so it is safe
+to pass a larger set of dependencies and have them scanned for episodes.</p>
+</div>
+<div class="paragraph">
+<p>For example, you might simply want to scan the entire <code>compileClasspath</code> for any JARs containing episodes:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">dependencies {
+    xjcEpisode configurations['compileClasspath']
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">dependencies {
+    "xjcEpisode"(configurations["compileClasspath"])
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_working_with_catalogs"><a class="anchor" href="#_working_with_catalogs"></a>Working with Catalogs</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Catalogs can be used to map the URI of an imported schema (specified using <code>&lt;xsd:import&gt;</code>) to an actual URL or file
+from where it can be read. This is especially useful if the imported URI is only symbolic, or you cannot
+(or do not want to) change the importing schema.</p>
+</div>
+<div class="paragraph">
+<p>Catalog files may be written in any of the formats understood by the
+<a href="http://xerces.apache.org/xml-commons/components/resolver/">Apache Commons XML Resolver</a>, including OASIS TR9401
+and OASIS XML Catalogs.</p>
+</div>
+<div class="paragraph">
+<p>Catalog files located at <code>src/&lt;sourceSetName&gt;/schema</code> with the extension <code>.cat</code> are picked up automatically. If your
+files follow a different convention, you can modify the <code>xjcCatalog</code> source directory set to suit your needs:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">sourceSets {
+    main {
+        xjcCatalog {
+            // pick up catalogs from a custom directory
+            srcDir 'custom/catalog/path'
+            // use the .catalog file extension
+            include '**/*.catalog'
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">sourceSets.named("main") {
+    xjcCatalog {
+        // pick up catalogs from a custom directory
+        srcDir("custom/catalog/path")
+        // use the .catalog file extension
+        include("**/*.catalog")
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the catalog file, the following directives are most useful:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>system</code> to map one URI to another;</p>
+</li>
+<li>
+<p><code>rewriteSystem</code> to map a group of URIs by exchanging a prefix</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">catalog.cat</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="xml">&lt;catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"&gt;
+    &lt;rewriteSystem
+        systemIdStartString="http://schemas.example.com/"
+        rewritePrefix="http://www.example.com/etc/schemas/"/&gt;
+&lt;/catalog&gt;</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_the_classpath_and_maven_uri_schemes"><a class="anchor" href="#_the_classpath_and_maven_uri_schemes"></a>The <code>classpath:</code> and <code>maven:</code> URI Schemes</h3>
+<div class="paragraph">
+<p>This plugin supports two special URI schemes in catalogs, the <code>classpath:</code> and <code>maven:</code> scheme. They are inspired
+(and largely compatible) with the [JAXB2 Maven Plugin](<a href="https://github.com/highsource/maven-jaxb2-plugin" class="bare">https://github.com/highsource/maven-jaxb2-plugin</a>), in order
+to simplify a migration from Maven to Gradle in projects that use XJC code generation.</p>
+</div>
+<div class="sect3">
+<h4 id="_the_classpath_uri_scheme"><a class="anchor" href="#_the_classpath_uri_scheme"></a>The <code>classpath:</code> URI scheme</h4>
+<div class="paragraph">
+<p>The <code>classpath:</code> scheme interprets the rest of the URI as the path to a classpath resource. This is especially
+useful for multi-step code generation where a library JAR contains the schema, an episode file and generated code:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">dependencies {
+    implementation 'com.example:my-model:1.2.3'
+    xjcEpisode configurations['compileClasspath']
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">dependencies {
+    implementation("com.example:my-model:1.2.3")
+    "xjcEpisode"(configurations["compileClasspath"])
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Assuming the <code>my-model</code> JAR contains an XSD resource at <code>schemas/my-model.xsd</code>, you could write
+the catalog file as follows:</p>
+</div>
+<div class="listingblock">
+<div class="title">catalog.cat</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="xml">&lt;catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog"&gt;
+    &lt;rewriteSystem
+        systemIdStartString="http://schemas.example.com/"
+        rewritePrefix="classpath:schemas/"/&gt;
+&lt;/catalog&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, reference it in the importing schema:</p>
+</div>
+<div class="listingblock">
+<div class="title">schema.xsd</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="xml">&lt;!-- The schemaLocation will be mapped to the JAR classpath resource thanks to the catalog --&gt;
+&lt;xsd:import namespace="http://schemas.example.com/mymodel"
+            schemaLocation="http://schemas.example.com/my-model.xsd" /&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All JARs in the special configuration <code>xjcCatalogResolution</code> are taken into account, which inherits all dependencies
+from <code>compileClasspath</code> by default. You can add additional dependencies to this configuration to enable catalog
+resolution from these artifacts.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When using multiple source sets with XJC, there will be a separate dependency configuration for each source set in
+the project. For the <code>main</code> sourceSet, the configuration is called <code>xjcCatalogResolution</code> as described above. For other
+source sets it will be called <code>&lt;name&gt;XjcCatalogResolution</code>, for example, <code>testXjcCatalogResolution</code> for the <code>test</code>
+source set.</p>
+</div>
+<div class="paragraph">
+<p>In addition, the plugin creates a configuration called <code>xjcCatalogResolutionGlobal</code>, which does not have any
+dependencies by default. All other catalog resolution configurations extend this one, so you can add any dependencies
+that should be resolvable for all source sets to <code>xjcCatalogResolutionGlobal</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_the_maven_uri_scheme"><a class="anchor" href="#_the_maven_uri_scheme"></a>The <code>maven:</code> URI scheme</h4>
+<div class="paragraph">
+<p>The <code>maven:</code> scheme works similar to the <code>classpath:</code> scheme, but allows you to specify additional Maven coordinates
+to filter the dependency. The URI syntax is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>maven:&lt;groupId&gt;:&lt;artifactId&gt;:&lt;extension&gt;:&lt;classifier&gt;:&lt;version&gt;!path/to/resource</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where all parts are optional, and trailing colons may be omitted.</p>
+</div>
+<div class="paragraph">
+<p>Note that in contrast to the Maven JAXB2 Plugin, the dependency is <em>not</em> resolved ad-hoc: it must still be
+declared in the <code>xjcCatalogResolution</code> configuration (or inherited through other configurations).</p>
+</div>
+<div class="paragraph">
+<p>You can think of the <code>maven:</code> scheme as an extension to <code>classpath:</code> with a filter for the JARs to be searched
+for resources. (In fact, <code>classpath:</code> is defined as an alias for <code>maven::!</code>.)</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_migrating_from_earlier_versions"><a class="anchor" href="#_migrating_from_earlier_versions"></a>Migrating from Earlier Versions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Version 1.x of this plugin was centered around the <code>XjcGenerate</code> task, which was automatically
+created only for the <code>main</code> source set.</p>
+</div>
+<div class="paragraph">
+<p>In version 2.0, most of the configuration has moved to the <code>xjc</code> DSL block in the project or the
+source set extension (properties on the source set starting with <code>xjc</code>), and XJC is enabled for all
+source sets automatically. You will rarely need to touch the <code>XjcGenerate</code> task directly with the new
+plugin version.</p>
+</div>
+<div class="paragraph">
+<p>In many XJC scenarios, no further configuration is necessary at all, beyond applying the plugin and
+adding a dependency to the JAXB API.</p>
+</div>
+<div class="paragraph">
+<p>Since the interface to XJC has not changed much, the available properties have stayed mostly the
+same, and it should not be difficult to figure out how to move them to the <code>xjc</code> block or the source set.
+Check the <a href="#_controlling_xjc_behavior">Controlling XJC Behavior</a> section for a complete list of available properties.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 2.0.0<br>
+Last updated 2020-09-23 23:17:39 +0200
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
+</body>
+</html>

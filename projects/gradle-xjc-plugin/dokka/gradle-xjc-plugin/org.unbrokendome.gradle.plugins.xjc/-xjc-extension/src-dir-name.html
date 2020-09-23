@@ -1,0 +1,20 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>XjcExtension.srcDirName - gradle-xjc-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-xjc-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.xjc</a>&nbsp;/&nbsp;<a href="index.html">XjcExtension</a>&nbsp;/&nbsp;<a href="./src-dir-name.html">srcDirName</a><br/>
+<br/>
+<h1>srcDirName</h1>
+<a name="org.unbrokendome.gradle.plugins.xjc.XjcExtension$srcDirName"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">srcDirName</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code> <a href="https://github.com/unbroken-dome/gradle-xjc-plugin/blob/v2.0.0/src/main/kotlin/org/unbrokendome/gradle/plugins/xjc/XjcExtension.kt#L45">(source)</a>
+<p>The conventional name of the XJC source directories.</p>
+<p>The default is <code>"schema"</code>.</p>
+<p>For every source set, the corresponding XJC generator will look for schemas (<code>*.xsd</code>), binding files (<code>*.xjb</code>)
+and URL files (<code>*.url</code>) in a directory <code>src/&lt;source-set-name&gt;/&lt;srcDirName&gt;</code>. For example, if this property is
+set to <code>"schema"</code>, XJC generation for the <code>main</code> source set will use sources from <code>src/main/schema</code>.</p>
+<p>Change this property to change the conventional name for <em>all</em> source sets.</p>
+</BODY>
+</HTML>
