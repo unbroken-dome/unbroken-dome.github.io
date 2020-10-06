@@ -1,0 +1,76 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmStatus - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a>&nbsp;/&nbsp;<a href="./index.html">HelmStatus</a><br/>
+<br/>
+<h1>HelmStatus</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmStatus</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-server-command-task/index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code> <a href="https://github.com/unbroken-dome/gradle-helm-plugin/blob/v1.3.0/src/main/kotlin/org/unbrokendome/gradle/plugins/helm/command/tasks/HelmStatus.kt#L20">(source)</a>
+<p>Check the status for a release. Corresponds to the <code>helm status</code> CLI command.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Check the status for a release. Corresponds to the <code>helm status</code> CLI command.</p>
+<code><span class="identifier">HelmStatus</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="output-file.html">outputFile</a></h4>
+</td>
+<td>
+<p>Output file for storing the status report from <code>helm status</code>.</p>
+<code><span class="keyword">val </span><span class="identifier">outputFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="output-format.html">outputFormat</a></h4>
+</td>
+<td>
+<p>Desired output format. Allowed values: <code>table</code>, <code>json</code>, <code>yaml</code>.</p>
+<code><span class="keyword">val </span><span class="identifier">outputFormat</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="release-name.html">releaseName</a></h4>
+</td>
+<td>
+<p>Name of the release to test the status for.</p>
+<code><span class="keyword">val </span><span class="identifier">releaseName</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="revision.html">revision</a></h4>
+</td>
+<td>
+<p>If set, display the status of the named release with revision.</p>
+<code><span class="keyword">val </span><span class="identifier">revision</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html"><span class="identifier">Int</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="status.html">status</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">status</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
