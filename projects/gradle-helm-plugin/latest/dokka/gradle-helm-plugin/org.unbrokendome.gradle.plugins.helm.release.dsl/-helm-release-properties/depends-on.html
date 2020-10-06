@@ -1,0 +1,39 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmReleaseProperties.dependsOn - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.release.dsl</a>&nbsp;/&nbsp;<a href="index.html">HelmReleaseProperties</a>&nbsp;/&nbsp;<a href="./depends-on.html">dependsOn</a><br/>
+<br/>
+<h1>dependsOn</h1>
+<a name="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$dependsOn"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><s><span class="identifier">dependsOn</span></s><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/SetProperty.html"><span class="identifier">SetProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code><br/>
+<strong>Deprecated:</strong> use release tags instead<br/>
+<br/>
+<p>Names of other releases that this release depends on.</p>
+<p>A dependency between two releases will create task dependencies such that the dependency will be installed
+before, and uninstalled after, the dependent release.</p>
+<p>Currently such dependencies can be expressed only within the same project.</p>
+<p>Deprecated as of 1.2.0; build scripts should indicate such dependencies using release tags instead, and
+specify the preferred installation/uninstallation order using <a href="must-install-after.html">mustInstallAfter</a> and <a href="must-uninstall-after.html">mustUninstallAfter</a>.</p>
+<a name="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$dependsOn(kotlin.String)"></a>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><s><span class="identifier">dependsOn</span></s><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$dependsOn(kotlin.String)/releaseName">releaseName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<strong>Deprecated:</strong> use release tags instead<br/>
+<br/>
+<p>Express a dependency on another release.</p>
+<p>A dependency between two releases will create task dependencies such that the dependency will be installed
+before, and uninstalled after, the dependent release.</p>
+<p>Currently such dependencies can be expressed only within the same project.</p>
+<p>Deprecated as of 1.2.0; build scripts should indicate such dependencies using release tags instead, and
+specify the preferred installation/uninstallation order using <a href="must-install-after.html">mustInstallAfter</a> and <a href="must-uninstall-after.html">mustUninstallAfter</a>.</p>
+<a name="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$dependsOn(kotlin.Array((kotlin.String)))"></a>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><s><span class="identifier">dependsOn</span></s><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$dependsOn(kotlin.Array((kotlin.String)))/releaseNames">releaseNames</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<strong>Deprecated:</strong> use release tags instead<br/>
+<br/>
+<p>Express a dependency on several other releases.</p>
+<p>Deprecated as of 1.2.0; build scripts should indicate such dependencies using release tags instead, and
+specify the preferred installation/uninstallation order using <a href="must-install-after.html">mustInstallAfter</a> and <a href="must-uninstall-after.html">mustUninstallAfter</a>.</p>
+</BODY>
+</HTML>

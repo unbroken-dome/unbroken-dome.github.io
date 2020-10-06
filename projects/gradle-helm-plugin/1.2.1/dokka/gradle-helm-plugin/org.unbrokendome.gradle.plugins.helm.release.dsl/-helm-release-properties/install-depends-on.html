@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmReleaseProperties.installDependsOn - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.release.dsl</a>&nbsp;/&nbsp;<a href="index.html">HelmReleaseProperties</a>&nbsp;/&nbsp;<a href="./install-depends-on.html">installDependsOn</a><br/>
+<br/>
+<h1>installDependsOn</h1>
+<a name="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$installDependsOn"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">installDependsOn</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>A set of additional dependencies for the task that installs this release.
+May contain any of the notations supported by <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Task.html#dependsOn(java.lang.Object...)">Task.dependsOn</a>.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Task.html#dependsOn(java.lang.Object...)">Task.dependsOn</a></p>
+</p>
+<a name="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$installDependsOn(kotlin.collections.Iterable((kotlin.Any)))"></a>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">installDependsOn</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$installDependsOn(kotlin.collections.Iterable((kotlin.Any)))/paths">paths</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<a name="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$installDependsOn(kotlin.Array((kotlin.Any)))"></a>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">installDependsOn</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmReleaseProperties$installDependsOn(kotlin.Array((kotlin.Any)))/paths">paths</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Declare additional dependencies for the task that installs this release.</p>
+<h3>Parameters</h3>
+<p><a name="paths"></a>
+<code>paths</code> - Additional installation dependencies.
+    May contain any of the notations supported by <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Task.html#dependsOn(java.lang.Object...)">Task.dependsOn</a>.</p>
+</BODY>
+</HTML>

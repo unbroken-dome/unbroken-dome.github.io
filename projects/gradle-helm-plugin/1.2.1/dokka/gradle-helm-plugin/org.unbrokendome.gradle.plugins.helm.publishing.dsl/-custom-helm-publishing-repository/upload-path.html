@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>CustomHelmPublishingRepository.uploadPath - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.publishing.dsl</a>&nbsp;/&nbsp;<a href="index.html">CustomHelmPublishingRepository</a>&nbsp;/&nbsp;<a href="./upload-path.html">uploadPath</a><br/>
+<br/>
+<h1>uploadPath</h1>
+<a name="org.unbrokendome.gradle.plugins.helm.publishing.dsl.CustomHelmPublishingRepository$uploadPath"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">uploadPath</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>The path, relative to the base <a href="../-helm-publishing-repository/url.html">url</a>, with the API endpoint for publishing charts.</p>
+<p>May contain the following placeholders:</p>
+<ul><li><code>{name}</code> will be replaced with the chart name</li>
+<li><code>{version}</code> will be replaced with the chart version</li>
+<li><code>{filename}</code> will be replaced with the filename of the packaged chart, i.e. <code>{name}-{version}.tgz</code></li>
+</ul>
+<p>Defaults to an empty string.</p>
+</BODY>
+</HTML>

@@ -1,0 +1,74 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmReleaseTarget - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="index.html">org.unbrokendome.gradle.plugins.helm.release.dsl</a>&nbsp;/&nbsp;<a href="./-helm-release-target.html">HelmReleaseTarget</a><br/>
+<br/>
+<h1>HelmReleaseTarget</h1>
+<code><span class="keyword">interface </span><span class="identifier">HelmReleaseTarget</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-release-target-object/index.html"><span class="identifier">HelmReleaseTargetObject</span></a><span class="symbol">, </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/plugins/ExtensionAware.html"><span class="identifier">ExtensionAware</span></a></code>
+<p>Defines a target configuration for installing and uninstalling releases.</p>
+<p>A release target can specify its own server options to coordinate to a specific remote Kubernetes cluster.
+Additionally, it can specify values that should be applied to all releases when installing to this target.</p>
+<p>This interface also exposes <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/plugins/ExtensionAware.html">ExtensionAware</a>, so that build scripts can access the <code>ext</code> (Groovy) / <code>extra</code>
+(Kotlin) properties of the release.</p>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-helm-release-target-object/file-values.html">fileValues</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">fileValues</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Values read from the contents of files.
+These will be applied to <em>all</em> releases when this target is active.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-release-target-object/select-tags.html">selectTags</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">var </span><span class="identifier">selectTags</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Tag expression to select releases for this target.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-release-target-object/value-files.html">valueFiles</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">valueFiles</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code>
+<p>A collection of YAML files containing values.
+These will be applied to <em>all</em> releases when this target is active.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-release-target-object/values.html">values</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">values</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Values to be passed directly.
+These will be applied to <em>all</em> releases when this target is active.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../org.unbrokendome.gradle.plugins.helm.command/with-defaults.html">withDefaults</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">.</span><span class="identifier">withDefaults</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.gradle.api.provider.ProviderFactory)/defaults">defaults</span><span class="symbol">:</span>&nbsp;<a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.gradle.api.provider.ProviderFactory)/providers">providers</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ProviderFactory.html"><span class="identifier">ProviderFactory</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

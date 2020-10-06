@@ -1,0 +1,104 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmTest - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a>&nbsp;/&nbsp;<a href="./index.html">HelmTest</a><br/>
+<br/>
+<h1>HelmTest</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmTest</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-server-command-task/index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code>
+<p>Runs the tests for a release. Corresponds to the <code>helm test</code> CLI command.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">HelmTest</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Runs the tests for a release. Corresponds to the <code>helm test</code> CLI command.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="release-name.html">releaseName</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">releaseName</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Name of the release to test.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="remote-timeout.html">remoteTimeout</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">remoteTimeout</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><span class="identifier">Duration</span><span class="symbol">&gt;</span></code>
+<p>Time in seconds to wait for any individual Kubernetes operation (like Jobs for hooks). Default is 300.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="show-logs.html">showLogs</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">showLogs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>Dump the logs from test pods (this runs after all tests are complete, but before any cleanup).</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-abstract-helm-server-command-task/kube-config.html">kubeConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">kubeConfig</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code>
+<p>Path to the Kubernetes configuration file.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-server-command-task/kube-context.html">kubeContext</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">kubeContext</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Name of the kubeconfig context to use.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-server-command-task/namespace.html">namespace</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">namespace</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Namespace scope for this request.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="test.html">test</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">test</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

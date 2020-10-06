@@ -1,0 +1,164 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>AbstractHelmServerCommandTask - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a>&nbsp;/&nbsp;<a href="./index.html">AbstractHelmServerCommandTask</a><br/>
+<br/>
+<h1>AbstractHelmServerCommandTask</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmServerCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/index.html"><span class="identifier">ConfigurableHelmServerOptions</span></a></code>
+<p>Base class for tasks representing Helm CLI commands that communicate with the remote Kubernetes cluster.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">AbstractHelmServerCommandTask</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Base class for tasks representing Helm CLI commands that communicate with the remote Kubernetes cluster.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="kube-config.html">kubeConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">kubeConfig</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code>
+<p>Path to the Kubernetes configuration file.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="kube-context.html">kubeContext</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">kubeContext</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Name of the kubeconfig context to use.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="namespace.html">namespace</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">namespace</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>Namespace scope for this request.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/debug.html">debug</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">debug</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/executable.html">executable</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">executable</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/extra-args.html">extraArgs</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">extraArgs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/registry-config-file.html">registryConfigFile</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">registryConfigFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFile.html"><span class="identifier">RegularFile</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/repository-cache-dir.html">repositoryCacheDir</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">repositoryCacheDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/repository-config-file.html">repositoryConfigFile</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">repositoryConfigFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFile.html"><span class="identifier">RegularFile</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/xdg-cache-home.html">xdgCacheHome</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">xdgCacheHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/xdg-config-home.html">xdgConfigHome</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">xdgConfigHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/xdg-data-home.html">xdgDataHome</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">xdgDataHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/exec-helm.html">execHelm</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-abstract-helm-server-operation-command-task/index.html">AbstractHelmServerOperationCommandTask</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmServerOperationCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-operation-options/index.html"><span class="identifier">ConfigurableHelmServerOperationOptions</span></a></code>
+<p>Base class for tasks that call a Helm CLI command representing an operation on the server
+(<code>install</code>, <code>uninstall</code>, <code>upgrade</code>).</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="../-helm-test/index.html">HelmTest</a></p>
+</td>
+<td>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmTest</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a></code>
+<p>Runs the tests for a release. Corresponds to the <code>helm test</code> CLI command.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

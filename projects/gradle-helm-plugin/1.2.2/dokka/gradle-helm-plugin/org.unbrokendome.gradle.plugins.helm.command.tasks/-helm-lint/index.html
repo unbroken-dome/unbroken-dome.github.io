@@ -1,0 +1,181 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmLint - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a>&nbsp;/&nbsp;<a href="./index.html">HelmLint</a><br/>
+<br/>
+<h1>HelmLint</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmLint</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-value-options/index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a></code>
+<p>Runs a series of tests to verify that a chart is well-formed.
+Corresponds to the <code>helm lint</code> CLI command.</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">HelmLint</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Runs a series of tests to verify that a chart is well-formed.
+Corresponds to the <code>helm lint</code> CLI command.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="chart-dir.html">chartDir</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">chartDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
+<p>The directory that contains the sources for the Helm chart.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="file-values.html">fileValues</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">fileValues</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Values read from the contents of files, to be used by the linter.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="output-marker-file.html">outputMarkerFile</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">outputMarkerFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code>
+<p>If set, the task will create an empty marker file at this path after a successful call to <code>helm lint</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="strict.html">strict</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">strict</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If set to <code>true</code>, fail on warnings emitted by the linter.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="value-files.html">valueFiles</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">valueFiles</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/ConfigurableFileCollection.html"><span class="identifier">ConfigurableFileCollection</span></a></code>
+<p>A collection of YAML files containing values to be used by the linter.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="values.html">values</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">values</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">,</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span></code>
+<p>Values to be used by the linter.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/debug.html">debug</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">debug</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/executable.html">executable</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">executable</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/extra-args.html">extraArgs</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">extraArgs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/registry-config-file.html">registryConfigFile</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">registryConfigFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFile.html"><span class="identifier">RegularFile</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/repository-cache-dir.html">repositoryCacheDir</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">repositoryCacheDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/repository-config-file.html">repositoryConfigFile</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">repositoryConfigFile</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFile.html"><span class="identifier">RegularFile</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/xdg-cache-home.html">xdgCacheHome</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">xdgCacheHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/xdg-config-home.html">xdgConfigHome</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">xdgConfigHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/xdg-data-home.html">xdgDataHome</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">xdgDataHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="lint.html">lint</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">lint</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-abstract-helm-command-task/exec-helm.html">execHelm</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">execHelm</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/command">command</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/subcommand">subcommand</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command.tasks.AbstractHelmCommandTask$execHelm(kotlin.String, kotlin.String, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.command.HelmExecSpec, kotlin.Unit)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html"><span class="identifier">HelmExecSpec</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,84 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmServerOperationOptions - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command</a>&nbsp;/&nbsp;<a href="./index.html">HelmServerOperationOptions</a><br/>
+<br/>
+<h1>HelmServerOperationOptions</h1>
+<code><span class="keyword">interface </span><span class="identifier">HelmServerOperationOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-helm-server-options/index.html"><span class="identifier">HelmServerOptions</span></a></code>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="dry-run.html">dryRun</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">dryRun</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="no-hooks.html">noHooks</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">noHooks</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="remote-timeout.html">remoteTimeout</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">remoteTimeout</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><span class="identifier">Duration</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inherited Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-helm-server-options/kube-config.html">kubeConfig</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">kubeConfig</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFile.html"><span class="identifier">RegularFile</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-helm-server-options/kube-context.html">kubeContext</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">kubeContext</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-helm-server-options/namespace.html">namespace</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">namespace</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="../-configurable-helm-server-operation-options/index.html">ConfigurableHelmServerOperationOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmServerOperationOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-configurable-helm-server-options/index.html"><span class="identifier">ConfigurableHelmServerOptions</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">HelmServerOperationOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="../-helm-installation-options/index.html">HelmInstallationOptions</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmInstallationOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">HelmServerOperationOptions</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

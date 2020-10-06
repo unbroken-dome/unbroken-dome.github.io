@@ -1,0 +1,21 @@
+$dokka.format:html
+$dokka.linkExtension:html
+$dokka.location:org.gradle.kotlin.dsl$putFrom(org.gradle.api.provider.MapProperty((org.gradle.kotlin.dsl.putFrom.K, org.gradle.kotlin.dsl.putFrom.V)), org.gradle.kotlin.dsl.putFrom.K, org.gradle.api.provider.Provider((org.gradle.kotlin.dsl.putFrom.V)))org.gradle.kotlin.dsl/org.gradle.api.provider.-map-property/put-from.html
+$dokka.location:org.unbrokendome.gradle.plugins.helm.util$versionProvider#org.gradle.api.Projectorg.unbrokendome.gradle.plugins.helm.util/org.gradle.api.-project/version-provider.html
+org.gradle.kotlin.dsl
+org.unbrokendome.gradle.plugins.helm
+org.unbrokendome.gradle.plugins.helm.command
+org.unbrokendome.gradle.plugins.helm.command.tasks
+org.unbrokendome.gradle.plugins.helm.dsl
+org.unbrokendome.gradle.plugins.helm.dsl.credentials
+org.unbrokendome.gradle.plugins.helm.dsl.dependencies
+org.unbrokendome.gradle.plugins.helm.publishing
+org.unbrokendome.gradle.plugins.helm.publishing.dsl
+org.unbrokendome.gradle.plugins.helm.publishing.rules
+org.unbrokendome.gradle.plugins.helm.publishing.tasks
+org.unbrokendome.gradle.plugins.helm.release
+org.unbrokendome.gradle.plugins.helm.release.dsl
+org.unbrokendome.gradle.plugins.helm.release.rules
+org.unbrokendome.gradle.plugins.helm.rules
+org.unbrokendome.gradle.plugins.helm.tasks
+org.unbrokendome.gradle.plugins.helm.util

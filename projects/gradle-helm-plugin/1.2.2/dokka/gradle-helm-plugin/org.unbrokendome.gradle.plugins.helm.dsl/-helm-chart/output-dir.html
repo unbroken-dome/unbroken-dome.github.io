@@ -1,0 +1,21 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmChart.outputDir - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.dsl</a>&nbsp;/&nbsp;<a href="index.html">HelmChart</a>&nbsp;/&nbsp;<a href="./output-dir.html">outputDir</a><br/>
+<br/>
+<h1>outputDir</h1>
+<a name="org.unbrokendome.gradle.plugins.helm.dsl.HelmChart$outputDir"></a>
+<code><span class="keyword">open</span> <span class="keyword">val </span><span class="identifier">outputDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/Directory.html"><span class="identifier">Directory</span></a><span class="symbol">&gt;</span></code>
+<p>The directory where the (exploded) chart files will be written.</p>
+<p>This is read-only (a <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html">Provider</a>, not a <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html">Property</a>) because Helm demands that the chart directory has
+the same name as the chart. To change the base output directory, set the <a href="base-output-dir.html">baseOutputDir</a> property to
+a different value.</p>
+<p><strong>See Also</strong><br/>
+<p><a href="base-output-dir.html">baseOutputDir</a></p>
+</p>
+</BODY>
+</HTML>

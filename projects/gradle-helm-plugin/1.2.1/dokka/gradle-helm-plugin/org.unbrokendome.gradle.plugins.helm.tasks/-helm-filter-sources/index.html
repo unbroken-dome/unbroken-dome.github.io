@@ -1,0 +1,126 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmFilterSources - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.tasks</a>&nbsp;/&nbsp;<a href="./index.html">HelmFilterSources</a><br/>
+<br/>
+<h1>HelmFilterSources</h1>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmFilterSources</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/DefaultTask.html"><span class="identifier">DefaultTask</span></a></code>
+<p>Processes the Helm chart sources and copies them into an intermediate directory.</p>
+<p>This task has several purposes:</p>
+<ul><li>apply a filtering transformation (i.e. placeholder resolution) transformation on certain
+source files, as specified by the <code>filtering</code> property. For example, the placeholder
+<code>${chartVersion} in the _Chart.yaml_ file will be replaced by the actual </code>chartVersion`
+value.</li>
+<li>copy the chart source files into an intermediate directory that has the same name as
+the chart, as is required by the <code>helm package</code> command.</li>
+</ul>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">HelmFilterSources</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Processes the Helm chart sources and copies them into an intermediate directory.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="chart-name.html">chartName</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">chartName</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>The chart name.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="chart-version.html">chartVersion</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">chartVersion</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>The chart version.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="configured-chart-name.html">configuredChartName</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">configuredChartName</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>The name of the chart within the <code>helm.charts</code> DSL container.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="filtering.html">filtering</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">filtering</span><span class="symbol">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.dsl/-filtering/index.html"><span class="identifier">Filtering</span></a></code>
+<p>Settings that control filtering of the chart sources.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="override-chart-info.html">overrideChartInfo</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">overrideChartInfo</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>If <code>true</code> (the default), the <code>name</code> and <code>version</code> entries in the Chart.yaml file will be overridden
+with the actual values of <a href="chart-name.html">chartName</a> and <a href="chart-version.html">chartVersion</a>, respectively.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="source-dir.html">sourceDir</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">sourceDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
+<p>The directory that contains the chart sources.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="target-dir.html">targetDir</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">targetDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
+<p>The target directory, where the task will place the filtered sources.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="filter-sources.html">filterSources</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">filterSources</span><span class="symbol">(</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="filtering.html">filtering</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">filtering</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.tasks.HelmFilterSources$filtering(org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.dsl.Filtering)))/configureAction">configureAction</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="../../org.unbrokendome.gradle.plugins.helm.dsl/-filtering/index.html"><span class="identifier">Filtering</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Configures filtering for this task.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,32 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ChartDependencyHandler - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.dsl.dependencies</a>&nbsp;/&nbsp;<a href="./index.html">ChartDependencyHandler</a><br/>
+<br/>
+<h1>ChartDependencyHandler</h1>
+<code><span class="keyword">interface </span><span class="identifier">ChartDependencyHandler</span></code>
+<p>Used to declare chart dependencies in the DSL.</p>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="add.html">add</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl.dependencies.ChartDependencyHandler$add(kotlin.String, kotlin.String)/chart">chart</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a>&nbsp;<span class="symbol">=</span>&nbsp;"main"<span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl.dependencies.ChartDependencyHandler$add(kotlin.String, kotlin.String)/project">project</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">?</span>&nbsp;<span class="symbol">=</span>&nbsp;null<span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Adds a dependency on another chart.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl.dependencies.ChartDependencyHandler$add(org.unbrokendome.gradle.plugins.helm.dsl.HelmChart)/chart">chart</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Adds a dependency on another chart in the same project.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">add</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl.dependencies.ChartDependencyHandler$add(kotlin.collections.Map((kotlin.Any, )))/notation">notation</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-map/index.html"><span class="identifier">Map</span></a><span class="symbol">&lt;</span><span class="identifier">*</span><span class="symbol">,</span>&nbsp;<span class="identifier">*</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Adds a dependency on another chart, using a map notation.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

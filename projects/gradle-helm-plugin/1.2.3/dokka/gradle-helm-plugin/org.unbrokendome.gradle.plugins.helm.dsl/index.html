@@ -1,0 +1,79 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>org.unbrokendome.gradle.plugins.helm.dsl - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="./index.html">org.unbrokendome.gradle.plugins.helm.dsl</a><br/>
+<br/>
+<h2>Package org.unbrokendome.gradle.plugins.helm.dsl</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-filtering/index.html">Filtering</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Filtering</span></code>
+<p>Configures filtering of chart sources.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-chart/index.html">HelmChart</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmChart</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Buildable.html"><span class="identifier">Buildable</span></a></code>
+<p>Represents a Helm chart built by this project.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-download-client/index.html">HelmDownloadClient</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmDownloadClient</span></code>
+<p>Configures downloading of the Helm client executable, as an alternative to specifying the path to a
+local executable.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-extension/index.html">HelmExtension</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmExtension</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/index.html"><span class="identifier">ConfigurableGlobalHelmOptions</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/index.html"><span class="identifier">ConfigurableHelmServerOptions</span></a></code>
+<p>The main Helm DSL extension, accessible using the <code>helm { ... }</code> block in build scripts.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-repository/index.html">HelmRepository</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmRepository</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl.credentials/-credentials-container/index.html"><span class="identifier">CredentialsContainer</span></a></code>
+<p>Represents a Helm chart repository.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-helm-repository-handler/index.html">HelmRepositoryHandler</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmRepositoryHandler</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/NamedDomainObjectContainer.html"><span class="identifier">NamedDomainObjectContainer</span></a><span class="symbol">&lt;</span><a href="-helm-repository/index.html"><span class="identifier">HelmRepository</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<p><a href="-linting/index.html">Linting</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">Linting</span></code>
+<p>Defines options for linting Helm charts using the <code>helm lint</code> command.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

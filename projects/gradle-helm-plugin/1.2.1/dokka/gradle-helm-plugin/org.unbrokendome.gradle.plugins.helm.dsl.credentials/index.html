@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>org.unbrokendome.gradle.plugins.helm.dsl.credentials - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="./index.html">org.unbrokendome.gradle.plugins.helm.dsl.credentials</a><br/>
+<br/>
+<h2>Package org.unbrokendome.gradle.plugins.helm.dsl.credentials</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-certificate-credentials/index.html">CertificateCredentials</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">CertificateCredentials</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/credentials/Credentials.html"><span class="identifier">Credentials</span></a></code>
+<p>Credentials that identify the client by means of a TLS certificate.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-credentials-container/index.html">CredentialsContainer</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">CredentialsContainer</span></code>
+<p>Holds credentials to access a remote service.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-password-credentials/index.html">PasswordCredentials</a></p>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">PasswordCredentials</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/credentials/Credentials.html"><span class="identifier">Credentials</span></a></code>
+<p>Represents a set of username/password credentials.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="credentials.html">credentials</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="-credentials-container/index.html"><span class="identifier">CredentialsContainer</span></a><span class="symbol">.</span><span class="identifier">credentials</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl.credentials$credentials(org.unbrokendome.gradle.plugins.helm.dsl.credentials.CredentialsContainer, kotlin.Function1((org.unbrokendome.gradle.plugins.helm.dsl.credentials.PasswordCredentials, kotlin.Unit)))/configAction">configAction</span><span class="symbol">:</span>&nbsp;<a href="-password-credentials/index.html"><span class="identifier">PasswordCredentials</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Configures the username/password credentials for this service using the supplied action.</p>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">T</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/credentials/Credentials.html"><span class="identifier">Credentials</span></a><span class="symbol">&gt;</span> <a href="-credentials-container/index.html"><span class="identifier">CredentialsContainer</span></a><span class="symbol">.</span><span class="identifier">credentials</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl.credentials$credentials(org.unbrokendome.gradle.plugins.helm.dsl.credentials.CredentialsContainer, kotlin.reflect.KClass((org.unbrokendome.gradle.plugins.helm.dsl.credentials.credentials.T)), kotlin.Function1((org.unbrokendome.gradle.plugins.helm.dsl.credentials.credentials.T, kotlin.Unit)))/type">type</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html"><span class="identifier">KClass</span></a><span class="symbol">&lt;</span><a href="credentials.html#T"><span class="identifier">T</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl.credentials$credentials(org.unbrokendome.gradle.plugins.helm.dsl.credentials.CredentialsContainer, kotlin.reflect.KClass((org.unbrokendome.gradle.plugins.helm.dsl.credentials.credentials.T)), kotlin.Function1((org.unbrokendome.gradle.plugins.helm.dsl.credentials.credentials.T, kotlin.Unit)))/configAction">configAction</span><span class="symbol">:</span>&nbsp;<a href="credentials.html#T"><span class="identifier">T</span></a><span class="symbol">.</span><span class="symbol">(</span><span class="symbol">)</span>&nbsp;<span class="symbol">-&gt;</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Configures the credentials for this service using the supplied action.</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,23 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmFilterSources.<init> - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.tasks</a>&nbsp;/&nbsp;<a href="index.html">HelmFilterSources</a>&nbsp;/&nbsp;<a href="./-init-.html">&lt;init&gt;</a><br/>
+<br/>
+<h1>&lt;init&gt;</h1>
+<a name="org.unbrokendome.gradle.plugins.helm.tasks.HelmFilterSources$&lt;init&gt;()"></a>
+<code><span class="identifier">HelmFilterSources</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p>Processes the Helm chart sources and copies them into an intermediate directory.</p>
+<p>This task has several purposes:</p>
+<ul><li>apply a filtering transformation (i.e. placeholder resolution) transformation on certain
+source files, as specified by the <code>filtering</code> property. For example, the placeholder
+<code>${chartVersion} in the _Chart.yaml_ file will be replaced by the actual </code>chartVersion`
+value.</li>
+<li>copy the chart source files into an intermediate directory that has the same name as
+the chart, as is required by the <code>helm package</code> command.</li>
+</ul>
+</BODY>
+</HTML>

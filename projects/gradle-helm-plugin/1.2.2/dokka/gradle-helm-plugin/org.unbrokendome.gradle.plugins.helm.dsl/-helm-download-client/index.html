@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmDownloadClient - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.dsl</a>&nbsp;/&nbsp;<a href="./index.html">HelmDownloadClient</a><br/>
+<br/>
+<h1>HelmDownloadClient</h1>
+<code><span class="keyword">interface </span><span class="identifier">HelmDownloadClient</span></code>
+<p>Configures downloading of the Helm client executable, as an alternative to specifying the path to a
+local executable.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="destination-dir.html">destinationDir</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">destinationDir</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code>
+<p>The local directory where downloaded Helm client artifacts will be extracted.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="enabled.html">enabled</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">enabled</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code>
+<p>Whether to download the Helm client. Defaults to <code>false</code>.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="version.html">version</a></p>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">version</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code>
+<p>The version of the client to be downloaded.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Companion Object Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-d-e-f-a-u-l-t_-h-e-l-m_-c-l-i-e-n-t_-v-e-r-s-i-o-n.html">DEFAULT_HELM_CLIENT_VERSION</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">DEFAULT_HELM_CLIENT_VERSION</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code>
+<p>Default version of the Helm client executable. This is the latest version available at the time
+the plugin is released.</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="-h-e-l-m_-e-x-t-r-a-c-t_-c-l-i-e-n-t_-t-a-s-k_-n-a-m-e.html">HELM_EXTRACT_CLIENT_TASK_NAME</a></p>
+</td>
+<td>
+<code><span class="keyword">val </span><span class="identifier">HELM_EXTRACT_CLIENT_TASK_NAME</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
