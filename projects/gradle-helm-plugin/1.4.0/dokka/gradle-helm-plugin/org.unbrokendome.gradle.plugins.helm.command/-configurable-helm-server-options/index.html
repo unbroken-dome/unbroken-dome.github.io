@@ -1,0 +1,70 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ConfigurableHelmServerOptions - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command</a>&nbsp;/&nbsp;<a href="./index.html">ConfigurableHelmServerOptions</a><br/>
+<br/>
+<h1>ConfigurableHelmServerOptions</h1>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmServerOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-helm-server-options/index.html"><span class="identifier">HelmServerOptions</span></a><span class="symbol">, </span><a href="../-configurable-helm-options.html"><span class="identifier">ConfigurableHelmOptions</span></a></code> <a href="https://github.com/unbroken-dome/gradle-helm-plugin/blob/v1.4.0/src/main/kotlin/org/unbrokendome/gradle/plugins/helm/command/HelmServerOptions.kt#L39">(source)</a>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="kube-config.html">kubeConfig</a></h4>
+</td>
+<td>
+<p>Path to the Kubernetes configuration file.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">kubeConfig</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/RegularFileProperty.html"><span class="identifier">RegularFileProperty</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="kube-context.html">kubeContext</a></h4>
+</td>
+<td>
+<p>Name of the kubeconfig context to use.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">kubeContext</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="namespace.html">namespace</a></h4>
+</td>
+<td>
+<p>Namespace scope for this request.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">namespace</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-abstract-helm-server-command-task/index.html">AbstractHelmServerCommandTask</a></h4>
+</td>
+<td>
+<p>Base class for tasks representing Helm CLI commands that communicate with the remote Kubernetes cluster.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmServerCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-abstract-helm-command-task/index.html"><span class="identifier">AbstractHelmCommandTask</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ConfigurableHelmServerOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-configurable-helm-server-operation-options/index.html">ConfigurableHelmServerOperationOptions</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmServerOperationOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">ConfigurableHelmServerOptions</span></a><span class="symbol">, </span><a href="../-helm-server-operation-options/index.html"><span class="identifier">HelmServerOperationOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../org.unbrokendome.gradle.plugins.helm.dsl/-helm-extension/index.html">HelmExtension</a></h4>
+</td>
+<td>
+<p>The main Helm DSL extension, accessible using the <code>helm { ... }</code> block in build scripts.</p>
+<code><span class="keyword">interface </span><span class="identifier">HelmExtension</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">, </span><a href="../-configurable-global-helm-options/index.html"><span class="identifier">ConfigurableGlobalHelmOptions</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ConfigurableHelmServerOptions</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

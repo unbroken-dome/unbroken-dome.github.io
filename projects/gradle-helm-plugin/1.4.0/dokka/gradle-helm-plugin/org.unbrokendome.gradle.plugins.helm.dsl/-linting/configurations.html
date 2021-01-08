@@ -1,0 +1,26 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Linting.configurations - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.dsl</a>&nbsp;/&nbsp;<a href="index.html">Linting</a>&nbsp;/&nbsp;<a href="./configurations.html">configurations</a><br/>
+<br/>
+<h1>configurations</h1>
+<a name="org.unbrokendome.gradle.plugins.helm.dsl.Linting$configurations"></a>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">configurations</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/NamedDomainObjectContainer.html"><span class="identifier">NamedDomainObjectContainer</span></a><span class="symbol">&lt;</span><span class="identifier">Configuration</span><span class="symbol">&gt;</span></code> <a href="https://github.com/unbroken-dome/gradle-helm-plugin/blob/v1.4.0/src/main/kotlin/org/unbrokendome/gradle/plugins/helm/dsl/Linting.kt#L56">(source)</a>
+<p>A collection of linter configurations.</p>
+<p>Each configuration allows specifying a different set of values to pass to <code>helm lint</code>. Values defined in
+the <code>Linting</code> block directly are merged into all configurations.</p>
+<p>If no configurations are added to this container, the plugin will assume a single configuration named
+"default" with no additional values.</p>
+<a name="org.unbrokendome.gradle.plugins.helm.dsl.Linting$configurations(org.gradle.api.Action((org.gradle.api.NamedDomainObjectContainer((org.unbrokendome.gradle.plugins.helm.dsl.Linting.Configuration)))))"></a>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">configurations</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl.Linting$configurations(org.gradle.api.Action((org.gradle.api.NamedDomainObjectContainer((org.unbrokendome.gradle.plugins.helm.dsl.Linting.Configuration)))))/configureAction">configureAction</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/NamedDomainObjectContainer.html"><span class="identifier">NamedDomainObjectContainer</span></a><span class="symbol">&lt;</span><span class="identifier">Configuration</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/NamedDomainObjectContainer.html"><span class="identifier">NamedDomainObjectContainer</span></a><span class="symbol">&lt;</span><span class="identifier">Configuration</span><span class="symbol">&gt;</span></code> <a href="https://github.com/unbroken-dome/gradle-helm-plugin/blob/v1.4.0/src/main/kotlin/org/unbrokendome/gradle/plugins/helm/dsl/Linting.kt#L69">(source)</a>
+<p>Configures the linter configurations.</p>
+<p>Each configuration allows specifying a different set of values to pass to <code>helm lint</code>. Values defined in
+the <code>Linting</code> block directly are merged into all configurations.</p>
+<p>If no configurations are added to this container, the plugin will assume a single configuration named
+"default" with no additional values.</p>
+</BODY>
+</HTML>

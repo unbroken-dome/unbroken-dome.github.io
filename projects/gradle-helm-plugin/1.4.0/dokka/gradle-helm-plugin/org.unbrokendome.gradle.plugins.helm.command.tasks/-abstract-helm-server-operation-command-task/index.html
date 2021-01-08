@@ -1,0 +1,78 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>AbstractHelmServerOperationCommandTask - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command.tasks</a>&nbsp;/&nbsp;<a href="./index.html">AbstractHelmServerOperationCommandTask</a><br/>
+<br/>
+<h1>AbstractHelmServerOperationCommandTask</h1>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmServerOperationCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-abstract-helm-server-command-task/index.html"><span class="identifier">AbstractHelmServerCommandTask</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-operation-options/index.html"><span class="identifier">ConfigurableHelmServerOperationOptions</span></a></code> <a href="https://github.com/unbroken-dome/gradle-helm-plugin/blob/v1.4.0/src/main/kotlin/org/unbrokendome/gradle/plugins/helm/command/tasks/AbstractHelmServerOperationCommandTask.kt#L16">(source)</a>
+<p>Base class for tasks that call a Helm CLI command representing an operation on the server
+(<code>install</code>, <code>uninstall</code>, <code>upgrade</code>).</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-init-.html">&lt;init&gt;</a></h4>
+</td>
+<td>
+<p>Base class for tasks that call a Helm CLI command representing an operation on the server
+(<code>install</code>, <code>uninstall</code>, <code>upgrade</code>).</p>
+<code><span class="identifier">AbstractHelmServerOperationCommandTask</span><span class="symbol">(</span><span class="symbol">)</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="dry-run.html">dryRun</a></h4>
+</td>
+<td>
+<p>If <code>true</code>, only simulate the operation.</p>
+<code><span class="keyword">val </span><span class="identifier">dryRun</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="no-hooks.html">noHooks</a></h4>
+</td>
+<td>
+<p>If <code>true</code>, prevent hooks from running during the operation.</p>
+<code><span class="keyword">val </span><span class="identifier">noHooks</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="remote-timeout.html">remoteTimeout</a></h4>
+</td>
+<td>
+<p>Time in seconds to wait for any individual Kubernetes operation (like Jobs for hooks). Default is 300.</p>
+<code><span class="keyword">val </span><span class="identifier">remoteTimeout</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://docs.groovy-lang.org/latest/html/groovy-jdk/java/time/Duration.html"><span class="identifier">Duration</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../-abstract-helm-installation-command-task/index.html">AbstractHelmInstallationCommandTask</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractHelmInstallationCommandTask</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">AbstractHelmServerOperationCommandTask</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-install-from-repository-options/index.html"><span class="identifier">ConfigurableHelmInstallFromRepositoryOptions</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-value-options/index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-helm-uninstall/index.html">HelmUninstall</a></h4>
+</td>
+<td>
+<p>Uninstalls a release from the cluster. Corresponds to the <code>helm uninstall</code> CLI command.</p>
+<code><span class="keyword">open</span> <span class="keyword">class </span><span class="identifier">HelmUninstall</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">AbstractHelmServerOperationCommandTask</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

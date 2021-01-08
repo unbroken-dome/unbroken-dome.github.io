@@ -1,0 +1,91 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmInstallationOptions - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command</a>&nbsp;/&nbsp;<a href="./index.html">HelmInstallationOptions</a><br/>
+<br/>
+<h1>HelmInstallationOptions</h1>
+<code><span class="keyword">interface </span><span class="identifier">HelmInstallationOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-helm-server-operation-options/index.html"><span class="identifier">HelmServerOperationOptions</span></a></code> <a href="https://github.com/unbroken-dome/gradle-helm-plugin/blob/v1.4.0/src/main/kotlin/org/unbrokendome/gradle/plugins/helm/command/HelmInstallationOptions.kt#L12">(source)</a>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="atomic.html">atomic</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">atomic</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="create-namespace.html">createNamespace</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">createNamespace</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="devel.html">devel</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">devel</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="verify.html">verify</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">verify</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="version.html">version</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">version</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="wait.html">wait</a></h4>
+</td>
+<td>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">wait</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../with-defaults.html">withDefaults</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="./index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">.</span><span class="identifier">withDefaults</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.gradle.api.provider.ProviderFactory)/defaults">defaults</span><span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.gradle.api.provider.ProviderFactory)/providers">providers</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ProviderFactory.html"><span class="identifier">ProviderFactory</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="./index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../-configurable-helm-installation-options/index.html">ConfigurableHelmInstallationOptions</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmInstallationOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-configurable-helm-server-operation-options/index.html"><span class="identifier">ConfigurableHelmServerOperationOptions</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../-helm-install-from-repository-options/index.html">HelmInstallFromRepositoryOptions</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">HelmInstallFromRepositoryOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="./index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

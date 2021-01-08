@@ -1,0 +1,69 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>Linting - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.dsl</a>&nbsp;/&nbsp;<a href="./index.html">Linting</a><br/>
+<br/>
+<h1>Linting</h1>
+<code><span class="keyword">interface </span><span class="identifier">Linting</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-value-options/index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a></code> <a href="https://github.com/unbroken-dome/gradle-helm-plugin/blob/v1.4.0/src/main/kotlin/org/unbrokendome/gradle/plugins/helm/dsl/Linting.kt#L21">(source)</a>
+<p>Defines options for linting Helm charts using the <code>helm lint</code> command.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-configuration/index.html">Configuration</a></h4>
+</td>
+<td>
+<p>A configuration of values to pass to <code>helm lint</code>.</p>
+<code><span class="keyword">interface </span><span class="identifier">Configuration</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-value-options/index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="configurations.html">configurations</a></h4>
+</td>
+<td>
+<p>A collection of linter configurations.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">configurations</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/NamedDomainObjectContainer.html"><span class="identifier">NamedDomainObjectContainer</span></a><span class="symbol">&lt;</span><span class="identifier">Configuration</span><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="enabled.html">enabled</a></h4>
+</td>
+<td>
+<p>If <code>true</code> (the default), run the linter.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">enabled</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="strict.html">strict</a></h4>
+</td>
+<td>
+<p>If <code>true</code>, treat warnings from the linter as errors.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">strict</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="configurations.html">configurations</a></h4>
+</td>
+<td>
+<p>Configures the linter configurations.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">configurations</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.dsl.Linting$configurations(org.gradle.api.Action((org.gradle.api.NamedDomainObjectContainer((org.unbrokendome.gradle.plugins.helm.dsl.Linting.Configuration)))))/configureAction">configureAction</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/NamedDomainObjectContainer.html"><span class="identifier">NamedDomainObjectContainer</span></a><span class="symbol">&lt;</span><span class="identifier">Configuration</span><span class="symbol">&gt;</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/NamedDomainObjectContainer.html"><span class="identifier">NamedDomainObjectContainer</span></a><span class="symbol">&lt;</span><span class="identifier">Configuration</span><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

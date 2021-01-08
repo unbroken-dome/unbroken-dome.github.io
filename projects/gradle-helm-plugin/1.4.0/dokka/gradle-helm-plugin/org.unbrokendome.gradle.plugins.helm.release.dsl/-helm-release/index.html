@@ -1,0 +1,154 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>HelmRelease - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.release.dsl</a>&nbsp;/&nbsp;<a href="./index.html">HelmRelease</a><br/>
+<br/>
+<h1>HelmRelease</h1>
+<code><span class="keyword">interface </span><span class="identifier">HelmRelease</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="../-helm-release-properties/index.html"><span class="identifier">HelmReleaseProperties</span></a><span class="symbol">, </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-install-from-repository-options/index.html"><span class="identifier">ConfigurableHelmInstallFromRepositoryOptions</span></a><span class="symbol">, </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/plugins/ExtensionAware.html"><span class="identifier">ExtensionAware</span></a></code> <a href="https://github.com/unbroken-dome/gradle-helm-plugin/blob/v1.4.0/src/main/kotlin/org/unbrokendome/gradle/plugins/helm/release/dsl/HelmRelease.kt#L295">(source)</a>
+<p>Represents a release to be installed into or uninstalled from a Kubernetes cluster.</p>
+<p>Provides methods for target-specific configuration of the release.</p>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-target-specific/index.html">TargetSpecific</a></h4>
+</td>
+<td>
+<p>Used to configure a <a href="./index.html">HelmRelease</a> for a specific release target.</p>
+<code><span class="keyword">interface </span><span class="identifier">TargetSpecific</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-helm-release-properties/index.html"><span class="identifier">HelmReleaseProperties</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="tags.html">tags</a></h4>
+</td>
+<td>
+<p>Tags for this release.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">tags</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-mutable-set/index.html"><span class="identifier">MutableSet</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="values-dirs.html">valuesDirs</a></h4>
+</td>
+<td>
+<p>A list of directories that contain target-specific values files for the release.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">valuesDirs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ListProperty.html"><span class="identifier">ListProperty</span></a><span class="symbol">&lt;</span><a href="https://docs.oracle.com/javase/6/docs/api/java/io/File.html"><span class="identifier">File</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="for-any-target.html">forAnyTarget</a></h4>
+</td>
+<td>
+<p>Adds a target-specific configuration action for any target.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">forAnyTarget</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$forAnyTarget(org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease.TargetSpecific)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><span class="identifier">TargetSpecific</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="for-target.html">forTarget</a></h4>
+</td>
+<td>
+<p>Adds a target-specific configuration action for the given release target.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">forTarget</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$forTarget(kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease.TargetSpecific)))/target">target</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$forTarget(kotlin.String, org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease.TargetSpecific)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><span class="identifier">TargetSpecific</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="for-targets.html">forTargets</a></h4>
+</td>
+<td>
+<p>Adds a target-specific configuration action for the given release targets.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">forTargets</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$forTargets(kotlin.collections.Iterable((kotlin.String)), org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease.TargetSpecific)))/targets">targets</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$forTargets(kotlin.collections.Iterable((kotlin.String)), org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease.TargetSpecific)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><span class="identifier">TargetSpecific</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">forTargets</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$forTargets(kotlin.Array((kotlin.String)), org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease.TargetSpecific)))/targets">targets</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$forTargets(kotlin.Array((kotlin.String)), org.gradle.api.Action((org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease.TargetSpecific)))/action">action</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Action.html"><span class="identifier">Action</span></a><span class="symbol">&lt;</span><span class="identifier">TargetSpecific</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="tags.html">tags</a></h4>
+</td>
+<td>
+<p>Declare tags for this release.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">tags</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$tags(kotlin.collections.Iterable((kotlin.String)))/tags">tags</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">tags</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$tags(kotlin.Array((kotlin.String)))/tags">tags</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="values-dir.html">valuesDir</a></h4>
+</td>
+<td>
+<p>Adds a directory containing values files to the release.</p>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">valuesDir</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$valuesDir(kotlin.Any)/directory">directory</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="values-dirs.html">valuesDirs</a></h4>
+</td>
+<td>
+<p>Adds directories containing values files to the release.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">fun </span><span class="identifier">valuesDirs</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$valuesDirs(kotlin.collections.Iterable((kotlin.Any)))/directories">directories</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-iterable/index.html"><span class="identifier">Iterable</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code><br/>
+<code><span class="keyword">open</span> <span class="keyword">fun </span><span class="identifier">valuesDirs</span><span class="symbol">(</span><span class="keyword">vararg</span> <span class="identifier" id="org.unbrokendome.gradle.plugins.helm.release.dsl.HelmRelease$valuesDirs(kotlin.Array((kotlin.Any)))/directories">directories</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../org.unbrokendome.gradle.plugins.helm.release.rules/install-task-name.html">installTaskName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-install-or-upgrade/index.html">HelmInstallOrUpgrade</a> task associated with this release.</p>
+<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">HelmRelease</span></a><span class="symbol">.</span><span class="identifier">installTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../org.unbrokendome.gradle.plugins.helm.release.rules/status-task-name.html">statusTaskName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-status/index.html">HelmStatus</a> task associated with this release.</p>
+<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">HelmRelease</span></a><span class="symbol">.</span><span class="identifier">statusTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../org.unbrokendome.gradle.plugins.helm.release.rules/test-task-name.html">testTaskName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-test/index.html">HelmTest</a> task associated with this release.</p>
+<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">HelmRelease</span></a><span class="symbol">.</span><span class="identifier">testTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="../../org.unbrokendome.gradle.plugins.helm.release.rules/uninstall-task-name.html">uninstallTaskName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="../../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-uninstall/index.html">HelmUninstall</a> task associated with this release.</p>
+<code><span class="keyword">val </span><a href="./index.html"><span class="identifier">HelmRelease</span></a><span class="symbol">.</span><span class="identifier">uninstallTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Extension Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../org.unbrokendome.gradle.plugins.helm.command/with-defaults.html">withDefaults</a></h4>
+</td>
+<td>
+<code><span class="keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">.</span><span class="identifier">withDefaults</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.gradle.api.provider.ProviderFactory)/defaults">defaults</span><span class="symbol">:</span>&nbsp;<a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a><span class="symbol">, </span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.command$withDefaults(org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.unbrokendome.gradle.plugins.helm.command.HelmInstallationOptions, org.gradle.api.provider.ProviderFactory)/providers">providers</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ProviderFactory.html"><span class="identifier">ProviderFactory</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-installation-options/index.html"><span class="identifier">HelmInstallationOptions</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

@@ -1,0 +1,107 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>org.unbrokendome.gradle.plugins.helm.rules - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="./index.html">org.unbrokendome.gradle.plugins.helm.rules</a><br/>
+<br/>
+<h2>Package org.unbrokendome.gradle.plugins.helm.rules</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-abstract-rule/index.html">AbstractRule</a></h4>
+</td>
+<td>
+<p>Abstract base class for all domain object rules.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">class </span><span class="identifier">AbstractRule</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Rule.html"><span class="identifier">Rule</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="collect-chart-sources-task-name.html">collectChartSourcesTaskName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/tasks/Sync.html">Sync</a> task to copy the extra files into this chart.</p>
+<code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">collectChartSourcesTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="dir-artifact-configuration-name.html">dirArtifactConfigurationName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Configuration.html">Configuration</a> that contains the directory artifact for this chart.</p>
+<code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">dirArtifactConfigurationName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="filter-sources-task-name.html">filterSourcesTaskName</a></h4>
+</td>
+<td>
+<p>Gets the name of the <a href="../org.unbrokendome.gradle.plugins.helm.tasks/-helm-filter-sources/index.html">HelmFilterSources</a> task for this chart.</p>
+<code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">filterSourcesTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="lint-task-name.html">lintTaskName</a></h4>
+</td>
+<td>
+<p>The name of the task that performs all linting for this chart.</p>
+<code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">lintTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="packaged-artifact-configuration-name.html">packagedArtifactConfigurationName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/artifacts/Configuration.html">Configuration</a> that contains the packaged artifact for this chart.</p>
+<code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">packagedArtifactConfigurationName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="package-task-name.html">packageTaskName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-package/index.html">HelmPackage</a> task for this chart.</p>
+<code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">packageTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="register-task-name.html">registerTaskName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-add-repository/index.html">HelmAddRepository</a> task that registers this repository.</p>
+<code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-repository/index.html"><span class="identifier">HelmRepository</span></a><span class="symbol">.</span><span class="identifier">registerTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="update-dependencies-task-name.html">updateDependenciesTaskName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-update-dependencies/index.html">HelmUpdateDependencies</a> task for this chart.</p>
+<code><span class="keyword">val </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">updateDependenciesTaskName</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="lint-task-name.html">lintTaskName</a></h4>
+</td>
+<td>
+<p>The name of the <a href="../org.unbrokendome.gradle.plugins.helm.command.tasks/-helm-lint/index.html">HelmLint</a> task for this chart.</p>
+<code><span class="keyword">fun </span><a href="../org.unbrokendome.gradle.plugins.helm.dsl/-helm-chart/index.html"><span class="identifier">HelmChart</span></a><span class="symbol">.</span><span class="identifier">lintTaskName</span><span class="symbol">(</span><span class="identifier" id="org.unbrokendome.gradle.plugins.helm.rules$lintTaskName(org.unbrokendome.gradle.plugins.helm.dsl.HelmChart, kotlin.String)/lintConfigurationName">lintConfigurationName</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

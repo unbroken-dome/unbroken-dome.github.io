@@ -1,0 +1,65 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>org.unbrokendome.gradle.plugins.helm.release.dsl - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../style.css">
+</HEAD>
+<BODY>
+<a href="../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="./index.html">org.unbrokendome.gradle.plugins.helm.release.dsl</a><br/>
+<br/>
+<h2>Package org.unbrokendome.gradle.plugins.helm.release.dsl</h2>
+<h3>Types</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="-chart-reference/index.html">ChartReference</a></h4>
+</td>
+<td>
+<code><span class="keyword">interface </span><span class="identifier">ChartReference</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Buildable.html"><span class="identifier">Buildable</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-configurable-helm-release-test-options/index.html">ConfigurableHelmReleaseTestOptions</a></h4>
+</td>
+<td>
+<p>Configures remote testing for a release using <code>helm test</code>.</p>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableHelmReleaseTestOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="-helm-release-test-options/index.html"><span class="identifier">HelmReleaseTestOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-helm-release/index.html">HelmRelease</a></h4>
+</td>
+<td>
+<p>Represents a release to be installed into or uninstalled from a Kubernetes cluster.</p>
+<code><span class="keyword">interface </span><span class="identifier">HelmRelease</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="-helm-release-properties/index.html"><span class="identifier">HelmReleaseProperties</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-install-from-repository-options/index.html"><span class="identifier">ConfigurableHelmInstallFromRepositoryOptions</span></a><span class="symbol">, </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/plugins/ExtensionAware.html"><span class="identifier">ExtensionAware</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-helm-release-properties/index.html">HelmReleaseProperties</a></h4>
+</td>
+<td>
+<p>Contains the configurable properties of a Helm release; these can be modified on the core release object
+as well as a target-specific variant.</p>
+<code><span class="keyword">interface </span><span class="identifier">HelmReleaseProperties</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-install-from-repository-options/index.html"><span class="identifier">ConfigurableHelmInstallFromRepositoryOptions</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-value-options/index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-helm-release-target/index.html">HelmReleaseTarget</a></h4>
+</td>
+<td>
+<p>Defines a target configuration for installing and uninstalling releases.</p>
+<code><span class="keyword">interface </span><span class="identifier">HelmReleaseTarget</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Named.html"><span class="identifier">Named</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-installation-options/index.html"><span class="identifier">ConfigurableHelmInstallationOptions</span></a><span class="symbol">, </span><a href="../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-value-options/index.html"><span class="identifier">ConfigurableHelmValueOptions</span></a><span class="symbol">, </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/plugins/ExtensionAware.html"><span class="identifier">ExtensionAware</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="-helm-release-test-options/index.html">HelmReleaseTestOptions</a></h4>
+</td>
+<td>
+<p>Remote testing options for a release using <code>helm test</code>.</p>
+<code><span class="keyword">interface </span><span class="identifier">HelmReleaseTestOptions</span></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>

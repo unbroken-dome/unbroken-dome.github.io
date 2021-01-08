@@ -1,0 +1,22 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>putFrom - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.gradle.kotlin.dsl</a>&nbsp;/&nbsp;<a href="index.html">org.gradle.api.provider.MapProperty</a>&nbsp;/&nbsp;<a href="./put-from.html">putFrom</a><br/>
+<br/>
+<h1>putFrom</h1>
+<a name="org.gradle.kotlin.dsl$putFrom(org.gradle.api.provider.MapProperty((org.gradle.kotlin.dsl.putFrom.K, org.gradle.kotlin.dsl.putFrom.V)), org.gradle.kotlin.dsl.putFrom.K, org.gradle.api.provider.Provider((org.gradle.kotlin.dsl.putFrom.V)))"></a>
+<code><span class="keyword">fun </span><span class="symbol">&lt;</span><span class="identifier">K</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">, </span><span class="identifier">V</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-any/index.html"><span class="identifier">Any</span></a><span class="symbol">&gt;</span> <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html"><span class="identifier">MapProperty</span></a><span class="symbol">&lt;</span><span class="identifier">K</span><span class="symbol">,</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">.</span><span class="identifier">putFrom</span><span class="symbol">(</span><span class="identifier" id="org.gradle.kotlin.dsl$putFrom(org.gradle.api.provider.MapProperty((org.gradle.kotlin.dsl.putFrom.K, org.gradle.kotlin.dsl.putFrom.V)), org.gradle.kotlin.dsl.putFrom.K, org.gradle.api.provider.Provider((org.gradle.kotlin.dsl.putFrom.V)))/key">key</span><span class="symbol">:</span>&nbsp;<span class="identifier">K</span><span class="symbol">, </span><span class="identifier" id="org.gradle.kotlin.dsl$putFrom(org.gradle.api.provider.MapProperty((org.gradle.kotlin.dsl.putFrom.K, org.gradle.kotlin.dsl.putFrom.V)), org.gradle.kotlin.dsl.putFrom.K, org.gradle.api.provider.Provider((org.gradle.kotlin.dsl.putFrom.V)))/providerOfValue">providerOfValue</span><span class="symbol">:</span>&nbsp;<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Provider.html"><span class="identifier">Provider</span></a><span class="symbol">&lt;</span><span class="keyword">out</span>&nbsp;<span class="identifier">V</span><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code> <a href="https://github.com/unbroken-dome/gradle-helm-plugin/blob/v1.4.0/src/main/kotlin/org/gradle/kotlin/dsl/MapPropertyExtensions.kt#L16">(source)</a>
+<p>Adds a map entry to the property value.</p>
+<p>Same as <a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/MapProperty.html#put(K, V)">MapProperty.put</a>, but uses a different name to avoid an overload resolution ambiguity in case
+the value type is <code>Any</code>.</p>
+<h3>Parameters</h3>
+<p><a name="key"></a>
+<code>key</code> - the key</p>
+<p><a name="providerOfValue"></a>
+<code>providerOfValue</code> - the provider of the value</p>
+</BODY>
+</HTML>

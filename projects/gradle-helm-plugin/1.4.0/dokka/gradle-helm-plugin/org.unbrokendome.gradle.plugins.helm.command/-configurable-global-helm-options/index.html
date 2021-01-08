@@ -1,0 +1,81 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>ConfigurableGlobalHelmOptions - gradle-helm-plugin</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">gradle-helm-plugin</a>&nbsp;/&nbsp;<a href="../index.html">org.unbrokendome.gradle.plugins.helm.command</a>&nbsp;/&nbsp;<a href="./index.html">ConfigurableGlobalHelmOptions</a><br/>
+<br/>
+<h1>ConfigurableGlobalHelmOptions</h1>
+<code><span class="keyword">interface </span><span class="identifier">ConfigurableGlobalHelmOptions</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-global-helm-options/index.html"><span class="identifier">GlobalHelmOptions</span></a><span class="symbol">, </span><a href="../-configurable-helm-options.html"><span class="identifier">ConfigurableHelmOptions</span></a></code> <a href="https://github.com/unbroken-dome/gradle-helm-plugin/blob/v1.4.0/src/main/kotlin/org/unbrokendome/gradle/plugins/helm/command/GlobalHelmOptions.kt#L31">(source)</a>
+<p>Holds options that apply to all Helm commands.</p>
+<h3>Properties</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="debug.html">debug</a></h4>
+</td>
+<td>
+<p>Indicates whether to use the verbose output (<code>--debug</code> flag) when invoking commands.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">debug</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html"><span class="identifier">Boolean</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="executable.html">executable</a></h4>
+</td>
+<td>
+<p>The name or path of the Helm executable. The <code>PATH</code> variable is taken into account, so this
+can just be <code>"helm"</code> if the Helm client is installed in a suitable location.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">executable</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/Property.html"><span class="identifier">Property</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="extra-args.html">extraArgs</a></h4>
+</td>
+<td>
+<p>Additional command-line arguments to pass to the Helm CLI.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">extraArgs</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/provider/ListProperty.html"><span class="identifier">ListProperty</span></a><span class="symbol">&lt;</span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html"><span class="identifier">String</span></a><span class="symbol">&gt;</span></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xdg-cache-home.html">xdgCacheHome</a></h4>
+</td>
+<td>
+<p>Base directory for storing cached data.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">xdgCacheHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xdg-config-home.html">xdgConfigHome</a></h4>
+</td>
+<td>
+<p>Base directory for storing configuration.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">xdgConfigHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code></td>
+</tr>
+<tr>
+<td>
+<h4><a href="xdg-data-home.html">xdgDataHome</a></h4>
+</td>
+<td>
+<p>Base directory for storing data.</p>
+<code><span class="keyword">abstract</span> <span class="keyword">val </span><span class="identifier">xdgDataHome</span><span class="symbol">: </span><a href="https://docs.gradle.org/current/javadoc/org/gradle/api/file/DirectoryProperty.html"><span class="identifier">DirectoryProperty</span></a></code></td>
+</tr>
+</tbody>
+</table>
+<h3>Inheritors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<h4><a href="../../org.unbrokendome.gradle.plugins.helm.dsl/-helm-extension/index.html">HelmExtension</a></h4>
+</td>
+<td>
+<p>The main Helm DSL extension, accessible using the <code>helm { ... }</code> block in build scripts.</p>
+<code><span class="keyword">interface </span><span class="identifier">HelmExtension</span>&nbsp;<span class="symbol">:</span>&nbsp;<a href="../-helm-exec-provider/index.html"><span class="identifier">HelmExecProvider</span></a><span class="symbol">, </span><a href="./index.html"><span class="identifier">ConfigurableGlobalHelmOptions</span></a><span class="symbol">, </span><a href="../-configurable-helm-server-options/index.html"><span class="identifier">ConfigurableHelmServerOptions</span></a></code></td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
