@@ -1,0 +1,16 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+org.gradle.kotlin.dsl
+org.unbrokendome.gradle.plugins.helm
+org.unbrokendome.gradle.plugins.helm.command
+org.unbrokendome.gradle.plugins.helm.command.internal
+org.unbrokendome.gradle.plugins.helm.command.tasks
+org.unbrokendome.gradle.plugins.helm.dsl
+org.unbrokendome.gradle.plugins.helm.dsl.credentials
+org.unbrokendome.gradle.plugins.helm.dsl.credentials.internal
+org.unbrokendome.gradle.plugins.helm.dsl.dependencies
+org.unbrokendome.gradle.plugins.helm.dsl.internal
+org.unbrokendome.gradle.plugins.helm.rules
+org.unbrokendome.gradle.plugins.helm.tasks
+

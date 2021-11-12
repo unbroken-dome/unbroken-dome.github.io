@@ -1,0 +1,1 @@
+sourceset_dependencies = '{":helm-plugin:dokkaHtmlPartial/main":[],":helm-publish-plugin:dokkaHtmlPartial/main":[],":helm-releases-plugin:dokkaHtmlPartial/main":[]}'

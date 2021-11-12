@@ -1,0 +1,10 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+
+org.gradle.kotlin.dsl
+org.unbrokendome.gradle.plugins.helm.publishing
+org.unbrokendome.gradle.plugins.helm.publishing.dsl
+org.unbrokendome.gradle.plugins.helm.publishing.rules
+org.unbrokendome.gradle.plugins.helm.publishing.tasks
+org.unbrokendome.gradle.plugins.helm.publishing.util
+

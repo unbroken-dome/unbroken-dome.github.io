@@ -1,0 +1,4389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 2.0.10">
+<title>Gradle Helm Plugin</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
+/* Uncomment @import statement to use as custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section{display:block}
+audio,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+a{background:none}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*::before,*::after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto;tab-size:4;-moz-osx-font-smoothing:grayscale;-webkit-font-smoothing:antialiased}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.stretch{width:100%}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:0}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #dddddf;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite::before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt{background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix::before,.clearfix::after,.float-group::before,.float-group::after{content:" ";display:table}
+.clearfix::after,.float-group::after{clear:both}
+:not(pre):not([class^=L])>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed;word-wrap:break-word}
+:not(pre)>code.nobreak{word-wrap:normal}
+:not(pre)>code.nowrap{white-space:nowrap}
+pre{color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;line-height:1.45;text-rendering:optimizeSpeed}
+pre code,pre pre{color:inherit;font-size:inherit;line-height:inherit}
+pre>code{display:block}
+pre.nowrap,pre.nowrap pre{white-space:pre;word-wrap:normal}
+em em{font-style:normal}
+strong strong{font-weight:400}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menuref{color:#000}
+.menuseq b:not(.caret),.menuref{font-weight:inherit}
+.menuseq{word-spacing:-.02em}
+.menuseq b.caret{font-size:1.25em;line-height:.8}
+.menuseq i.caret{font-weight:bold;text-align:center;width:.45em}
+b.button::before,b.button::after{position:relative;top:-1px;font-weight:400}
+b.button::before{content:"[";padding:0 3px 0 2px}
+b.button::after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header::before,#header::after,#content::before,#content::after,#footnotes::before,#footnotes::after,#footer::before,#footer::after{content:" ";display:table}
+#header::after,#content::after,#footnotes::after,#footer::after{clear:both}
+#content{margin-top:1.25em}
+#content::before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #dddddf}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #dddddf;padding-bottom:8px}
+#header .details{border-bottom:1px solid #dddddf;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span::before{content:"\00a0\2013\00a0"}
+#header .details br+span.author::before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark::before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber::after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #dddddf;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #e7e7e9;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #e7e7e9;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #e7e7e9;left:auto;right:0}}
+@media screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+#content{margin-bottom:.625em}
+.sect1{padding-bottom:.625em}
+@media screen and (min-width:768px){#content{margin-bottom:1.25em}
+.sect1{padding-bottom:1.25em}}
+.sect1:last-child{padding-bottom:0}
+.sect1+.sect1{border-top:1px solid #e7e7e9}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor::before,h2>a.anchor::before,h3>a.anchor::before,#toctitle>a.anchor::before,.sidebarblock>.content>.title>a.anchor::before,h4>a.anchor::before,h5>a.anchor::before,h6>a.anchor::before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+details,.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+details>summary:first-of-type{cursor:pointer;display:list-item;outline:none;margin-bottom:.75em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock.fit-content>caption.title{white-space:nowrap;width:0}
+.paragraph.lead>p,#preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:1.21875em;line-height:1.6;color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>[class="paragraph"]:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #dddddf;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#dbdbd6;margin-bottom:1.25em;padding:1.25em;background:#f3f3f2;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock>.content>pre{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;overflow-x:auto;padding:1em;font-size:.8125em}
+@media screen and (min-width:768px){.literalblock pre,.listingblock>.content>pre{font-size:.90625em}}
+@media screen and (min-width:1280px){.literalblock pre,.listingblock>.content>pre{font-size:1em}}
+.literalblock pre,.listingblock>.content>pre:not(.highlight),.listingblock>.content>pre[class="highlight"],.listingblock>.content>pre[class^="highlight "]{background:#f7f7f8}
+.literalblock.output pre{color:#f7f7f8;background:rgba(0,0,0,.9)}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]::before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:inherit;opacity:.5}
+.listingblock:hover code[data-lang]::before{display:block}
+.listingblock.terminal pre .command::before{content:attr(data-prompt);padding-right:.5em;color:inherit;opacity:.5}
+.listingblock.terminal pre .command:not([data-prompt])::before{content:"$"}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.prettyprint{background:#f7f7f8}
+pre.prettyprint .linenums{line-height:1.45;margin-left:2em}
+pre.prettyprint li{background:none;list-style-type:inherit;padding-left:0}
+pre.prettyprint li code[data-lang]::before{opacity:1}
+pre.prettyprint li:not(:first-child) code[data-lang]::before{display:none}
+table.linenotable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.linenotable td[class]{color:inherit;vertical-align:top;padding:0;line-height:inherit;white-space:normal}
+table.linenotable td.code{padding-left:.75em}
+table.linenotable td.linenos{border-right:1px solid currentColor;opacity:.35;padding-right:.5em}
+pre.pygments .lineno{border-right:1px solid currentColor;opacity:.35;display:inline-block;margin-right:.75em}
+pre.pygments .lineno::before{content:"";margin-right:-.125em}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock:not(.excerpt)>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote::before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.75em;margin-right:.5ex;text-align:right}
+.verseblock{margin:0 1em 1.25em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract blockquote::before,.quoteblock.excerpt blockquote::before,.quoteblock .quoteblock blockquote::before{display:none}
+.quoteblock.abstract blockquote,.quoteblock.abstract p,.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{line-height:1.6;word-spacing:0}
+.quoteblock.abstract{margin:0 1em 1.25em;display:block}
+.quoteblock.abstract>.title{margin:0 0 .375em;font-size:1.15em;text-align:center}
+.quoteblock.excerpt>blockquote,.quoteblock .quoteblock{padding:0 0 .25em 1em;border-left:.25em solid #dddddf}
+.quoteblock.excerpt,.quoteblock .quoteblock{margin-left:0}
+.quoteblock.excerpt blockquote,.quoteblock.excerpt p,.quoteblock .quoteblock blockquote,.quoteblock .quoteblock p{color:inherit;font-size:1.0625rem}
+.quoteblock.excerpt .attribution,.quoteblock .quoteblock .attribution{color:inherit;text-align:left;margin-right:0}
+table.tableblock{max-width:100%;border-collapse:separate}
+p.tableblock:last-child{margin-bottom:0}
+td.tableblock>.content>:last-child{margin-bottom:-1.25em}
+td.tableblock>.content>:last-child.sidebarblock{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all>thead>tr>.tableblock,table.grid-all>tbody>tr>.tableblock{border-width:0 1px 1px 0}
+table.grid-all>tfoot>tr>.tableblock{border-width:1px 1px 0 0}
+table.grid-cols>*>tr>.tableblock{border-width:0 1px 0 0}
+table.grid-rows>thead>tr>.tableblock,table.grid-rows>tbody>tr>.tableblock{border-width:0 0 1px}
+table.grid-rows>tfoot>tr>.tableblock{border-width:1px 0 0}
+table.grid-all>*>tr>.tableblock:last-child,table.grid-cols>*>tr>.tableblock:last-child{border-right-width:0}
+table.grid-all>tbody>tr:last-child>.tableblock,table.grid-all>thead:last-child>tr>.tableblock,table.grid-rows>tbody>tr:last-child>.tableblock,table.grid-rows>thead:last-child>tr>.tableblock{border-bottom-width:0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot,table.frame-ends{border-width:1px 0}
+table.stripes-all tr,table.stripes-odd tr:nth-of-type(odd),table.stripes-even tr:nth-of-type(even),table.stripes-hover tr:hover{background:#f8f8f7}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.checklist,ul.none,ol.none,ul.no-bullet,ol.no-bullet,ol.unnumbered,ul.unstyled,ol.unstyled{list-style-type:none}
+ul.no-bullet,ol.no-bullet,ol.unnumbered{margin-left:.625em}
+ul.unstyled,ol.unstyled{margin-left:0}
+ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1.25em;font-size:.8em;position:relative;bottom:.125em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{margin-right:.25em}
+ul.inline{display:-ms-flexbox;display:-webkit-box;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap;list-style:none;margin:0 0 .625em -1.25em}
+ul.inline>li{margin-left:1.25em}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist td:not([class]):first-child{padding:.4em .75em 0;line-height:1;vertical-align:top}
+.colist td:not([class]):first-child img{max-width:none}
+.colist td:not([class]):last-child{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left{margin:.25em .625em 1.25em 0}
+.imageblock.right{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em;border-width:1px 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none;margin-left:-1.05em}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background:#00fafa}
+.black{color:#000}
+.black-background{background:#000}
+.blue{color:#0000bf}
+.blue-background{background:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background:#fa00fa}
+.gray{color:#606060}
+.gray-background{background:#7d7d7d}
+.green{color:#006000}
+.green-background{background:#007d00}
+.lime{color:#00bf00}
+.lime-background{background:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background:#7d0000}
+.navy{color:#000060}
+.navy-background{background:#00007d}
+.olive{color:#606000}
+.olive-background{background:#7d7d00}
+.purple{color:#600060}
+.purple-background{background:#7d007d}
+.red{color:#bf0000}
+.red-background{background:#fa0000}
+.silver{color:#909090}
+.silver-background{background:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background:#fafa00}
+span.icon>.fa{cursor:default}
+a span.icon>.fa{cursor:inherit}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note::before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip::before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning::before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution::before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important::before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]::after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@page{margin:1.25cm .75cm}
+@media print{*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+html{font-size:80%}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare)::after,a[href^="https:"]:not(.bare)::after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]::after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #dddddf!important;padding-bottom:0!important}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span::before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]::before{display:block}
+#footer{padding:0 .9375em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+@media print,amzn-kf8{#header>h1:first-child{margin-top:1.25rem}
+.sect1{padding:0!important}
+.sect1+.sect1{border:0}
+#footer{background:none}
+#footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
+@media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+.hidden {
+    display: none;
+}
+
+.switch {
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: #7a2518;
+    display: inline-block;
+}
+
+.switch--item {
+    padding: 10px;
+    background-color: #ffffff;
+    color: #7a2518;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.switch--item.selected {
+    background-color: #7a2519;
+    color: #ffffff;
+}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+<script type="text/javascript">
+function addBlockSwitches() {
+    $('.primary').each(function() {
+        primary = $(this);
+        createSwitchItem(primary, createBlockSwitch(primary)).item.addClass("selected");
+        primary.children('.title').remove();
+    });
+    $('.secondary').each(function(idx, node) {
+        secondary = $(node);
+        primary = findPrimary(secondary);
+        switchItem = createSwitchItem(secondary, primary.children('.switch'));
+        switchItem.content.addClass('hidden');
+        findPrimary(secondary).append(switchItem.content);
+        secondary.remove();
+    });
+}
+
+function createBlockSwitch(primary) {
+    blockSwitch = $('<div class="switch"></div>');
+    primary.prepend(blockSwitch);
+    return blockSwitch;
+}
+
+function findPrimary(secondary) {
+    candidate = secondary.prev();
+    while (!candidate.is('.primary')) {
+        candidate = candidate.prev();
+    }
+    return candidate;
+}
+
+function createSwitchItem(block, blockSwitch) {
+    blockName = block.children('.title').text();
+    content = block.children('.content').first().append(block.next('.colist'));
+    item = $('<div class="switch--item">' + blockName + '</div>');
+    item.on('click', '', content, function(e) {
+        $(this).addClass('selected');
+        $(this).siblings().removeClass('selected');
+        e.data.siblings('.content').addClass('hidden');
+        e.data.removeClass('hidden');
+    });
+    blockSwitch.append(item);
+    return {'item': item, 'content': content};
+}
+
+$(addBlockSwitches);
+
+</script>
+
+</head>
+<body class="book toc2 toc-left">
+<div id="header">
+<h1>Gradle Helm Plugin</h1>
+<div class="details">
+<span id="revnumber">version 1.6.0</span>
+</div>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_prerequisites">Prerequisites</a></li>
+<li><a href="#_quick_start">Quick Start</a></li>
+<li><a href="#_plugins">Plugins</a>
+<ul class="sectlevel2">
+<li><a href="#_helm_commands"><code>helm-commands</code></a></li>
+<li><a href="#_helm"><code>helm</code></a></li>
+<li><a href="#_helm_publish"><code>helm-publish</code></a></li>
+<li><a href="#_helm_releases"><code>helm-releases</code></a></li>
+</ul>
+</li>
+<li><a href="#_configuring_the_helm_client">Configuring the Helm Client</a>
+<ul class="sectlevel2">
+<li><a href="#_global_helm_options">Global Helm Options</a></li>
+<li><a href="#_helm_directories">Helm Directories</a></li>
+<li><a href="#_automatic_download_of_the_helm_client">Automatic Download of the Helm Client</a></li>
+</ul>
+</li>
+<li><a href="#_defining_charts">Defining Charts</a>
+<ul class="sectlevel2">
+<li><a href="#_helm_chart_tasks">Helm Chart Tasks</a></li>
+<li><a href="#_helm_chart_configurations">Helm Chart Configurations</a></li>
+<li><a href="#_using_the_main_chart">Using the <code>main</code> chart</a></li>
+<li><a href="#_using_charts_in_a_multi_project_build">Using Charts in a Multi-Project Build</a></li>
+<li><a href="#_adding_extra_files_to_a_chart">Adding Extra Files to a Chart</a></li>
+</ul>
+</li>
+<li><a href="#_defining_repositories">Defining Repositories</a>
+<ul class="sectlevel2">
+<li><a href="#_configuring_repository_credentials">Configuring Repository Credentials</a></li>
+</ul>
+</li>
+<li><a href="#_filtering_chart_sources">Filtering Chart Sources</a>
+<ul class="sectlevel2">
+<li><a href="#_enable_or_disable_filtering">Enable or Disable Filtering</a></li>
+<li><a href="#_supply_additional_values">Supply Additional Values</a></li>
+</ul>
+</li>
+<li><a href="#_linting_charts">Linting Charts</a>
+<ul class="sectlevel2">
+<li><a href="#_passing_values_to_the_linter">Passing Values to the Linter</a></li>
+<li><a href="#_disable_the_lint_step">Disable the Lint Step</a></li>
+<li><a href="#_using_multiple_lint_configurations">Using Multiple Lint Configurations</a></li>
+</ul>
+</li>
+<li><a href="#_managing_chart_dependencies">Managing Chart Dependencies</a>
+<ul class="sectlevel2">
+<li><a href="#_declaring_a_dependency">Declaring a Dependency</a></li>
+<li><a href="#_configuring_the_dependency_in_chart_yaml">Configuring the Dependency in Chart.yaml</a></li>
+<li><a href="#_chart_dependencies_in_multi_project_builds">Chart Dependencies in Multi-Project Builds</a></li>
+<li><a href="#_mixing_gradle_and_helm_dependency_resolution">Mixing Gradle and Helm Dependency Resolution</a></li>
+<li><a href="#_resolving_external_chart_dependencies">Resolving External Chart Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#_publishing_charts">Publishing Charts</a>
+<ul class="sectlevel2">
+<li><a href="#_repository_types">Repository Types</a></li>
+<li><a href="#_specifying_credentials_for_repositories">Specifying Credentials for Repositories</a></li>
+<li><a href="#_preventing_a_chart_from_being_published">Preventing a Chart from Being Published</a></li>
+</ul>
+</li>
+<li><a href="#_managing_releases">Managing Releases</a>
+<ul class="sectlevel2">
+<li><a href="#_release_tasks">Release Tasks</a></li>
+<li><a href="#release-installation-order">Release Installation Order</a></li>
+<li><a href="#_release_dependencies">Release Dependencies</a></li>
+<li><a href="#_installupgrade_logic">Install/Upgrade logic</a></li>
+<li><a href="#_installation_task_dependencies">Installation Task Dependencies</a></li>
+<li><a href="#_using_release_targets">Using Release Targets</a></li>
+<li><a href="#using-tags-to-select-releases">Using Tags to Select Releases</a></li>
+<li><a href="#_testing_releases">Testing Releases</a></li>
+<li><a href="#_checking_the_status_of_a_release">Checking the Status of a Release</a></li>
+</ul>
+</li>
+<li><a href="#_using_helm_commands">Using Helm Commands</a>
+<ul class="sectlevel2">
+<li><a href="#_example">Example</a></li>
+</ul>
+</li>
+<li><a href="#_configuration_from_project_properties">Configuration from Project Properties</a>
+<ul class="sectlevel2">
+<li><a href="#_basic_helm_properties">Basic Helm Properties</a></li>
+<li><a href="#_repositories">Repositories</a></li>
+<li><a href="#_filtering">Filtering</a></li>
+<li><a href="#_linting">Linting</a></li>
+<li><a href="#_releases">Releases</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This is a suite of plugins for packaging and publishing Helm Charts from Gradle, and managing Helm releases
+on a Kubernetes cluster.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites"><a class="anchor" href="#_prerequisites"></a>Prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You need at least the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Gradle 5.2 or higher</p>
+</li>
+<li>
+<p>JDK 8 or higher (for running Gradle)</p>
+</li>
+<li>
+<p>Helm CLI (3.+)</p>
+<div class="paragraph">
+<p>This plugin delegates all <code>helm</code> commands to a locally installed Helm CLI. See
+<a href="https://docs.helm.sh/using_helm/#installing-helm">Installing Helm</a> in the Helm documentation for installation
+instructions on various systems.</p>
+</div>
+<div class="paragraph">
+<p>Starting with version 0.5.0, the plugin requires Helm 3. However, the chart API version <code>v1</code> is still
+supported by Helm 3, and also by the plugin. (The main difference between <code>v1</code> and <code>v2</code> is that <code>v1</code> declares
+chart dependencies in a file called <code>requirements.yaml</code>, whereas in <code>v2</code> the dependencies are declared
+directly in the <code>Chart.yaml</code> file.)</p>
+</div>
+<div class="paragraph">
+<p>INFO: Delegating to the Helm CLI decouples the plugin release cycle from the Helm release cycle, but it also
+means that some features offered by the plugin may not be available in the CLI and vice versa.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_quick_start"><a class="anchor" href="#_quick_start"></a>Quick Start</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Apply the <code>org.unbroken-dome.helm</code> plugin to your Gradle project:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">plugins {
+    id 'org.unbroken-dome.helm' version '1.6.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">plugins {
+    id("org.unbroken-dome.helm") version "1.6.0"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Put your Helm chart sources into <code>src/main/helm</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>📂 (project root)
+    📂 src
+        📂 main
+            📂 helm
+                📂 templates
+                    📄 ...
+                📄 Chart.yaml
+                📄 values.yaml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use the <code>helmPackage</code> task to build your chart.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_plugins"><a class="anchor" href="#_plugins"></a>Plugins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <em>gradle-helm-plugin</em> library provides several Gradle plugins, with different use cases for each.</p>
+</div>
+<div class="paragraph">
+<p>All plugins IDs are prefixed the namespace <code>org.unbroken-dome</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_helm_commands"><a class="anchor" href="#_helm_commands"></a><code>helm-commands</code></h3>
+<div class="paragraph">
+<p>This plugin does little more than add the plugin library to your build&#8217;s classpath so you can define tasks for
+ various Helm CLI commands. It creates the <code>helm</code> DSL block which you can use to configure common settings
+ for all tasks, like the Helm home path and the Kubecontext. Apart from this, it does not create any tasks
+ automatically.</p>
+</div>
+<div class="paragraph">
+<p>Use this if you want to use Helm CLI commands directly as tasks, without any of the declarative DSL that the <code>helm</code>
+ plugin offers.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">plugins {
+    id 'org.unbroken-dome.helm-commands' version '1.6.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">plugins {
+    id("org.unbroken-dome.helm-commands") version "1.6.0"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All the other plugins imply <code>helm-commands</code>, so you don&#8217;t need to apply this plugin if you use any of the others.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_helm"><a class="anchor" href="#_helm"></a><code>helm</code></h3>
+<div class="paragraph">
+<p>This is the main plugin of the suite. It enables a variety of extra DSL blocks inside <code>helm</code>, for example <code>charts</code>
+ and <code>repositories</code>.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">plugins {
+    id 'org.unbroken-dome.helm' version '1.6.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">plugins {
+    id("org.unbroken-dome.helm") version "1.6.0"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_helm_publish"><a class="anchor" href="#_helm_publish"></a><code>helm-publish</code></h3>
+<div class="paragraph">
+<p>Use this plugin to publish charts to a remote chart repository like ChartMuseum.</p>
+</div>
+<div class="paragraph">
+<p>It enables the <code>helm.publishing</code> DSL block and adds publishing tasks for each chart.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">plugins {
+    id 'org.unbroken-dome.helm-publish' version '1.6.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">plugins {
+    id("org.unbroken-dome.helm-publish") version "1.6.0"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_helm_releases"><a class="anchor" href="#_helm_releases"></a><code>helm-releases</code></h3>
+<div class="paragraph">
+<p>Use this plugin to manage Helm releases (install/upgrade/uninstall) on a remote Kubernetes cluster.</p>
+</div>
+<div class="paragraph">
+<p>It enables the <code>helm.releases</code> DSL block, where you can declare your releases using Gradle DSL, referencing either
+ Helm charts built using the other projects, or existing charts from a Helm repository.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">plugins {
+    id 'org.unbroken-dome.helm-releases' version '1.6.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">plugins {
+    id("org.unbroken-dome.helm-releases") version "1.6.0"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuring_the_helm_client"><a class="anchor" href="#_configuring_the_helm_client"></a>Configuring the Helm Client</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The global flags for Helm can be configured directly in the <code>helm</code> DSL block.</p>
+</div>
+<div class="paragraph">
+<p>Most of these correspond to options that are passed to every Helm CLI command as a parameter
+or an environment variable.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>As these settings can be dependent on the build environment, it is often useful to specify them in
+<code>gradle.properties</code> or on the command line instead.
+See <a href="#_configuration_from_project_properties">Configuration from Project Properties</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_global_helm_options"><a class="anchor" href="#_global_helm_options"></a>Global Helm Options</h3>
+<div class="paragraph">
+<p>The following properties can be set on the <code>helm</code> extension in the Gradle build script.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top"><code>helm</code> CLI option</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>executable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the <code>helm</code> executable. The <code>PATH</code> environment variable is taken into account, so this can just be <code>helm</code>
+ (which is the default) if the Helm client is installed in a suitable location.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>extraArgs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional arguments to pass to <em>every</em> invocation of <code>helm</code>. This can be used for command-line options that have
+ no counterpart in the plugin.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubeConfig</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the Kubernetes configuration file.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Environment variable <code>KUBECONFIG</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubeContext</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the kubeconfig context to use.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--kube-context</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>namespace</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes namespace scope.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--namespace</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>remoteTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time to wait for any individual Kubernetes operation (like Jobs for hooks).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--timeout</code> (on certain commands like <code>install</code>, <code>upgrade</code> or <code>uninstall</code>)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The environment variable <code>KUBECONFIG</code> is also honored by the plugin, but it has lower precedence than setting
+<code>kubeConfig</code> in the build script or with the <code>helm.kubeConfig</code> project property.</p>
+</div>
+<div class="paragraph">
+<p>In general, Gradle builds should avoid depending on environment variables because it makes the build less predictable
+and reproducible, and may behave unexpectedly when the Gradle daemon is used.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_helm_directories"><a class="anchor" href="#_helm_directories"></a>Helm Directories</h3>
+<div class="paragraph">
+<p>Starting with Helm 3, Helm does not have a "helm home" directory anymore, and dropped the need for a call to
+<code>helm init</code> before working with Helm. Instead, local Helm directories are governed by 3 environment variables,
+which can be configured in the Gradle <code>helm</code> extension. By default, these directories are set to paths inside
+the Gradle project, so that any <code>helm</code> invocation from the Gradle build is independent from the Helm configuration
+present on the local machine.</p>
+</div>
+<div class="paragraph">
+<p>It is also possible to set these properties via <code>gradle.properties</code> or pass them using the <code>-P</code> flag on the
+Gradle command line (see <a href="#_configuration_from_project_properties">Configuration from Project Properties</a>).</p>
+</div>
+<div class="paragraph">
+<p>See <a href="https://helm.sh/docs/helm/helm/">the Helm docs</a> for details about how XDG base directories are used
+by the Helm CLI.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><code>helm</code> extension property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+<th class="tableblock halign-left valign-top">Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdgDataHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing data. (Note: this does not currently seem to be used by any <code>helm</code> command.)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XDG_DATA_HOME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>build/helm/data</code> under the project dir</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdgConfigHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XDG_CONFIG_HOME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>build/helm/config</code> under the project dir</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xdgCacheHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing cached data.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>XDG_CACHE_HOME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.gradle/helm/cache</code> under the <em>root</em> project dir</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The cache home, as indicated by <code>xdgCacheHome</code>, defaults to a directory under the <em>root</em> project, meaning that
+in a multi-module build, all Helm projects will share the same cache by default. This speeds up builds, but may lead
+to problems in certain situations, for example if two projects register a different chart repository under the same
+name.</p>
+</div>
+<div class="paragraph">
+<p>+
+If necessary, you can always set the cache home to a project-local directory, for example:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    xdgCacheHome = file("${project.buildDir}/helm/cache")
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    xdgCacheHome.set(file("${project.buildDir}/helm/cache"))
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_automatic_download_of_the_helm_client"><a class="anchor" href="#_automatic_download_of_the_helm_client"></a>Automatic Download of the Helm Client</h3>
+<div class="paragraph">
+<p>As an alternative to using a locally installed Helm client, the plugin can automatically download a Helm client
+distribution from the official Helm website. This allows build scripts to be more independent from the environment
+found on the local machine where the Gradle build runs.</p>
+</div>
+<div class="paragraph">
+<p>The download can be configured either through the <code>helm.downloadClient</code> DSL block or through project properties (e.g.
+in the <code>gradle.properties</code> file). Project properties have the advantage of being automatically inherited by subprojects,
+and are easier to adapt for the local machine.</p>
+</div>
+<div class="paragraph">
+<p>The following example shows how the download can be configured in the build script:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    downloadClient {
+        enabled = true
+        version = '3.4.1'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    downloadClient {
+        enabled.set(true)
+        version.set("3.4.1")
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example shows how the download can be configured using the gradle.properties file:</p>
+</div>
+<div class="listingblock">
+<div class="title">gradle.properties</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="properties">helm.client.download.enabled=true
+helm.client.download.version=3.4.1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following properties control the download of the Helm client:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">DSL property under <code>helm.downloadClient</code></th>
+<th class="tableblock halign-left valign-top">Project property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.client.download.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If set to <code>true</code>, the Helm client is downloaded from the remote location.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.client.download.version</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The version of the Helm client to be downloaded.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The latest version of Helm available at the time the plugin is published (currently <code>3.4.1</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>destinationDir</code></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The base directory where Helm client executables are extracted. By default, this is a directory under
+ <code>(rootDir)/.gradle</code>, so the client will only be downloaded and extracted once in a multi-module build, and is not
+ removed by a <code>clean</code> task. You can set this to a different directory (e.g. under the <code>build</code> directory) if you
+ prefer different behavior.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.gradle/helm/client</code> under the <em>root</em> project dir</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.client.download.baseUrl</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The base URL for downloading the client executables.</p>
+<p class="tableblock">  You can change this to a different URL if required, for example when behind a corporate proxy.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><a href="https://get.helm.sh/" class="bare">https://get.helm.sh/</a></code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.client.download.group</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A pseudo "group" coordinate for the Helm client artifacts; required for Gradle artifact resolution.</p>
+<p class="tableblock">  Change this to a different value in the unlikely case that the default group name <code>sh.helm</code> conflicts
+  with other external dependencies used by the build script.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sh.helm</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.client.download.osClassifier</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Override the OS classifier (the suffix of the downloaded filename) if auto-detection does not work as expected.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auto-detected for the current system based on Java system properties.</p>
+<p class="tableblock">  For example, <code>darwin-amd64</code> or <code>windows-amd64</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_defining_charts"><a class="anchor" href="#_defining_charts"></a>Defining Charts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With the <code>helm</code> plugin you can configure your Helm chart using a declarative DSL, and the corresponding Gradle
+tasks will be added automatically.</p>
+</div>
+<div class="paragraph">
+<p>Groovy</p>
+</div>
+<div class="listingblock primary">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">plugins {
+    id 'org.unbroken-dome.helm' version '1.6.0'
+}
+
+helm {
+    charts {
+        foo {
+            chartName = 'foo'
+            chartVersion = '1.2.3'
+            sourceDir = file('src/helm')
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Kotlin</p>
+</div>
+<div class="listingblock secondary">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">plugins {
+    id("org.unbroken-dome.helm") version "1.6.0"
+}
+
+helm {
+    charts {
+        create("foo") {
+            chartName.set("foo")
+            chartVersion.set("1.2.3")
+            sourceDir.set(file("src/helm"))
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the chart moniker used in the DSL and the actual chart name are not necessarily the same, unless you set
+ them to the same value.</p>
+</div>
+<div class="paragraph">
+<p>The following properties can be configured on a chart:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Property</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default</p>
+<p class="tableblock"><code>chartName</code>
+The name of the chart, as used in various <code>helm</code> CLI commands. The plugin will make sure that the chart sources are
+ in a directory with this name when calling <code>helm</code>.
+Defaults to the name of the chart in the DSL.</p>
+<p class="tableblock"><code>chartVersion</code>
+The version of the chart, as used by <code>helm</code>.
+Defaults to the Gradle project version.</p>
+<p class="tableblock"><code>sourceDir</code>
+The directory containing the chart sources (<code>Chart.yaml</code> file, etc.).
+Defaults to <code>src/main/helm</code> for the <code>main</code> chart (see below), <em>required</em> for all other charts.</p>
+<p class="tableblock"><code>extraFiles</code>
+An optional Gradle <code>CopySpec</code> that allows injecting files from external sources into the chart.
+By default, no files are copied.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect2">
+<h3 id="_helm_chart_tasks"><a class="anchor" href="#_helm_chart_tasks"></a>Helm Chart Tasks</h3>
+<div class="paragraph">
+<p>From the above chart definition, a number of tasks will be created automatically:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Task <code>helmFilterFooChartSources</code></dt>
+<dd>
+<p>Resolves placeholders in the chart sources.</p>
+</dd>
+<dt class="hdlist1">Task <code>helmCollectFooChartDependencies</code></dt>
+<dd>
+<p>Resolves chart dependencies within the project (see <a href="#_managing_chart_dependencies">Managing Chart Dependencies</a>).</p>
+</dd>
+<dt class="hdlist1">Task <code>helmCollectFooChartSources</code></dt>
+<dd>
+<p>Collects all the sources for a chart (including dependencies and extra files) into one directory.</p>
+</dd>
+<dt class="hdlist1">Task <code>helmUpdateFooChartDependencies</code></dt>
+<dd>
+<p>Equivalent to the <a href="https://helm.sh/docs/helm/helm_dependency_update/"><code>helm dependency update</code></a> CLI command.</p>
+</dd>
+<dt class="hdlist1">Task <code>helmLintFooChart</code></dt>
+<dd>
+<p>Equivalent to the <a href="https://helm.sh/docs/helm/helm_lint/"><code>helm lint</code></a> CLI command. See <a href="#_linting_charts">Linting Charts</a> for
+details on configuring the linting step.</p>
+</dd>
+<dt class="hdlist1">Task <code>helmPackageFooChart</code></dt>
+<dd>
+<p>Equivalent to the <a href="https://helm.sh/docs/helm/helm_package/"><code>helm package</code></a> CLI command.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>In addition, the plugin creates a task named <code>helmPackage</code> that will depend on all charts' package task, so it can be
+used to build all the project&#8217;s charts. Most of the time, you will just call <code>helmPackage</code> to build your charts.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_helm_chart_configurations"><a class="anchor" href="#_helm_chart_configurations"></a>Helm Chart Configurations</h3>
+<div class="paragraph">
+<p>The following configurations and artifacts will be created for each chart:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Configuration <code>helmFoo</code></dt>
+<dd>
+<p>Contains a single artifact that has the chart directory as its output, and is built by the
+<code>helmBuildFooChartDependencies</code> task.</p>
+</dd>
+<dt class="hdlist1">Configuration <code>helmFooPackaged</code></dt>
+<dd>
+<p>Contains a single artifact that has the packaged (tar.gz) chart file as its output, and is built by the
+<code>helmPackageFooChart</code> task.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_the_main_chart"><a class="anchor" href="#_using_the_main_chart"></a>Using the <code>main</code> chart</h3>
+<div class="paragraph">
+<p>For the typical case of building a single Helm chart in a project, the Helm plugin provides some useful conventions
+so that a single "main" chart can be built with a minimum of configuration.</p>
+</div>
+<div class="paragraph">
+<p>If you don&#8217;t define any charts in the <code>helm.charts</code> DSL block, and your project contains a file
+<code>src/main/helm/Chart.yaml</code>, then by convention a chart named <code>main</code> will be
+defined automatically, equivalent to the following:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.charts {
+    main {
+        sourceDir = file('src/main/helm')
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.charts {
+    create("main") {
+        sourceDir.set(file("src/main/helm"))
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+since Helm chart versions must be SemVer-compliant, you should either make sure that the project version is a
+valid SemVer, or set the main chart version to a different value.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>main</code> chart will not be instantiated if you define any other charts; however you can create the <code>main</code> chart
+explicitly if you would like to use it anyway:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.charts.main.chartVersion = '1.0.0'</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.charts.create("main") {
+    chartVersion.set("1.0.0")
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Some IDEs (e.g. IntelliJ IDEA) offer support for Helm, and will report a warning or error if the <code>name</code> declared in
+the Chart.yaml file differs from the name of the containing directory. If you want to avoid such a warning, you can
+either
+  * call your chart <code>helm</code> in the Chart.yaml file&#8201;&#8212;&#8201;it will automatically be renamed when the chart is packaged; or
+  * change the <code>sourceDir</code> of the <code>main</code> chart to a directory that matches the chart name.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_charts_in_a_multi_project_build"><a class="anchor" href="#_using_charts_in_a_multi_project_build"></a>Using Charts in a Multi-Project Build</h3>
+<div class="paragraph">
+<p>Of course, instead of defining multiple charts in one Gradle project, you can also have a multi-project build where
+each subproject defines a single <code>main</code> chart. That way, you can take advantage of the <code>main</code> chart convention in
+every project.</p>
+</div>
+<div class="paragraph">
+<p>However, note that the values defined in the <code>helm</code> block are not automatically inherited by subprojects.
+If you want to define your Helm CLI options in one central place, you can add a <code>subprojects</code> clause in the root
+project:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">subprojects {
+    // Use verbose logging on all Helm commands
+    helm.extraArgs.addAll("-v", "1")
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">subprojects {
+    // Use verbose logging on all Helm commands
+    helm.extraArgs.addAll("-v", "1")
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_extra_files_to_a_chart"><a class="anchor" href="#_adding_extra_files_to_a_chart"></a>Adding Extra Files to a Chart</h3>
+<div class="paragraph">
+<p>Each chart defined in the DSL has an <code>extraFiles</code> property which is a Gradle <code>CopySpec</code>. It allows you to copy
+additional files into the chart when it is built.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.charts {
+    myChart {
+        sourceDir = file 'src/helm/my-chart'
+
+        extraFiles {
+            from('src/extra/script.js') {
+                into('files/scripts')
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.charts {
+    myChart {
+        sourceDir.set(file("src/helm/my-chart"))
+
+        extraFiles {
+            from("src/extra/script.js") {
+                into("files/scripts")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In most cases, the source files of the chart should be put into the chart source directory.
+The <code>extraFiles</code> mechanism is primarily designed for cases where some parts of the chart need to be dynamically
+generated during the Gradle build.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If the <code>extraFiles</code> copy spec refers to a <code>RegularFileProperty</code> or <code>DirectoryProperty</code> that represents the output
+of a task, or to an artifact declared by another project, a task dependency will automatically be set up so that the
+task building the file is run before the Helm chart is built.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_defining_repositories"><a class="anchor" href="#_defining_repositories"></a>Defining Repositories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Chart repositories are external storages of Helm charts.</p>
+</div>
+<div class="paragraph">
+<p>You can use the <code>helm.repositories</code> block to define repositories:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    repositories {
+        example {
+            url 'http://helm-repo.example.com/'
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    repositories {
+        create("example") {
+            url("http://helm-repo.example.com/")
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Defining a repository will automatically add a task <code>helmAdd&lt;X&gt;Repository</code> (for example,
+<code>helmAddExampleRepository</code>) that does the equivalent of <code>helm repo add</code>.</p>
+</div>
+<div class="paragraph">
+<p>For convenience, some shorthand methods are defined for registration of some well-known repositories:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    repositories {
+        // registers the Helm stable repo under the name "stable"
+        helmStable()
+        // registers the Helm incubator repo under the name "incubator"
+        helmIncubator()
+        // registers the Bitnami repo under the name "bitnami"
+        bitnami()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    repositories {
+        // registers the Helm stable repo under the name "stable"
+        helmStable()
+        // registers the Helm incubator repo under the name "incubator"
+        helmIncubator()
+        // registers the Bitnami repo under the name "bitnami"
+        bitnami()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_repository_credentials"><a class="anchor" href="#_configuring_repository_credentials"></a>Configuring Repository Credentials</h3>
+<div class="paragraph">
+<p>If a chart repository requires authentication, you can configure credentials using the <code>credentials</code>
+block. It works very similarly to other places in Gradle where credentials are used.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    repositories {
+        example {
+            url 'http://helm-repo.example.com/'
+            credentials {
+                username = 'user'
+                password = 'password'
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    repositories {
+        create("example") {
+            url("http://helm-repo.example.com/")
+            credentials {
+                username.set("user")
+                password.set("password")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition to username/password credentials, certificate credentials based on PEM files
+are also supported:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import org.unbrokendome.gradle.plugins.helm.dsl.credentials.CertificateCredentials
+
+helm {
+    repositories {
+        example {
+            url 'http://helm-repo.example.com/'
+
+            credentials(CertificateCredentials) {
+                certificateFile = file 'path/to/cert.pem'
+                keyFile = file 'path/to/key.pem'
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">import org.unbrokendome.gradle.plugins.helm.dsl.credentials.CertificateCredentials
+
+helm {
+    repositories {
+        create("example") {
+            url("http://helm-repo.example.com/")
+
+            credentials(CertificateCredentials::class.java) {
+                certificateFile.set(file("path/to/cert.pem"))
+                keyFile.set(file("path/to/key.pem"))
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_filtering_chart_sources"><a class="anchor" href="#_filtering_chart_sources"></a>Filtering Chart Sources</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin includes a <em>filtering</em> step that will resolve placeholders in certain chart files before the chart
+is packaged.</p>
+</div>
+<div class="paragraph">
+<p>Filtering applies only to <code>*.yaml</code> files directly in the chart directory. Chart templates will <em>not</em> be filtered
+this way; instead apply filtering to the <code>values.yaml</code> file and then use Helm&#8217;s templating constructs for building
+the Chart templates.</p>
+</div>
+<div class="paragraph">
+<p>Filtered files are processed using a Groovy
+<a href="https://docs.groovy-lang.org/latest/html/api/groovy/text/SimpleTemplateEngine.html">SimpleTemplateEngine</a>. Filter
+expressions are Groovy expressions enclosed in <code>${</code> and <code>}</code>, for example <code>${chartName}</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following placeholders are automatically available based on the corresponding properties of the chart in
+the DSL. You can also define additional placeholders and their values using the <code>filtering.values</code> property (see below).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Placeholder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>chartName</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The chart name, as set by the <code>HelmChart.chartName</code> property in the build script</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>chartVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The chart version, as set by the <code>HelmChart.chartVersion</code> property in the build script</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>projectVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The <code>version</code> of the Gradle <code>Project</code> (at the time the filtering task is executed)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The <code>name</code> and <code>version</code> in the Chart.yaml are automatically replaced based on the chart information from the
+Gradle script. You do not need to add filter expressions for these.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_enable_or_disable_filtering"><a class="anchor" href="#_enable_or_disable_filtering"></a>Enable or Disable Filtering</h3>
+<div class="paragraph">
+<p>The filtering is enabled by default. You can set the <code>filtering.enabled</code> property to <code>false</code> if you would not like
+the chart to be filtered. This can be done either on the project level or the chart level:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    // Disable filtering by default
+    filtering.enabled = false
+
+    charts {
+        chart1 {
+            // filtering will be enabled for this chart
+            filtering.enabled = true
+        }
+        chart2 {
+            // filtering will be disabled for this chart (inheriting settings from project level)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    // Disable filtering by default
+    filtering.enabled.set(false)
+
+    charts {
+        create("chart1") {
+            // filtering will be enabled for this chart
+            filtering.enabled.set(true)
+        }
+        create("chart2") {
+            // filtering will be disabled for this chart (inheriting settings from project level)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_supply_additional_values"><a class="anchor" href="#_supply_additional_values"></a>Supply Additional Values</h3>
+<div class="paragraph">
+<p>Use the <code>filtering.values</code> property to define additional values to be available in filtering expressions.
+Again, values may be specified in the project-level <code>filtering</code> block, as well as on a <code>filtering</code> block for an
+individual chart. Project-level and chart-level values are merged, with the chart-level values having precedence
+if a value is defined in both places.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    filtering {
+        // This value will be resolvable in all charts' YAML files as ${authorName}
+        values.put 'authorName', 'A. U. Thor'
+    }
+
+    (charts) {
+        "main" {
+            filtering {
+                // add a custom value that can be resolved only inside this chart's YAML files.
+                values.put 'dockerImage', 'busybox'
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    filtering {
+        // This value will be resolvable in all charts' YAML files as ${authorName}
+        values.put("authorName", "A. U. Thor")
+    }
+
+    charts {
+        main {
+            filtering {
+                // add a custom value that can be resolved only inside this chart's YAML files.
+                values.put("dockerImage", "busybox")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+You can also pass a <code>Provider</code> or <code>Property</code> as the value; in this case it will be resolved lazily when the filtering
+task runs.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_example_pass_the_jib_docker_image_name_and_version"><a class="anchor" href="#_example_pass_the_jib_docker_image_name_and_version"></a>Example: Pass the JIB Docker Image Name and Version</h4>
+<div class="paragraph">
+<p>Many Helm charts use the following conventional structure in their <code>values.yaml</code> to specify the Docker image to be
+used in Kubernetes deployments:</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="yaml">image:
+  repository: "gcr.io/awesome-project/awesome-image"
+  tag: "1.2.3"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the Docker image is built with JIB in the same project, we can avoid the repetition (which is bound to cause silly
+copy &amp; paste errors eventually) and pass the values from Gradle instead:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">build.gradle</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    filtering {
+        values.put 'imageRepository', jib.to.image
+        values.put 'imageTag', jib.to.tags.first()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">build.gradle.kts</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    filtering {
+        values.put("imageRepository", jib.to.image)
+        values.put("imageTag", jib.to.tags.first())
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And then refer to these values in the <code>values.yaml</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="yaml">image:
+  repository: ${imageRepository}
+  tag: ${imageTag}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_values_from_files"><a class="anchor" href="#_values_from_files"></a>Values from Files</h4>
+<div class="paragraph">
+<p>Values can also be read from the contents of files; use the <code>filtering.fileValues</code> property for this. The following
+example would generate a RSA private key using <code>openssl</code> and then pass it to the filtering:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">def rsaKeyFile = objects.file()
+    .fileValue(file("$buildDir/rsa.key"))
+
+task generateRsaKey(type: Exec) {
+    // Declare the file as a task output so that task dependencies are set up by Gradle
+    outputs.file rsaKeyFile
+    executable = 'openssl'
+    arg 'genrsa', '-out', rsaKeyFile.get()
+}
+
+helm.filtering {
+    fileValues.put 'rsaKey', rsaKeyFile
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">val rsaKeyFile = objects.file()
+    .fileValue(file("$buildDir/rsa.key"))
+
+tasks.create("generateRsaKey", Exec::class) {
+    // Declare the file as a task output so that task dependencies are set up by Gradle
+    outputs.file(rsaKeyFile)
+    executable = "openssl"
+    arg("genrsa", "-out", rsaKeyFile.get())
+}
+
+helm.filtering {
+    fileValues.put("rsaKey", rsaKeyFile)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Afterwards, we can use this value in our <code>values.yaml</code> file (note that the value contains newlines, so we need
+to do some processing for correct YAML indentation):</p>
+</div>
+<div class="listingblock">
+<div class="title">values.yaml</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="yaml">rsaKey: |
+  ${ rsaKey.collectReplacements { it == '\n' ? '\n    ' : null } }</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_linting_charts"><a class="anchor" href="#_linting_charts"></a>Linting Charts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The default workflow for building and packaging a Helm chart includes a lint step, which is
+performed by the <code>HelmLint</code> task and maps to a <code>helm lint</code> CLI call.</p>
+</div>
+<div class="paragraph">
+<p>Both the global <code>helm</code> DSL block and each <code>chart</code> block provide a nested <code>lint</code> block, where you
+can fine-tune linting on a global or chart level. Each chart will inherit the global configuration
+and can selectively override certain aspects of it.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+
+    // The global lint configuration applies to all charts
+    lint {
+        // treat linter warnings as errors (failing the build)
+        strict = true
+    }
+
+    charts {
+        main {
+            // This configures linting only for the main chart
+            lint {
+                // disable strict linting only for this chart
+                strict = false
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+
+    // The global lint configuration applies to all charts
+    lint {
+        // treat linter warnings as errors (failing the build)
+        strict.set(true)
+    }
+
+    charts {
+        create("main") {
+            // This configures linting only for the main chart
+            lint {
+                // disable strict linting only for this chart
+                strict.set(false)
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_passing_values_to_the_linter"><a class="anchor" href="#_passing_values_to_the_linter"></a>Passing Values to the Linter</h3>
+<div class="paragraph">
+<p>You can pass values to the linter using the <code>values</code>, <code>fileValues</code> and <code>valueFiles</code>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>values</code> contains values to be passed directly (CLI option: <code>--set</code> or <code>--set-string</code>)</p>
+</li>
+<li>
+<p><code>fileValues</code> contains values to be read from files (CLI option: <code>--set-file</code>)</p>
+</li>
+<li>
+<p><code>valueFiles</code> contains a list of files that contain values in YAML format (CLI option: <code>--values</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Passing values to <code>helm lint</code> may be necessary to avoid warnings if you use the <code>required</code> function in your Helm
+templates (see <a href="https://github.com/helm/helm/issues/2347">Helm issue #2347</a>). Also, it can be useful if
+you have conditional templates which would not be rendered when using the default values
+from values.yaml.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>helm lint</code> does not actually perform a syntactic analysis of your charts; instead it renders
+the template internally (just as <code>helm template</code> would do) and checks the resulting YAML for
+correctness.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Values and value files defined in the global <code>lint</code> block are automatically inherited by
+each chart; however a chart can add additional values or value files.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+
+    lint {
+        valueFiles.from 'src/test/helm/helm-lint-global.yaml'
+    }
+
+    charts {
+        main {
+            lint {
+                valueFiles.from 'src/test/helm/helm-lint-main.yaml'
+                values.put 'foo', 'bar'
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+
+    lint {
+        valueFiles.from("src/test/helm/helm-lint-global.yaml")
+    }
+
+    (charts) {
+        "main" {
+            lint {
+                valueFiles.from("src/test/helm/helm-lint-main.yaml")
+                values.put("foo", "bar")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_disable_the_lint_step"><a class="anchor" href="#_disable_the_lint_step"></a>Disable the Lint Step</h3>
+<div class="paragraph">
+<p>You can disable the lint step altogether by setting the <code>lint.enabled</code> property to <code>false</code>. This
+works on a global as well as on a chart level. (Again, the chart setting is inherited from the
+global setting).</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+
+    lint {
+        // disable linting by default
+        enabled = false
+    }
+
+    charts {
+        main {
+            // enable linting for the main chart
+            lint.enabled = true
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+
+    lint {
+        // disable linting by default
+        enabled.set(false)
+    }
+
+    (charts) {
+        "main" {
+            // enable linting for the main chart
+            lint.enabled.set(true)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_multiple_lint_configurations"><a class="anchor" href="#_using_multiple_lint_configurations"></a>Using Multiple Lint Configurations</h3>
+<div class="paragraph">
+<p>Many charts use conditional expressions like <code>{{ if }} &#8230;&#8203; {{ else }}</code> to include parts of a template based on the
+supplied values. This can make it difficult to completely lint the chart in one go, because often there is
+no combination of values that can be supplied to the linter that would really render everything in the chart.</p>
+</div>
+<div class="paragraph">
+<p>The plugin addresses this by supporting multiple linter configurations: Inside the <code>lint</code> block for a chart,
+you have a container for <code>configurations</code>, and each configuration can have its own <code>values</code>, <code>fileValues</code> and
+<code>valueFiles</code>. Each lint configuration will give rise to a separate <code>HelmLint</code> task that will run the linter with
+the specified input.</p>
+</div>
+<div class="paragraph">
+<p>The <code>values</code>, <code>fileValues</code> and <code>valueFiles</code> for each lint configuration are merged with (and can selectively
+override) the corresponding properties from the chart&#8217;s <code>lint</code> block and the global <code>lint</code> block, allowing you to
+have a hierarchy of common and more specialized values.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    lint {
+        // This values file will be used for ALL lint configurations in ALL charts
+        valueFiles.from 'src/test/helm/helm-lint-all.yaml'
+    }
+
+    charts {
+        main {
+            lint {
+                // This values file will be used for ALL lint configurations in this chart
+                valueFiles.from 'src/test/helm/helm-lint-main-common.yaml'
+
+                configurations {
+                    basic {
+                        // This values file will be used for the basic configuration only
+                        valueFiles.from 'src/test/helm/helm-lint-main-basic.yaml'
+                    }
+                    advanced {
+                        // This value file will be used for the advanced configuration only
+                        valueFiles.from 'src/test/helm/helm-lint-main-advanced.yaml'
+                    }
+                }
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    lint {
+        // This value file will be used for ALL lint configurations in ALL charts
+        valueFiles.from("src/test/helm/helm-lint-all.yaml")
+    }
+
+    charts {
+        "main" {
+            lint {
+                // This value file will be used for ALL lint configurations in this chart
+                valueFiles.from("src/test/helm/helm-lint-main-common.yaml")
+
+                configurations {
+                    register("basic") {
+                        // This value file will be used for the basic configuration only
+                        valueFiles.from("src/test/helm/helm-lint-main-basic.yaml")
+                    }
+                    register("advanced") {
+                        // This value file will be used for the advanced configuration only
+                        valueFiles.from("src/test/helm/helm-lint-main-advanced.yaml")
+                    }
+                }
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, running <code>helmLint&lt;Chart&gt;Chart</code> (or other tasks that depend on it, such as <code>helmPackage</code>) will invoke <code>helm lint</code>
+for each configuration, by way of a separate <code>HelmLint</code> task per configuration that it depends on.</p>
+</div>
+<div class="paragraph">
+<p>You can also run the linter for a single configuration using the <code>helmLint&lt;Chart&gt;Chart&lt;Configuration&gt;</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you do not add any lint configurations, the plugin automatically creates a single configuration named
+"default" with no additional values.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_managing_chart_dependencies"><a class="anchor" href="#_managing_chart_dependencies"></a>Managing Chart Dependencies</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>helm</code> plugin can manage dependencies between charts in the same Gradle build.</p>
+</div>
+<div class="paragraph">
+<p>This is especially useful if you have multiple charts in the same project (or in a multi-project build)
+that depend on one another, because it will also add Gradle task dependencies to make sure that the charts
+are packaged in the correct order.</p>
+</div>
+<div class="paragraph">
+<p>Chart dependencies are resolved by packaging the dependency chart and then extracting it into the <code>charts</code>
+sub-directory of the dependent chart. This does not involve any of the standard Helm dependency mechanisms
+(<code>helm dependency build</code> / <code>helm dependency update</code>) and will run before <code>helm dependency update</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_declaring_a_dependency"><a class="anchor" href="#_declaring_a_dependency"></a>Declaring a Dependency</h3>
+<div class="paragraph">
+<p>To declare a dependency from one chart onto another, use the <code>dependencies</code> block inside a <code>chart</code>.</p>
+</div>
+<div class="paragraph">
+<p>The following example defines two charts <code>foo</code> and <code>bar</code>, and declares a dependency from <code>bar</code> onto <code>foo</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.charts {
+
+    foo {
+        chartVersion = '1.2.3'
+        sourceDir = file 'src/helm/foo'
+    }
+
+    bar {
+        chartVersion = '3.2.1'
+        sourceDir = file 'src/helm/bar'
+
+        dependencies.add 'foo'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.charts {
+
+    create("foo") {
+        chartVersion.set("1.2.3")
+        sourceDir.set(file("src/helm/foo"))
+    }
+
+    create("bar") {
+        chartVersion.set("3.2.1")
+        sourceDir.set(file("src/helm/bar"))
+
+        dependencies.add("foo")
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Instead of using the name, it is also possible to refer directly to the <code>HelmChart</code> DSL object in the dependency:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.charts {
+
+    foo {
+        chartVersion = '1.2.3'
+        sourceDir = file 'src/helm/foo'
+    }
+
+    bar {
+        chartVersion = '3.2.1'
+        sourceDir = file 'src/helm/bar'
+
+        dependencies.add foo
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">(helm.charts) {
+
+    val foo by creating {
+        chartVersion.set("1.2.3")
+        sourceDir.set(file("src/helm/foo"))
+    }
+
+    val bar by creating {
+        chartVersion.set("3.2.1")
+        sourceDir.set(file("src/helm/bar"))
+
+        dependencies.add(foo)
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuring_the_dependency_in_chart_yaml"><a class="anchor" href="#_configuring_the_dependency_in_chart_yaml"></a>Configuring the Dependency in Chart.yaml</h3>
+<div class="paragraph">
+<p>Since the dependency resolution done by this plugin is simply a package-and-extract operation, it is <em>not</em> necessary
+to mention the dependency in your <code>Chart.yaml</code> file (or <code>requirements.yaml</code> for API version <code>v1</code>). However, for some
+advanced configuration of the dependency (e.g. when using an <code>alias</code> or <code>import-values</code>), you can still declare it.
+In that case, you should omit the <code>repository</code> so that <code>helm dependency update</code> will not attempt to resolve it from
+a chart repository:</p>
+</div>
+<div class="listingblock">
+<div class="title">bar/Chart.yaml</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="yaml">apiVersion: v2
+name: bar
+version: 3.2.1
+
+dependencies:
+  - name: foo
+    alias: fooAlias
+    import-values:
+      - fooData</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When running <code>helm dependency update</code> (via the <code>helmUpdateBarDependencies</code> task), it will output something like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Dependency foo did not declare a repository. Assuming it exists in the charts directory</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_chart_dependencies_in_multi_project_builds"><a class="anchor" href="#_chart_dependencies_in_multi_project_builds"></a>Chart Dependencies in Multi-Project Builds</h3>
+<div class="paragraph">
+<p>If you have a Gradle multi-project build, chart dependencies can also refer to charts built by
+other projects.</p>
+</div>
+<div class="paragraph">
+<p>Use the <code>project</code> parameter when adding a dependency, in addition to the <code>chart</code> parameter:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">dependencies {
+    // Assuming that the foo chart is defined in the foo project
+    add project: ':foo', chart: 'foo'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">dependencies {
+    // Assuming that the foo chart is defined in the foo project
+    add(project = ":foo", chart = "foo")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>chart</code> parameter defaults to <code>"main"</code>, so if a dependency references another project&#8217;s <code>main</code>
+chart, the <code>chart</code> parameter can be omitted:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">dependencies {
+    // Referencing the main chart in the foo project
+    add project: ':foo'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">dependencies {
+    // Referencing the main chart in the foo project
+    add(project = ":foo")
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_mixing_gradle_and_helm_dependency_resolution"><a class="anchor" href="#_mixing_gradle_and_helm_dependency_resolution"></a>Mixing Gradle and Helm Dependency Resolution</h3>
+<div class="paragraph">
+<p>A chart may have external dependencies (to be resolved by <code>helm dependency update</code>) in addition to the dependencies
+managed by the Gradle plugin.</p>
+</div>
+<div class="paragraph">
+<p>At the point when <code>helm dependency update</code> is run, the resolved charts from Gradle will already be present in the
+<code>charts/</code> sub-directory, and <code>helm dependency update</code> should be smart enough to ignore them.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_resolving_external_chart_dependencies"><a class="anchor" href="#_resolving_external_chart_dependencies"></a>Resolving External Chart Dependencies</h3>
+<div class="paragraph">
+<p>The dependency resolution mechanism described here is primarily intended for resolving dependencies on charts in the
+same Gradle project, or in another Gradle project that is part of the same multi-project build. For dependencies on
+external charts, it is best to publish those to a <a href="https://helm.sh/docs/topics/chart_repository/">chart repository</a>
+(for example, using the <a href="#_publishing_charts"><code>helm-publish</code> plugin</a>)
+and then use Helm&#8217;s standard dependency mechanism to resolve them.</p>
+</div>
+<div class="paragraph">
+<p>However, in some cases you might prefer to use Gradle to resolve those dependencies. For example, if you already have
+a Maven repository for your internal artifacts, and only a few common charts to be used as dependencies, it might be
+more convenient to publish those charts to your Maven repository instead.</p>
+</div>
+<div class="paragraph">
+<p>The Helm plugin internally creates a dependency configuration called <code>helm&lt;Chart&gt;Dependencies</code>, for example
+<code>helmFooDependencies</code> for a chart named <code>foo</code>. You can use Gradle&#8217;s standard <code>dependencies</code> block to add external
+module dependencies to this configuration. It is required that these resolve to a single tar.gz compressed file,
+like the one that is produced by <code>helm package</code>.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.charts {
+    foo {
+        sourceDir = file 'src/helm/foo'
+    }
+}
+
+// Note: this is the Gradle project dependencies block, not the chart's
+dependencies {
+    // Assuming that a packaged Helm chart is available at these GAV coordinates
+    helmFooDependencies 'com.example.bar:bar-helm-chart:3.2.1@tgz'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.charts {
+    create("foo") {
+        sourceDir.set(file("src/helm/foo"))
+    }
+}
+
+// Note: this is the Gradle project dependencies block, not the chart's
+dependencies {
+    // Assuming that a packaged Helm chart is available at these GAV coordinates
+    "helmFooDependencies"("com.example.bar:bar-helm-chart:3.2.1@tgz")
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_publishing_charts"><a class="anchor" href="#_publishing_charts"></a>Publishing Charts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>helm-publish</code> plugin allows you to publish your charts to remote repositories over HTTP.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>There is currently no "official" API to publish Helm charts; Helm defines only how charts should be
+served from a repository. The plugin directly supports several types of popular repository servers, including
+<a href="https://chartmuseum.com/">ChartMuseum</a>, <a href="https://jfrog.com/artifactory/">Artifactory</a> and <a href="https://goharbor.io/">Harbor</a>.</p>
+</div>
+<div class="paragraph">
+<p>For other repository types that are not directly supported, you could try using the <code>custom</code> repository type,
+or consider creating a PR to add support for it.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Apply the <code>helm-publish</code> plugin to your project:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">plugins {
+    id 'org.unbroken-dome.helm-publish' version '1.6.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">plugins {
+    id("org.unbroken-dome.helm-publish") version "1.6.0"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The plugin adds another sub-extension <code>helm.publishing</code> that lets you define the repository or
+repositories to publish to:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    publishing {
+        repositories {
+            chartMuseum('example') {
+                url = uri('http://helm-repo.example.com/')
+            }
+            artifactory('myRepo') {
+                url = uri('http://artifactory.example.com/helm-local')
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    publishing {
+        repositories {
+            chartMuseum("example") {
+                url.set(uri("http://helm-repo.example.com/"))
+            }
+            artifactory("myRepo") {
+                url.set(uri("http://artifactory.example.com/helm-local"))
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This will automatically define some Gradle tasks in the project:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Task <code>helmPublish</code></dt>
+<dd>
+<p>Publishes all charts to all repositories.</p>
+</dd>
+<dt class="hdlist1">Task <code>helmPublish&lt;X&gt;Chart</code></dt>
+<dd>
+<p>Publishes chart X to all repositories.</p>
+</dd>
+<dt class="hdlist1">Task <code>helmPublish&lt;X&gt;ChartTo&lt;Y&gt;Repo</code></dt>
+<dd>
+<p>Publishes chart X to repository Y, e.g. <code>helmPublishMainChartToExampleRepo</code>.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>There is no connection between the repositories in <code>helm.repositories</code> and
+the publishing repositories in <code>helm.publishing.repositories</code>. The former are for retrieving
+charts, the latter are for publishing them.</p>
+</div>
+<div class="paragraph">
+<p>If you want to download from and publish to
+the same external repository, you would need to specify it both in <code>helm.repositories</code> and
+<code>helm.publishing.repositories</code> (similar to Gradle&#8217;s built-in publishing).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>If you only define a single publishing repository, the name can be omitted, in which case the name <code>"default"</code> is
+used:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    publishing {
+        repositories {
+            artifactory {
+                url = uri('http://artifactory.example.com/helm-local')
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    publishing {
+        repositories {
+            artifactory {
+                url.set(uri("http://artifactory.example.com/helm-local"))
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_repository_types"><a class="anchor" href="#_repository_types"></a>Repository Types</h3>
+<div class="paragraph">
+<p>The following repository types are supported:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>artifactory</code></p>
+</li>
+<li>
+<p><code>chartMuseum</code></p>
+</li>
+<li>
+<p><code>harbor</code></p>
+</li>
+<li>
+<p><code>custom</code></p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_chartmuseum_repositories"><a class="anchor" href="#_chartmuseum_repositories"></a>ChartMuseum Repositories</h4>
+<div class="paragraph">
+<p>For ChartMuseum, simply use the <code>chartMuseum</code> repository type and configure the URL:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    publishing {
+        repositories {
+            chartMuseum {
+                url = uri('https://chartmuseum.example.com')
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    publishing {
+        repositories {
+            chartMuseum {
+                url.set(uri("http://chartmuseum.example.com"))
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_chartmuseum_multitenancy_support"><a class="anchor" href="#_chartmuseum_multitenancy_support"></a>ChartMuseum Multitenancy Support</h5>
+<div class="paragraph">
+<p>ChartMuseum supports a <a href="https://chartmuseum.com/docs/#multitenancy">multitenancy</a> mode that lets you organize repositories
+into a hierarchy. The depth of the hierarchy is specified in the server configuration, with zero (single-tenant server)
+being the default.</p>
+</div>
+<div class="paragraph">
+<p>To publish charts to a multitenancy-enabled ChartMuseum server, add one or more tenant identifiers to the <code>tenantIds</code>
+list property in the repository configuration block. The number of tenant identifiers should match the depth configured
+on the server.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    publishing {
+        repositories {
+            chartMuseum {
+                url = uri('https://chartmuseum.example.com')
+                // For a multitenancy-enabled server with depth 2, use 2 tenant IDs
+                tenantIds.addAll('org1', 'repo2')
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    publishing {
+        repositories {
+            chartMuseum {
+                url.set(uri("https://chartmuseum.example.com"))
+                // For a multitenancy-enabled server with depth 2, use 2 tenant IDs
+                tenantIds.addAll("org1", "repo2")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_harbor_repositories"><a class="anchor" href="#_harbor_repositories"></a>Harbor Repositories</h4>
+<div class="paragraph">
+<p>The plugin provides direct support for Harbor repositories. The project name can be set in the
+repository configuration block, and defaults to <code>library</code> if not set:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    publishing {
+        repositories {
+            harbor {
+                url = uri('https://harbor.example.com')
+                projectName.set("my-project")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    publishing {
+        repositories {
+            harbor {
+                url.set(uri("https://harbor.example.com"))
+                // For a multitenancy-enabled server with depth 2, use 2 tenant IDs
+                projectName.set("my-project")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Harbor uses ChartMuseum internally for its chart repositories, and it behaves like a multi-tenant
+ChartMuseum server with two levels of depth (where the first-level tenant ID always seems to be <code>chartrepo</code>, and
+the second-level tenant ID is the project name).
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_nexus_repositories"><a class="anchor" href="#_nexus_repositories"></a>Nexus Repositories</h4>
+<div class="paragraph">
+<p>The plugin provides direct support for Nexus repositories. The repository name can be set in the
+repository configuration block, and defaults not using if not set.
+Nexus API version can be specified by property <code>apiVersion</code> default <code>v1</code> if not set.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    publishing {
+        repositories {
+            nexus {
+                url = uri('http://nexus.example.com')
+                repository = 'helm-repository'
+                apiVersion = 'v1'
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    publishing {
+        repositories {
+            nexus {
+                url.set(uri('http://nexus.example.com'))
+                repository.set("helm-repository")
+                apiVersion.set("v1")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Nexus API
+<a href="https://help.sonatype.com/repomanager3/rest-and-integration-api/components-api#ComponentsAPI-UploadComponent">documentation</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_custom_repositories"><a class="anchor" href="#_custom_repositories"></a>Custom Repositories</h4>
+<div class="paragraph">
+<p>If your target repository is not directly supported but involves some sort of HTTP upload, you can try the <code>custom</code>
+type which offers some (limited) possibilities to configure a freestyle upload.
+Use the <code>uploadMethod</code>, <code>multipartForm</code> and/or <code>uploadPath</code> properties to customize the upload request:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    publishing {
+        repositories {
+            custom {
+                url = uri('http://helm-repo.example.com')
+                uploadMethod = 'PUT'
+                multipartForm = true
+                uploadPath = '/charts/{name}/{version}/{filename}'
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    publishing {
+        repositories {
+            custom {
+                url.set(uri("http://helm-repo.example.com"))
+                uploadMethod.set("PUT")
+                multipartForm.set(true)
+                uploadPath.set("/charts/{name}/{version}/{filename}")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following placeholders can be used in the <code>uploadPath</code> property:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>{name}</code> will be replaced with the chart name</p>
+</li>
+<li>
+<p><code>{version}</code> will be replaced with the chart version</p>
+</li>
+<li>
+<p><code>{filename}</code> will be replaced with the file name of the packaged chart, i.e. <code>{name}-{version}.tgz</code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_specifying_credentials_for_repositories"><a class="anchor" href="#_specifying_credentials_for_repositories"></a>Specifying Credentials for Repositories</h3>
+<div class="paragraph">
+<p>Most likely, a chart repository will require some credentials for write access. You can configure
+credentials in the same way as for <code>repositories</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    publishing {
+        repositories {
+            example {
+                url = uri('http://helm-repo.example.com/')
+                credentials {
+                    username = 'user'
+                    password = 'password'
+                }
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    publishing {
+        repositories {
+            create("example") {
+                url.set(uri("http://helm-repo.example.com/"))
+            }
+            credentials {
+                username.set("user")
+                password.set("password")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_preventing_a_chart_from_being_published"><a class="anchor" href="#_preventing_a_chart_from_being_published"></a>Preventing a Chart from Being Published</h3>
+<div class="paragraph">
+<p>By default, all charts defined in the project will be published. You can prevent this for a specific
+chart by setting its <code>publish</code> property to <code>false</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.charts {
+
+    // This chart will not be published
+    unpublishedChart {
+        // ...
+        publish = false
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.charts {
+
+    // This chart will not be published
+    create("unpublishedChart") {
+        // ...
+        publish = false
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_managing_releases"><a class="anchor" href="#_managing_releases"></a>Managing Releases</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>With the <code>helm-releases</code> plugin, you can manage Helm releases on a remote Kubernetes cluster.</p>
+</div>
+<div class="paragraph">
+<p>It allows you to define your releases in the Gradle DSL, in a declarative fashion. In this way, it can
+be used as an alternative to tools like <a href="https://github.com/roboll/helmfile">Helmfile</a> or
+<a href="https://github.com/Praqma/Helmsman">Helmsman</a>, with the advantage of leveraging the full power of Gradle
+instead of defining a custom file format.</p>
+</div>
+<div class="paragraph">
+<p>Apply the <code>helm-releases</code> plugin to your project:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">plugins {
+    id 'org.unbroken-dome.helm-releases' version '1.6.0'
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">plugins {
+    id("org.unbroken-dome.helm-releases") version "1.6.0"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Define your releases using the <code>helm.releases</code> block in your Gradle script:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    releases {
+        mariadb {
+            from 'stable/mariadb'
+            version = '5.1.1'
+
+            // pass values (like --set on the command line)
+            values = [ 'rootUser.password': 'secret' ]
+
+            // pass value files (like -f on the command line)
+            valueFiles.from 'mariadb.yaml'
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    releases {
+        create("mariadb") {
+            from("stable/mariadb")
+            version.set("5.1.1")
+
+            // pass values (like --set on the command line)
+            values.set(mapOf("rootUser.password" to "secret"))
+
+            // pass value files (like -f on the command line)
+            valueFiles.from("mariadb.yaml")
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are quite a few properties you can set for a release; most of them correspond to a command line
+option in <code>helm install</code>, <code>helm upgrade</code> or <code>helm uninstall</code>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>from</code> method is quite powerful, as it accepts various sources for the chart from which the release
+will be created. Besides a <code>String</code> (for specifying the chart directly), it can also be a <code>File</code>,
+<code>RegularFile</code>, <code>Directory</code>, <code>URI</code> or also a Gradle <code>Provider</code> of any of these types.</p>
+</div>
+<div class="paragraph">
+<p>It is also possible to use a <code>FileCollection</code> (e.g. a Gradle <code>Configuration</code>), which should consist of
+only one file. In that case, any
+<a href="https://docs.gradle.org/current/javadoc/org/gradle/api/Buildable.html#getBuildDependencies--">build dependencies</a>
+expressed by the <code>FileCollection</code> will be honored by the release.</p>
+</div>
+<div class="paragraph">
+<p>Of course you can also reference charts built by the <code>helm</code> plugin, by just passing the chart&#8217;s DSL object
+to <code>from</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    charts {
+        foo {
+            // configure the foo chart ...
+        }
+    }
+
+    releases {
+        foo {
+            from charts.foo
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    val foo by charts.creating {
+        // configure the foo chart ...
+    }
+
+    releases {
+        create("foo") {
+            from(foo)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also refer to a chart by name (and optionally project) by using the <code>chart</code> helper function:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">// Chart in the same project, equivalent to charts.foo
+from chart('foo')
+
+// foo chart in the foo project
+from chart(project: ':foo', chart: 'foo')
+
+// main chart in the foo project
+from chart(project: ':foo')</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">// Chart in the same project, equivalent to charts["foo"]
+from(chart("foo"))
+
+// foo chart in the foo project
+from(chart(project = ":foo", chart = "foo")
+
+// main chart in the foo project
+from(chart(project = ":foo"))</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_tasks"><a class="anchor" href="#_release_tasks"></a>Release Tasks</h3>
+<div class="paragraph">
+<p>For each release defined in the <code>releases</code> block, the following Gradle tasks will be generated:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Task <code>helmInstall&lt;X&gt;</code></dt>
+<dd>
+<p>Installs the release named X. This task will also do upgrades; depending on the <code>replace</code> property
+it will either call <code>helm upgrade --install</code> (by default) or <code>helm install --replace</code>.</p>
+</dd>
+<dt class="hdlist1">Task <code>helmUninstall&lt;X&gt;</code></dt>
+<dd>
+<p>Uninstalls the release named X (by calling <code>helm uninstall</code>).</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>In addition, there will be the following tasks to manage <em>all</em> releases in the project at once:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Task <code>helmInstall</code></dt>
+<dd>
+<p>Install or upgrade all releases.</p>
+</dd>
+<dt class="hdlist1">Task <code>helmUninstall</code></dt>
+<dd>
+<p>Uninstall all releases configured in the build script.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you use a chart built by the helm plugin for a release, the corresponding <code>helmInstall</code>
+task will have a task dependency on the <code>helmPackage</code> task so that the chart is guaranteed to be
+up to date before it is installed.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="release-installation-order"><a class="anchor" href="#release-installation-order"></a>Release Installation Order</h3>
+<div class="paragraph">
+<p>You can influence the order in which releases are installed or uninstalled by calling <code>mustInstallAfter</code>
+on the release. This is similar to what the <code>mustRunAfter</code> method from the Gradle DSL does for tasks:
+<code>mustInstallAfter</code> does not express a "hard" dependency on another release; instead it only influences
+the order in which their install tasks are called when both are requested to be installed in the current
+Gradle invocation.</p>
+</div>
+<div class="paragraph">
+<p>Currently it is not possible to refer to releases in another Gradle project.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+While <code>mustInstallAfter</code> influences the order of <code>helm install</code> invocations, it does not guarantee
+that the release will be up and running on the cluster when the installation of the dependent release
+begins. By default, <code>helm install</code> does not wait until the deployment is complete&#8201;&#8212;&#8201;if this is what
+you need, you can set <code>wait</code> to <code>true</code> in the release, so that the install/upgrade command is invoked
+with the <code>--wait</code> flag.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.releases {
+
+    postgres {
+        from 'stable/postgresql'
+
+        // Set the wait property to true if the following release
+        // requires this to be successfully deployed
+        wait = true
+    }
+
+    myApp {
+        // ...
+        mustInstallAfter 'postgres'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.releases {
+
+    create("postgres") {
+        from("stable/postgresql")
+
+        // Set the wait property to true if the following release
+        // requires this to be successfully deployed
+        wait = true
+    }
+
+    create("myApp") {
+        // ...
+        mustInstallAfter("postgres")
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Similarly, influencing the order of uninstalls is also possible using the <code>mustUninstallAfter</code> method. Note that
+<code>mustInstallAfter</code> and <code>mustUninstallAfter</code> are completely independent; neither of them implies the other. If you
+want to express both installation and uninstallation ordering between two releases, you must do so explicitly by
+calling both <code>mustInstallAfter</code> and <code>mustUninstallAfter</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.releases {
+
+    postgres {
+        from 'stable/postgresql'
+
+        // Set the wait property to true if the following release
+        // requires this to be successfully deployed
+        wait = true
+
+        // We can refer to a release by name even before it is declared --
+        // the references are resolved lazily
+        mustUninstallAfter 'myApp'
+    }
+
+    myApp {
+        // ...
+        mustInstallAfter 'postgres'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.releases {
+
+    create("postgres") {
+        from("stable/postgresql")
+
+        // Set the wait property to true if the following release
+        // requires this to be successfully deployed
+        wait = true
+
+        // We can refer to a release by name even before it is declared --
+        // the references are resolved lazily
+        mustUninstallAfter("myApp")
+    }
+
+    create("myApp") {
+        // ...
+        mustInstallAfter("postgres")
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_dependencies"><a class="anchor" href="#_release_dependencies"></a>Release Dependencies</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>This feature is now deprecated as of version 1.2.0, and will removed in a future version. Instead, please use
+<a href="#using-tags-to-select-releases">tags</a> to specify which releases to install, and
+<a href="#release-installation-order">Release Installation Order</a> to indicate in which order they should be installed.</p>
+</div>
+<div class="paragraph">
+<p>Release dependencies are now deprecated because the side effects of automatically installing or uninstalling a
+dependent release may often be undesirable. If the dependent release is already installed, then it would always
+be upgraded even if that is not necessary. Likewise, the automatic uninstallation is not always desired and should
+be controlled in a more fine-grained way using the other mechanisms documented here.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The <code>dependsOn</code> property and method on a release allows you to indicate that a certain release depends on another
+release. As a consequence, when release A depends on release B, then release B will automatically installed before
+release A is installed, and uninstalled after release A is uninstalled.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.releases {
+
+    postgres {
+        from 'stable/postgresql'
+    }
+
+    myApp {
+        // myApp depending on postgres means that whenever myApp is installed,
+        // postgres will be automatically installed first; and whenever myApp
+        // is uninstalled, postgres will be uninstalled afterwards.
+        dependsOn 'postgres'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.releases {
+
+    create("postgres") {
+        from("stable/postgresql")
+    }
+
+    create("myApp") {
+        // myApp depending on postgres means that whenever myApp is installed,
+        // postgres will be automatically installed first; and whenever myApp
+        // is uninstalled, postgres will be uninstalled afterwards.
+        dependsOn("postgres")
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installupgrade_logic"><a class="anchor" href="#_installupgrade_logic"></a>Install/Upgrade logic</h3>
+<div class="paragraph">
+<p>The installation task that the plugin creates for each release, named <code>helmInstall&lt;Name&gt;Release</code>, will perform an
+install or upgrade based on the following logic:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>if the release has the <code>replace</code> property set to <code>true</code>, it will always call <code>helm install --replace</code></p>
+</li>
+<li>
+<p>Otherwise, it calls <code>helm ls</code> as an intermediate step to determine the current status of the release.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>if the release exists but previously failed, it will call <code>helm install --replace</code>. This works around the
+<code>UPGRADE FAILED: "&lt;name&gt;" has no deployed releases</code> issue if a previous call to <code>helm install</code> was not successful.</p>
+</li>
+<li>
+<p>Otherwise, it will call <code>helm upgrade --install</code> (also if the release does not exist).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_installation_task_dependencies"><a class="anchor" href="#_installation_task_dependencies"></a>Installation Task Dependencies</h3>
+<div class="paragraph">
+<p>Sometimes it is necessary to execute other task dependencies before a release can be installed. For example, when
+using Helm and <a href="https://plugins.gradle.org/plugin/com.google.cloud.tools.jib">jib</a> together, you may want to
+call the <code>jib</code> task that builds your Docker image before you install the release.</p>
+</div>
+<div class="paragraph">
+<p>You can declare such dependencies using the <code>installDependsOn</code> property or method on the release:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.releases {
+
+    myApp {
+        // ...
+        installDependsOn 'jib'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.releases {
+
+    create("myApp") {
+        // ...
+        installDependsOn("jib")
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_release_targets"><a class="anchor" href="#_using_release_targets"></a>Using Release Targets</h3>
+<div class="paragraph">
+<p>A frequent requirement when using Helm is to designate different <em>release targets</em>, with target-specific configuration
+applied to each chart depending on the target. For example, you might use release targets to model different
+server environments, stages of development (e.g. dev / test / production), or different variants of installation.</p>
+</div>
+<div class="sect3">
+<h4 id="_defining_release_targets"><a class="anchor" href="#_defining_release_targets"></a>Defining Release Targets</h4>
+<div class="paragraph">
+<p>Use the <code>helm.releaseTargets</code> container in the Gradle build script to add release targets. For example, you might
+want to use a different <code>kubeContext</code> for each target, and use the <code>--atomic</code> flag only for production installs:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    releaseTargets {
+        local {
+            kubeContext = 'docker-for-desktop'
+        }
+        production {
+            kubeContext = 'aws'
+            atomic = true
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    releaseTargets {
+        create("local") {
+            kubeContext.set("docker-for-desktop")
+        }
+        create("production") {
+            kubeContext.set("aws")
+            atomic.set(true)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>INFO: If you don&#8217;t create your own release targets, the plugin will create a release target named <code>default</code> that
+uses all the default properties. As soon as you create other release targets, the <code>default</code> target will back away.</p>
+</div>
+<div class="paragraph">
+<p>Values (and related properties) can be added to a release target as well, and they will be used for <em>every</em> release
+that is installed to this target:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    releaseTargets {
+        local {
+            values.put('replication.enabled', false)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    releaseTargets {
+        create("local") {
+            values.put("replication.enabled", false)
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When a release is installed to a target, the parameters for the <code>helm install</code> / <code>helm upgrade</code> call are determined
+from the properties of both the release and the release target. If a property is defined on both the release and the
+release target, the release has precedence (except for values, which will be merged from both sources).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_installing_to_and_uninstalling_from_a_specific_target"><a class="anchor" href="#_installing_to_and_uninstalling_from_a_specific_target"></a>Installing to and Uninstalling From a Specific Target</h4>
+<div class="paragraph">
+<p>For each Gradle run, one of the release targets will be the <em>active</em> release target. This can be controlled by setting
+the <code>helm.release.target</code> property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">./gradlew helmInstall -Phelm.release.target=production</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is also useful to set a default value for this property in your <code>gradle.properties</code> file, to indicate a default
+release target that can be selectively overridden on the command line:</p>
+</div>
+<div class="listingblock">
+<div class="title">gradle.properties</div>
+<div class="content">
+<pre class="prettyprint highlight"><code>helm.release.target=local</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For each Gradle build with the plugin, there can only ever be one active release target. You cannot install
+charts to multiple targets from within the same build. Even though the plugin registers tasks like
+<code>helmInstallMyReleaseToLocal</code> even for inactive targets, those will be SKIPPED when part of the task execution graph.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_target_specific_release_configuration"><a class="anchor" href="#_target_specific_release_configuration"></a>Target-Specific Release Configuration</h4>
+<div class="paragraph">
+<p>Inside a <code>release</code>, you can add a <code>forTarget { }</code> block that applies configuration only for a specific target.
+For example, many Helm charts can be configured to create a <code>Secret</code> or use an existing secret:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    releaseTargets {
+        local
+        production
+    }
+
+    releases {
+        myApp {
+            from 'my-repo/my-application'
+            forTarget('local') {
+                values.put('auth.username', 'username')
+                values.put('auth.password', 'password')
+            }
+            forTarget('production') {
+                values.put('auth.existingSecret', 'some-existing-secret')
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    releaseTargets {
+        create("local")
+        create("production")
+    }
+
+    releases {
+        create("myApp") {
+            from("my-repo/my-application")
+            forTarget("local") {
+                values.put("auth.username", "username")
+                values.put("auth.password", "password")
+            }
+            forTarget("production") {
+                values.put("auth.existingSecret", "some-existing-secret")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you prefix the argument to <code>forTarget</code> with an exclamation mark (e.g. <code>forTarget("!local")</code>), the block
+will be evaluated for all targets <em>but</em> the given one.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p><code>forTarget</code> blocks are evaluated lazily when the release is actually installed to the given target. You can modify
+most of the properties of the <code>release</code> in the <code>forTarget</code> block. For example, to add additional installation task
+dependencies based on the target, call <code>installDependsOn</code> inside a <code>forTarget</code> block:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    releases {
+        myApp {
+            from 'my-repo/my-application'
+            forTarget('local') {
+                installDependsOn 'jibDockerBuild'
+            }
+            forTarget('production') {
+                installDependsOn 'jib'
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    releases {
+        create("myApp") {
+            from("my-repo/my-application")
+            forTarget("local") {
+                installDependsOn("jibDockerBuild")
+            }
+            forTarget("!local") {
+                installDependsOn("jib")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you need to apply dynamic target-specific configuration that depends on the target name, the scope of each
+<code>forTarget</code> block contains a <code>target</code> property that allows access to the target for which the release is being
+configured. In the case where this <code>target</code> reference is all you need, you could even use <code>forAnyTarget</code>, which
+is always called.</p>
+</div>
+<div class="paragraph">
+<p>For example, to pass a specific file to <code>fileValues</code>, whose name depends on the release target name,
+you could do this:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    releases {
+        myApp {
+            from 'my-repo/my-application'
+            forAnyTarget {
+                fileValues.put('tls.certificate', "cert/cert-${target.name}.pem")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    releases {
+        create("myApp") {
+            from("my-repo/my-application")
+            forAnyTarget {
+                fileValues.put("tls.certificate", "cert/cert-${target.name}.pem")
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+For more advanced scenarios, both the release and the release target DSL objects are <code>ExtensionAware</code>, which
+means they have an extra properties extension where you can store custom properties that can then be accessed
+in a <code>forTarget</code> or <code>forAnyTarget</code> block.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_directories_of_value_files"><a class="anchor" href="#_directories_of_value_files"></a>Directories of Value Files</h5>
+<div class="paragraph">
+<p>Since values and value files are the most common thing to customize per target, there exists another handy mechanism
+which allows you to declare a <code>valuesDir</code> directory containing YAML files with filenames according to a specific
+convention. Assuming you have a directory containing value files like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>📂 myapp-values
+  📄 values.yaml
+  📄 values-local.yaml
+  📄 values-production.yaml</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pass the path of the directory to the release by calling <code>valuesDir</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    releases {
+        myApp {
+            from 'my-repo/my-application'
+            valuesDir 'myapp-values'
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    releases {
+        create("myApp") {
+            from("my-repo/my-application")
+            valuesDir("myapp-values")
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When installing a release to a given target, the <code>values-&lt;target&gt;.yaml</code> file is automatically passed to the
+<code>helm install</code> or <code>helm upgrade</code> command. If the directory contains a <code>values.yaml</code> file (without a suffix), then it
+will be used for all targets, but with a lower precedence than the target-specific values files, meaning you can
+define common defaults in <code>values.yaml</code> and then selectively override them for each target.</p>
+</div>
+<div class="paragraph">
+<p>Each of the files in the values directory is optional, if a certain file name pattern does not exist, it will not
+be used.</p>
+</div>
+<div class="paragraph">
+<p>In the above example, when installing <code>myApp</code> to the <code>local</code> target, it would call <code>helm install</code> / <code>helm upgrade</code>
+with the option <code>--values myapp-values/values.yaml,myapp-values/values-local.yaml</code>. Similarly, when installing to the
+<code>production</code> target, it would use the option <code>--values myapp-values/values.yaml,myapp-values/values-production.yaml</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Use the built-in Gradle mechanisms to automatically declare a <code>valuesDir</code> for each release according to your own
+convention. Assuming your directory structure contains value files for each release in a subdirectory
+<code>$projectDir/helm-values/&lt;release-name&gt;</code>:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.releases.all {
+    valuesDir "helm-values/$name"
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.releases.all {
+    valuesDir("helm-values/$name")
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-tags-to-select-releases"><a class="anchor" href="#using-tags-to-select-releases"></a>Using Tags to Select Releases</h3>
+<div class="paragraph">
+<p>Often you want to declare multiple releases in your build script, but you want to selectively install only a subset
+of them. For example, when installing a set of applications in a local cluster, you might want to include infrastructure
+components like a database or message queue as well, but exclude them when installing to production because they can
+be assumed to be managed externally.</p>
+</div>
+<div class="paragraph">
+<p>The <code>helm-releases</code> plugin offers a powerful tagging mechanism for such setups:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Each release may be assigned a set of tags</p>
+</li>
+<li>
+<p>A release target may contain a selection expression to use only a subset of releases</p>
+</li>
+<li>
+<p>A global selection expression allows you to further filter the set of releases per-build</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In the following example, we create two releases <code>myApp</code> and <code>mongodb</code>, and assign them tags <code>application</code> and
+<code>database</code>, respectively:</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.releases {
+    myApp {
+        from 'my-repo/my-application'
+        tags 'application'
+    }
+    mongodb {
+        from 'bitnami/mongodb'
+        tags 'database'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.releases {
+    create("myApp") {
+        from("my-repo/my-application")
+        tags("application")
+    }
+    create("mongodb") {
+        from("bitnami/mongodb")
+        tags("database")
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now we can specify a select expression in our release targets to configure which releases should be installed to
+each target. In its simplest form, the select expression is just the name of a tag, which must then be present on
+the release. The expression <code>*</code> (which is also the default) matches any release.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm.releaseTargets {
+    local {
+        // this is the default
+        selectTags = '*'
+    }
+    production {
+        // When installing to production, only install releases tagged "application"
+        selectTags = 'application'
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm.releaseTargets {
+    create("local") {
+        // this is the default
+        selectTags = "*"
+    }
+    create("production") {
+        // When installing to production, only install releases tagged "application"
+        selectTags = "application"
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can combine tags in a select expression using the operators <code>&amp;</code> (and), <code>|</code> (or) and <code>!</code> (not). Comma and space also
+mean "or". Some examples:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>!database</code> matches any release except ones tagged with <code>database</code></p>
+</li>
+<li>
+<p><code>application,infrastructure</code> matches any release tagged <code>application</code> <em>or</em> <code>infrastructure</code></p>
+</li>
+<li>
+<p><code>infrastructure &amp; !database</code> matches any release tagged <code>infrastructure</code>, but not tagged <code>database</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In addition to setting <code>selectTags</code> on a release target, you can also set the property <code>helm.release.tags</code> on the
+command line to further narrow down the set of releases per-build.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash"># this will install only "application"-tagged releases to the "local" target
+./gradlew helmInstall -Phelm.release.target=local -Phelm.release.tags=application</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>INFO: If both <code>helm.release.tags</code> and the active release target contain a select expression for tags, they will be
+both combined using "and". This means that a release will only be installed if it matches <em>both</em> the <code>helm.release.tags</code>
+expression and the <code>selectTags</code> expression of the release target.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_testing_releases"><a class="anchor" href="#_testing_releases"></a>Testing Releases</h3>
+<div class="paragraph">
+<p>Helm includes a facility for testing charts after they have been installed on a remote cluster. Tests are Kubernetes
+<code>Job</code> resources with an annotation <code>helm.sh/hook: test</code>. See the
+<a href="https://docs.helm.sh/docs/topics/chart_tests/">Chart Tests</a> section in the Helm documentation for details.</p>
+</div>
+<div class="paragraph">
+<p>The <code>helm-releases</code> plugin integrates chart testing by exposing a <code>HelmTest</code> task for every release that is declared
+in the build script. Like other release options, tests can be configured (or even completely disabled) for a release,
+a release target, or a specific combination of the two.</p>
+</div>
+<div class="sect3">
+<h4 id="_release_testing_tasks"><a class="anchor" href="#_release_testing_tasks"></a>Release Testing Tasks</h4>
+<div class="paragraph">
+<p>For each release defined in the <code>releases</code> block, the following Gradle task will be generated:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Task <code>helmTest&lt;X&gt;</code></dt>
+<dd>
+<p>Tests the release named X on the active release target (as indicated by <code>-Phelm.release.target</code>)
+by calling <code>helm test &lt;X&gt;</code>.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>In addition, there will be the following tasks to test <em>all</em> releases in the project at once:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Task <code>helmTest</code></dt>
+<dd>
+<p>Test all releases (except those that have the <code>enabled</code> property set to <code>false</code>).</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If your chart does not contain any tests, <code>helm test</code> (and therefore the <code>HelmTest</code> task) will simply do nothing.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>A <code>helmTest&lt;X&gt;</code> task created for a release will <em>not</em> automatically have a task dependency on the corresponding
+<code>helmInstall&lt;X&gt;</code> task. (It does have a <code>mustRunAfter</code> relationship, however.) This means that simply calling
+<code>gradle helmTest&lt;X&gt;</code> will not automatically install the release. This allows you to use the <code>helmTest</code> or <code>helmTest&lt;X&gt;</code>
+tasks even for testing releases that are already deployed.</p>
+</div>
+<div class="paragraph">
+<p>If you want to install and test releases in the same Gradle build, then you need to include both <code>helmInstall</code> and
+<code>helmTest</code> in the Gradle invocation, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">gradle helmInstall helmTest</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, you should also set the <code>wait</code> property to <code>true</code> on the release, to ensure that the release
+is up and running before the test starts.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_release_testing_configuration"><a class="anchor" href="#_release_testing_configuration"></a>Release Testing Configuration</h4>
+<div class="paragraph">
+<p>You can fine-tune testing options using the <code>test</code> DSL block inside a release or release target.</p>
+</div>
+<div class="listingblock primary">
+<div class="title">Groovy</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">helm {
+    releases {
+        foo {
+            from 'my-repo/foo'
+            test {
+                // dump test logs
+                showLogs = true
+            }
+        }
+        bar {
+            from 'my-repo/bar'
+            test {
+                // disable testing for this release (enabled by default)
+                enabled = false
+            }
+        }
+    }
+
+    releaseTargets {
+        local {
+            test {
+                // always dump test logs for this target
+                showLogs = true
+            }
+        }
+        remote {
+            test {
+                // configure a different timeout for this target
+                timeout = Duration.ofSeconds(10)
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="listingblock secondary">
+<div class="title">Kotlin</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="kotlin">helm {
+    releases {
+        create("foo") {
+            from("my-repo/foo")
+            test {
+                // dump test logs
+                showLogs.set(true)
+            }
+        }
+        create("bar") {
+            from("my-repo/bar")
+            test {
+                // disable testing for this release (enabled by default)
+                enabled.set(false)
+            }
+        }
+    }
+
+    releaseTargets {
+        create("local") {
+            test {
+                // always dump test logs for this target
+                showLogs.set(true)
+            }
+        }
+        create("remote") {
+            test {
+                // configure a different timeout for this target
+                timeout.set(Duration.ofSeconds(10))
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>showLogs</code> property (which corresponds to the <code>--logs</code> flag to the <code>helm test</code> CLI command) can also be configured
+globally on a per-invocation basis by setting the <code>helm.test.logs</code> property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">gradle helmTest -Phelm.test.logs=true</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_checking_the_status_of_a_release"><a class="anchor" href="#_checking_the_status_of_a_release"></a>Checking the Status of a Release</h3>
+<div class="paragraph">
+<p>For each release/target combination, the <code>helm-releases</code> plugin will provide a task named
+<code>helmStatus&lt;Release&gt;On&lt;Target&gt;</code> to check the status of the release. Internally, this will map to a call of
+<code>helm status &lt;release-name&gt;</code>.</p>
+</div>
+<div class="paragraph">
+<p>For example, to check the status of the "awesome" release on the "local" target:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">gradle helmStatusAwesomeOnLocal</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In addition, you can also check the status of a release on the active target (as indicated by the <code>helm.release.target</code>
+project property) using the <code>helmStatus&lt;Release&gt;</code> task:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">gradle helmStatusAwesome -Phelm.release.target=local</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_controlling_the_output_file_and_format"><a class="anchor" href="#_controlling_the_output_file_and_format"></a>Controlling the output file and format</h4>
+<div class="paragraph">
+<p><code>helm status</code> offers an <code>--output</code> option that allows you to select the desired output format for the status report.
+With the <code>helm-releases</code> plugin, this can be achieved by setting the <code>helm.status.outputFormat</code> property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">gradle helmStatusAwesome -Phelm.status.outputFormat=yaml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also output the status report to a file instead of stdout, by setting the <code>helm.status.outputFile</code> property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">gradle helmStatusAwesome -Phelm.status.outputFile='helm-status.json'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Relative paths are resolved from the project directory of the <code>HelmStatus</code> task, which might not be the root directory.
+You can use Groovy GString expansion in the property value to force it to the root directory (but remember to
+properly quote &#8220;$&#8221; characters when calling from a shell):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="bash">gradle helmStatusAwesome -Phelm.status.outputFile='$rootDir/build/helm-status.json'</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If an output file is used, and the output format is not explicitly set, the correct format is automatically
+guessed based on the file extension. For example, for an output file with the <code>.json</code> extension, the output format
+defaults to <code>json</code> (instead of <code>table</code>, which is Helm&#8217;s default).
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_helm_commands"><a class="anchor" href="#_using_helm_commands"></a>Using Helm Commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The plugin <code>org.unbroken-dome.helm-commands</code> allows you to use Helm commands directly, similar to what you would do
+with the Helm CLI. <code>helm-commands</code> is also implied by all the other plugins in the suite.</p>
+</div>
+<div class="paragraph">
+<p>For most Helm CLI commands, there is a corresponding Gradle task type (except for commands that do not really make
+sense for a build script, like <code>helm search</code> or <code>helm inspect</code>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In most cases it is more convenient to use the high-level DSL provided by the other plugins to manage your
+charts in a declarative way.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Check the <a href="https://unbroken-dome.github.io/projects/gradle-helm-plugin/">API Reference</a>
+for a full list of available tasks.</p>
+</div>
+<div class="sect2">
+<h3 id="_example"><a class="anchor" href="#_example"></a>Example</h3>
+<div class="listingblock">
+<div class="title">build.gradle</div>
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="groovy">import org.unbrokendome.gradle.plugins.helm.command.tasks.*
+
+plugins {
+    id 'org.unbroken-dome.helm-commands' version '&lt;VERSION&gt;'
+}
+
+task installMariaDb(type: HelmInstall) {
+    chart = 'stable/mariadb'
+    version = '4.3.1'
+    releaseName = 'mariadb'
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_from_project_properties"><a class="anchor" href="#_configuration_from_project_properties"></a>Configuration from Project Properties</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Many settings can be configured by Gradle
+<a href="https://docs.gradle.org/current/userguide/build_environment.html#sec:gradle_configuration_properties">project properties</a>
+instead of specifying them in the DSL. This has the advantage that you can pass them on the command line
+(using <code>-P</code> switches) or a local <code>~/gradle.properties</code> file to account for different build environments.
+In addition, such properties are automatically inherited by subprojects.</p>
+</div>
+<div class="paragraph">
+<p>Some of these properties allow evaluation as a Groovy <code>GString</code>, so that you can do things like
+<code>-Phelm.executable=$rootDir/helm/bin/helm3</code> (but the dollar signs may need to be escaped so the shell does not
+treat them as environment variables). GStrings will be evaluated in the context of each project.</p>
+</div>
+<div class="paragraph">
+<p>In general, the name of the project property corresponds to the path of the property in the DSL,
+e.g. <code>helm.executable</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Properties set explicitly in your Gradle script have precedence over properties from the command line
+or <code>gradle.properties</code> file, so it may be better to put them in <code>gradle.properties</code> in the first place, to
+allow for easier overriding.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_basic_helm_properties"><a class="anchor" href="#_basic_helm_properties"></a>Basic Helm Properties</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 37.5%;">
+<col style="width: 50%;">
+<col style="width: 12.5%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">GString</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.executable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the Helm CLI executable. The <code>PATH</code> variable is taken into account, so this
+  can just be <code>"helm"</code> if the Helm client is installed in a suitable location. Defaults to <code>helm</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.debug</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enable verbose output from the Helm CLI.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.kubeContext</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the kubeconfig context to use.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.kubeConfig</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to the Kubernetes configuration file.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.remoteTimeout</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time to wait for an individual Kubernetes operation (like Jobs or hooks).</p>
+<p class="tableblock">May be specified in Helm format (e.g. <code>3m30s</code>), in ISO format (e.g. <code>PT3M30S</code>) or as a plain number indicating the
+number of seconds (e.g. <code>210</code>).</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.namespace</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target namespace for Kubernetes operations.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.outputDir</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The base output directory for charts; defaults to <code>$buildDir/helm/charts</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.tmpDir</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base temporary directory for various intermediate artifacts. Defaults to <code>$buildDir/tmp/helm</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.xdgDataHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing data. Corresponds to the <code>XDG_DATA_HOME</code> environment variable.
+  Defaults to <code>$buildDir/helm/data</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.xdgConfigHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing configuration. Corresponds to the <code>XDG_CONFIG_HOME</code> environment variable.
+  Defaults to <code>$buildDir/helm/config</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.xdgCacheHome</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base directory for storing data. Corresponds to the <code>XDG_CACHE_HOME</code> environment variable.
+  Defaults to <code>$rootDir/.gradle/helm/cache</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><span class="icon"><i class="fa fa-check"></i></span></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_repositories"><a class="anchor" href="#_repositories"></a>Repositories</h3>
+<div class="paragraph">
+<p>You can configure repositories entirely from Gradle properties&#8201;&#8212;&#8201;just the presence of a set of
+<code>helm.repositories.&lt;name&gt;.&lt;xyz&gt;</code> properties will automatically create a corresponding repository.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.repository.&lt;name&gt;.url</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The URL of the repository.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.repository.&lt;name&gt;.credentials.username</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Username for password-based authentication.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.repository.&lt;name&gt;.credentials.password</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Password for password-based authentication.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.repository.&lt;name&gt;.credentials.certificateFile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Client certificate file for certificate authentication.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.repository.&lt;name&gt;.credentials.keyFile</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Private key file for certificate authentication.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_filtering"><a class="anchor" href="#_filtering"></a>Filtering</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.filtering.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Globally enable or disable filtering. Defaults to <code>true</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_linting"><a class="anchor" href="#_linting"></a>Linting</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.lint.enabled</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Globally enable or disable linting. Defaults to <code>true</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.lint.strict</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Globally enable strict mode for linting. Defaults to <code>false</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_releases"><a class="anchor" href="#_releases"></a>Releases</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.atomic</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Perform releases atomically (use <code>--atomic</code> flag).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.dryRun</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Only perform a dry run when installing or deleting releases.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.noHooks</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the <code>--no-hooks</code> flag when installing or uninstalling.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.release.target</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify the active release target. Defaults to <code>default</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.release.tags</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specify an expression to filter releases by tag. By default, all releases are matched.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>helm.wait</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Use the <code>--wait</code> flag when installing.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Version 1.6.0<br>
+Last updated 2021-11-12 10:41:21 +0100
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prettify/r298/run_prettify.min.js"></script>
+</body>
+</html>
