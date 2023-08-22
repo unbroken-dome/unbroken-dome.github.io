@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>calculateDigest</title>
+<link href="../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../styles/style.css" rel="Stylesheet">
+<link href="../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../styles/main.css" rel="Stylesheet">
+<link href="../../styles/prism.css" rel="Stylesheet">
+<link href="../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../index.html">
+<span>gradle-helm-plugin-parent</span>            </a>    </div>
+    <div>2.0.0
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":helm-plugin:dokkaHtmlPartial/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="member" id="content" pageids="helm-plugin::org.unbrokendome.gradle.plugins.helm.util//calculateDigest/#java.nio.channels.ReadableByteChannel#kotlin.String#kotlin.Int/PointingToDeclaration//-273640008">
+  <div class="breadcrumbs"><a href="../index.html">helm-plugin</a><span class="delimiter">/</span><a href="index.html">org.unbrokendome.gradle.plugins.helm.util</a><span class="delimiter">/</span><span class="current">calculateDigest</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>calculate</span><wbr><span><span>Digest</span></span></h1>
+  </div>
+  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="calculate-digest.html"><span class="token function">calculateDigest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span><span class="token annotation builtin">@</span><a href="https://docs.oracle.com/javase/8/docs/api/javax/annotation/WillNotClose.html"><span class="token annotation builtin">WillNotClose</span></a>&nbsp;</span>channel<span class="token operator">: </span><a href="https://docs.oracle.com/javase/8/docs/api/java/nio/channels/ReadableByteChannel.html">ReadableByteChannel</a><span class="token punctuation">, </span></span><span class="parameter ">algorithm<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>DefaultDigestAlgorithm<span class="token punctuation">, </span></span><span class="parameter ">bufferSize<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>DefaultBufferSize</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a></div><p class="paragraph">Calculates a digest over the contents of a <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/channels/ReadableByteChannel.html">ReadableByteChannel</a>.</p><span class="kdoc-tag"><h4 class="">Return</h4><p class="paragraph">the digest as an array of bytes</p></span><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>channel</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/channels/ReadableByteChannel.html">ReadableByteChannel</a> that contains the data. It will be read fully but not closed by this     method.</p></div></div></div></div><div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>algorithm</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the digest algorithm, e.g. <code class="lang-kotlin">"SHA-256"</code>. Must be the name of an available     <a href="https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html">MessageDigest</a> implementation.</p></div></div></div></div><div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>buffer</span><wbr><span><span>Size</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the buffer size</p></div></div></div></div></div><hr><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Path.html">Path</a><span class="token punctuation">.</span><a href="calculate-digest.html"><span class="token function">calculateDigest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">algorithm<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>DefaultDigestAlgorithm<span class="token punctuation">, </span></span><span class="parameter ">bufferSize<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>DefaultBufferSize</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="https://docs.oracle.com/javase/8/docs/api/java/io/File.html">File</a><span class="token punctuation">.</span><a href="calculate-digest.html"><span class="token function">calculateDigest</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">algorithm<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator"> = </span>DefaultDigestAlgorithm<span class="token punctuation">, </span></span><span class="parameter ">bufferSize<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a><span class="token operator"> = </span>DefaultBufferSize</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte-array/index.html">ByteArray</a></div><p class="paragraph">Calculates a digest over the contents of a file.</p><span class="kdoc-tag"><h4 class="">Receiver</h4><p class="paragraph">the full path of the file for which to calculate the digest</p></span><span class="kdoc-tag"><h4 class="">Return</h4><p class="paragraph">the digest as an array of bytes</p></span><h4 class="">Parameters</h4><div class="table"><div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span><span>algorithm</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the digest algorithm, e.g. <code class="lang-kotlin">"SHA-256"</code>. Must be the name of an available     <a href="https://docs.oracle.com/javase/8/docs/api/java/security/MessageDigest.html">MessageDigest</a> implementation.</p></div></div></div></div><div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"><div class="main-subrow keyValue "><div class=""><span class="inline-flex"><div><u><span>buffer</span><wbr><span><span>Size</span></span></u></div></span></div><div><div class="title"><p class="paragraph">the buffer size</p></div></div></div></div></div></div></div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+

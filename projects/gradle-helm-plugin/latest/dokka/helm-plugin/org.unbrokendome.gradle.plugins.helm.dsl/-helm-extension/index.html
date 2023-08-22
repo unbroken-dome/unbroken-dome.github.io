@@ -1,0 +1,424 @@
+<!doctype html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>HelmExtension</title>
+<link href="../../../images/logo-icon.svg" rel="icon" type="image/svg"><script>var pathToRoot = "../../../";</script>    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer></script></head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+<a href="../../../index.html">
+<span>gradle-helm-plugin-parent</span>            </a>    </div>
+    <div>2.0.0
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":helm-plugin:dokkaHtmlPartial/main">jvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageids="helm-plugin::org.unbrokendome.gradle.plugins.helm.dsl/HelmExtension///PointingToDeclaration//-273640008">
+  <div class="breadcrumbs"><a href="../../index.html">helm-plugin</a><span class="delimiter">/</span><a href="../index.html">org.unbrokendome.gradle.plugins.helm.dsl</a><span class="delimiter">/</span><span class="current">HelmExtension</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Helm</span><wbr><span><span>Extension</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">interface </span><a href="index.html">HelmExtension</a> : <a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html">HelmExecProvider</a>, <a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/index.html">ConfigurableGlobalHelmOptions</a>, <a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/index.html">ConfigurableHelmServerOptions</a></div><p class="paragraph">The main Helm DSL extension, accessible using the <code class="lang-kotlin">helm { ... }</code> block in build scripts.</p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button><button class="section-tab" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION,EXTENSION_PROPERTY,EXTENSION_FUNCTION">Members &amp; Extensions</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="299177934%2FProperties%2F-273640008" anchor-label="charts" id="299177934%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.dsl.internal/charts.html"><span><span>charts</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="299177934%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="index.html">HelmExtension</a><span class="token punctuation">.</span><a href="../../org.unbrokendome.gradle.plugins.helm.dsl.internal/charts.html">charts</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api/NamedDomainObjectContainer///PointingToDeclaration/">NamedDomainObjectContainer</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-helm-chart/index.html">HelmChart</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Gets the <code class="lang-kotlin">charts</code> sub-extension.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="890205863%2FProperties%2F-273640008" anchor-label="debug" id="890205863%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/debug.html"><span><span>debug</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="890205863%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/debug.html">debug</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api.provider/Property///PointingToDeclaration/">Property</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Indicates whether to use the verbose output (<code class="lang-kotlin">--debug</code> flag) when invoking commands.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1913868452%2FProperties%2F-273640008" anchor-label="downloadClient" id="-1913868452%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="download-client.html"><span>download</span><wbr><span><span>Client</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1913868452%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="download-client.html">downloadClient</a><span class="token operator">: </span><a href="../-helm-download-client/index.html">HelmDownloadClient</a></div><div class="brief "><p class="paragraph">Configures the download of the Helm client executable.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-343141642%2FProperties%2F-273640008" anchor-label="executable" id="-343141642%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/executable.html"><span><span>executable</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-343141642%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/executable.html">executable</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api.provider/Property///PointingToDeclaration/">Property</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">The name or path of the Helm executable. The <code class="lang-kotlin">PATH</code> variable is taken into account, so this can just be <code class="lang-kotlin">"helm"</code> if the Helm client is installed in a suitable location.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-518706515%2FProperties%2F-273640008" anchor-label="extraArgs" id="-518706515%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/extra-args.html"><span>extra</span><wbr><span><span>Args</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-518706515%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/extra-args.html">extraArgs</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api.provider/ListProperty///PointingToDeclaration/">ListProperty</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Additional command-line arguments to pass to the Helm CLI.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1207630511%2FProperties%2F-273640008" anchor-label="filtering" id="-1207630511%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.dsl.internal/filtering.html"><span><span>filtering</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1207630511%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="index.html">HelmExtension</a><span class="token punctuation">.</span><a href="../../org.unbrokendome.gradle.plugins.helm.dsl.internal/filtering.html">filtering</a><span class="token operator">: </span><a href="../-filtering/index.html">Filtering</a></div><div class="brief "><p class="paragraph">Gets the <a href="../-filtering/index.html">Filtering</a> sub-extension.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-797959311%2FProperties%2F-273640008" anchor-label="kubeConfig" id="-797959311%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/kube-config.html"><span>kube</span><wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-797959311%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/kube-config.html">kubeConfig</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api.file/RegularFileProperty///PointingToDeclaration/">RegularFileProperty</span></div><div class="brief "><p class="paragraph">Path to the Kubernetes configuration file.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-364623112%2FProperties%2F-273640008" anchor-label="kubeContext" id="-364623112%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/kube-context.html"><span>kube</span><wbr><span><span>Context</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-364623112%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/kube-context.html">kubeContext</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api.provider/Property///PointingToDeclaration/">Property</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Name of the kubeconfig context to use.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1355146080%2FProperties%2F-273640008" anchor-label="lint" id="1355146080%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.dsl.internal/lint.html"><span><span>lint</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1355146080%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="index.html">HelmExtension</a><span class="token punctuation">.</span><a href="../../org.unbrokendome.gradle.plugins.helm.dsl.internal/lint.html">lint</a><span class="token operator">: </span><a href="../-linting/index.html">Linting</a></div><div class="brief "><p class="paragraph">Gets the <a href="../-linting/index.html">Linting</a> sub-extension.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2011563841%2FProperties%2F-273640008" anchor-label="namespace" id="-2011563841%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/namespace.html"><span><span>namespace</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2011563841%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/namespace.html">namespace</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api.provider/Property///PointingToDeclaration/">Property</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Namespace scope for this request.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-794526849%2FProperties%2F-273640008" anchor-label="outputDir" id="-794526849%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="output-dir.html"><span>output</span><wbr><span><span>Dir</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-794526849%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="output-dir.html">outputDir</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api.file/DirectoryProperty///PointingToDeclaration/">DirectoryProperty</span></div><div class="brief "><p class="paragraph">Base output directory for Helm charts.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="974459189%2FProperties%2F-273640008" anchor-label="renderOutputDir" id="974459189%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="render-output-dir.html"><span>render</span><wbr><span>Output</span><wbr><span><span>Dir</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="974459189%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="render-output-dir.html">renderOutputDir</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api.file/DirectoryProperty///PointingToDeclaration/">DirectoryProperty</span></div><div class="brief "><p class="paragraph">Base output directory for rendering (<code class="lang-kotlin">helm template</code>) outputs.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1754644645%2FProperties%2F-273640008" anchor-label="repositories" id="-1754644645%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_PROPERTY" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.dsl.internal/repositories.html"><span><span>repositories</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1754644645%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">val </span><a href="index.html">HelmExtension</a><span class="token punctuation">.</span><a href="../../org.unbrokendome.gradle.plugins.helm.dsl.internal/repositories.html">repositories</a><span class="token operator">: </span><a href="../-helm-repository-handler/index.html">HelmRepositoryHandler</a></div><div class="brief "><p class="paragraph">Gets the <code class="lang-kotlin">repositories</code> sub-extension.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1240404794%2FProperties%2F-273640008" anchor-label="xdgCacheHome" id="1240404794%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/xdg-cache-home.html"><span>xdg</span><wbr><span>Cache</span><wbr><span><span>Home</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1240404794%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/xdg-cache-home.html">xdgCacheHome</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api.file/DirectoryProperty///PointingToDeclaration/">DirectoryProperty</span></div><div class="brief "><p class="paragraph">Base directory for storing cached data.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1332221058%2FProperties%2F-273640008" anchor-label="xdgConfigHome" id="-1332221058%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/xdg-config-home.html"><span>xdg</span><wbr><span>Config</span><wbr><span><span>Home</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1332221058%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/xdg-config-home.html">xdgConfigHome</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api.file/DirectoryProperty///PointingToDeclaration/">DirectoryProperty</span></div><div class="brief "><p class="paragraph">Base directory for storing configuration.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1701464214%2FProperties%2F-273640008" anchor-label="xdgDataHome" id="1701464214%2FProperties%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/xdg-data-home.html"><span>xdg</span><wbr><span>Data</span><wbr><span><span>Home</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1701464214%2FProperties%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">override </span><span class="token keyword">val </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/xdg-data-home.html">xdgDataHome</a><span class="token operator">: </span><span data-unresolved-link="org.gradle.api.file/DirectoryProperty///PointingToDeclaration/">DirectoryProperty</span></div><div class="brief "><p class="paragraph">Base directory for storing data.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="93142732%2FFunctions%2F-273640008" anchor-label="conventionsFrom" id="93142732%2FFunctions%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command.internal/conventions-from.html"><span>conventions</span><wbr><span><span>From</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="93142732%2FFunctions%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/index.html">ConfigurableGlobalHelmOptions</a><span class="token punctuation">.</span><a href="../../org.unbrokendome.gradle.plugins.helm.command.internal/conventions-from.html"><span class="token function">conventionsFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">source<span class="token operator">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-global-helm-options/index.html">GlobalHelmOptions</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-global-helm-options/index.html">ConfigurableGlobalHelmOptions</a></div><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/index.html">ConfigurableHelmServerOptions</a><span class="token punctuation">.</span><a href="../../org.unbrokendome.gradle.plugins.helm.command.internal/conventions-from.html"><span class="token function">conventionsFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">source<span class="token operator">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/index.html">HelmServerOptions</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/index.html">ConfigurableHelmServerOptions</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-920831109%2FFunctions%2F-273640008" anchor-label="downloadClient" id="-920831109%2FFunctions%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="download-client.html"><span>download</span><wbr><span><span>Client</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-920831109%2FFunctions%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="download-client.html"><span class="token function">downloadClient</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">configureAction<span class="token operator">: </span><span data-unresolved-link="org.gradle.api/Action///PointingToDeclaration/">Action</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../-helm-download-client/index.html">HelmDownloadClient</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Configures the download of the Helm client executable.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1042332795%2FFunctions%2F-273640008" anchor-label="execHelm" id="-1042332795%2FFunctions%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/exec-helm.html"><span>exec</span><wbr><span><span>Helm</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1042332795%2FFunctions%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/exec-helm.html"><span class="token function">execHelm</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">command<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">subcommand<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">action<span class="token operator">: </span><span data-unresolved-link="org.gradle.api/Action///PointingToDeclaration/">Action</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html">HelmExecSpec</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Executes a Helm CLI command.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1666025066%2FFunctions%2F-273640008" anchor-label="execHelm" id="-1666025066%2FFunctions%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/exec-helm.html"><span>exec</span><wbr><span><span>Helm</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1666025066%2FFunctions%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/index.html">HelmExecProvider</a><span class="token punctuation">.</span><a href="../../org.unbrokendome.gradle.plugins.helm.command/exec-helm.html"><span class="token function">execHelm</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">command<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">subcommand<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">action<span class="token operator">: </span><span class="token keyword"></span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html">HelmExecSpec</a><span class="token punctuation">.</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator"> -&gt; </span><span class="token keyword"></span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html">Unit</a><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Executes a Helm CLI command.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-686775050%2FFunctions%2F-273640008" anchor-label="execHelmCaptureOutput" id="-686775050%2FFunctions%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/exec-helm-capture-output.html"><span>exec</span><wbr><span>Helm</span><wbr><span>Capture</span><wbr><span><span>Output</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-686775050%2FFunctions%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-provider/exec-helm-capture-output.html"><span class="token function">execHelmCaptureOutput</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">command<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">subcommand<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span><span class="token operator"> = </span>null<span class="token punctuation">, </span></span><span class="parameter ">action<span class="token operator">: </span><span data-unresolved-link="org.gradle.api/Action///PointingToDeclaration/">Action</span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-exec-spec/index.html">HelmExecSpec</a><span class="token operator">&gt;</span><span class="token operator">?</span><span class="token operator"> = </span>null</span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Executes a Helm CLI command, and captures its output.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1775667482%2FFunctions%2F-273640008" anchor-label="setFrom" id="-1775667482%2FFunctions%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command.internal/set-from.html"><span>set</span><wbr><span><span>From</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1775667482%2FFunctions%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/index.html">ConfigurableHelmServerOptions</a><span class="token punctuation">.</span><a href="../../org.unbrokendome.gradle.plugins.helm.command.internal/set-from.html"><span class="token function">setFrom</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">source<span class="token operator">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/index.html">HelmServerOptions</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-configurable-helm-server-options/index.html">ConfigurableHelmServerOptions</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="2084980589%2FFunctions%2F-273640008" anchor-label="withDefaults" id="2084980589%2FFunctions%2F-273640008" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main"></a>
+          <div class="table-row" data-togglable="EXTENSION_FUNCTION" data-filterable-current=":helm-plugin:dokkaHtmlPartial/main" data-filterable-set=":helm-plugin:dokkaHtmlPartial/main">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="../../org.unbrokendome.gradle.plugins.helm.command.internal/with-defaults.html"><span>with</span><wbr><span><span>Defaults</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2084980589%2FFunctions%2F-273640008"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":helm-plugin:dokkaHtmlPartial/main"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/index.html">HelmServerOptions</a><span class="token punctuation">.</span><a href="../../org.unbrokendome.gradle.plugins.helm.command.internal/with-defaults.html"><span class="token function">withDefaults</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">defaults<span class="token operator">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/index.html">HelmServerOptions</a><span class="token punctuation">, </span></span><span class="parameter ">providers<span class="token operator">: </span><span data-unresolved-link="org.gradle.api.provider/ProviderFactory///PointingToDeclaration/">ProviderFactory</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="../../org.unbrokendome.gradle.plugins.helm.command/-helm-server-options/index.html">HelmServerOptions</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span class="pull-right"><span>Generated by </span><a href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
+
